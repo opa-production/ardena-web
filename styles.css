@@ -353,8 +353,32 @@ body {
 .nav-end {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.75rem;
   margin-left: auto;
+}
+
+.nav-contact-link {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.65rem 1.25rem;
+  background: #007FFA;
+  color: #ffffff;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: 1px solid #007FFA;
+  border-radius: 0;
+  text-decoration: none;
+  white-space: nowrap;
+  letter-spacing: -0.005em;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.nav-contact-link:hover {
+  background: #0a0a0a;
+  color: #ffffff;
+  border-color: #0a0a0a;
+  transform: translateY(-1px);
 }
 
 .nav-cta-wrap {
@@ -3085,19 +3109,21 @@ body {
 .partnerships-hero-cta {
   display: inline-block;
   background: #ffffff;
-  color: #0f172a;
+  color: #0a0a0a;
   font-weight: 600;
   font-size: 0.95rem;
-  padding: 0.72rem 1.35rem;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.85);
-  transition:
-    background 0.2s ease,
-    transform 0.2s ease;
+  padding: 1rem 1.7rem;
+  border-radius: 0;
+  border: 1px solid #ffffff;
+  letter-spacing: -0.005em;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
 }
 
 .partnerships-hero-cta:hover {
-  background: #f5f7fb;
+  background: #007FFA;
+  color: #ffffff;
+  border-color: #007FFA;
   transform: translateY(-1px);
 }
 
@@ -3139,6 +3165,7 @@ body {
 .partnerships-categories-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-auto-rows: 1fr;
   gap: 1px;
   background: #eef0f3;
   border: 1px solid #eef0f3;
@@ -3146,6 +3173,7 @@ body {
   margin: 0 auto;
   width: 100%;
   box-sizing: border-box;
+  align-items: stretch;
 }
 
 .partnerships-category-card {
@@ -3154,6 +3182,13 @@ body {
   border-radius: 0;
   padding: 2rem 1.75rem;
   box-shadow: none;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.partnerships-category-card .partnerships-category-list {
+  flex: 1;
 }
 
 .partnerships-category-title {
@@ -3347,10 +3382,16 @@ body {
   transform: translateY(-1px);
 }
 
-/* Partners logo strip */
+/* Partners logo wall — sharp equal-size cells */
 .partnerships-partners {
-  padding: 4.5rem 0 5rem;
-  background: #f5f5f7;
+  padding: 5.5rem 0;
+  background: #ffffff;
+}
+
+@media (min-width: 900px) {
+  .partnerships-partners {
+    padding: 6rem 0;
+  }
 }
 
 .partnerships-partners-title {
@@ -3360,41 +3401,66 @@ body {
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: #6a6a70;
-  margin: 0 0 2.75rem;
+  margin: 0 0 2.5rem;
 }
 
 .partnerships-partners-logos {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: stretch;
-  justify-content: center;
-  gap: 1rem;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1px;
+  background: #eef0f3;
+  border: 1px solid #eef0f3;
+  max-width: 1100px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .partnerships-partner-item {
+  position: relative;
   background: #ffffff;
-  border: 1px solid #eef0f3;
+  border: none;
   border-radius: 0;
-  padding: 2rem 3rem;
+  padding: 2.75rem 2rem;
+  min-height: 140px;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: border-color 0.2s ease, transform 0.2s ease;
+  text-decoration: none;
+  overflow: hidden;
+  transition: background 0.25s ease;
+}
+
+.partnerships-partner-item::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background: #007FFA;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.3s ease;
 }
 
 .partnerships-partner-item:hover {
-  border-color: #d4d8df;
-  transform: translateY(-1px);
+  background: #f5f5f7;
+  transform: none;
+}
+
+.partnerships-partner-item:hover::before {
+  transform: scaleX(1);
 }
 
 .partnerships-partner-logo {
-  height: 36px;
+  height: 38px;
   width: auto;
-  max-width: 140px;
+  max-width: 150px;
   object-fit: contain;
   filter: grayscale(1);
-  opacity: 0.85;
-  transition: filter 0.2s ease, opacity 0.2s ease;
+  opacity: 0.7;
+  transition: filter 0.25s ease, opacity 0.25s ease;
 }
 
 .partnerships-partner-item:hover .partnerships-partner-logo {
@@ -3402,15 +3468,19 @@ body {
   opacity: 1;
 }
 
+@media (max-width: 900px) {
+  .partnerships-partners-logos {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
 @media (max-width: 480px) {
   .partnerships-partners-logos {
-    flex-direction: column;
-    align-items: center;
+    grid-template-columns: 1fr;
   }
   .partnerships-partner-item {
-    width: 100%;
-    max-width: 280px;
-    padding: 1.75rem 2rem;
+    min-height: 120px;
+    padding: 2rem 1.5rem;
   }
 }
 
