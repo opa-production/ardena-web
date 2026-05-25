@@ -3102,90 +3102,116 @@ body {
 }
 
 .partnerships-categories {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  padding: 5.5rem 0 4.25rem;
-  background: #000000;
+  padding: 5.5rem 0;
+  background: #ffffff;
+}
+
+@media (min-width: 900px) {
+  .partnerships-categories {
+    padding: 6rem 0;
+  }
 }
 
 .partnerships-categories-header {
-  max-width: 780px;
-  margin: 0 auto 2rem;
-  text-align: center;
+  max-width: 1100px;
+  margin: 0 auto 3rem;
+  text-align: left;
 }
 
 .partnerships-categories .section-title {
-  color: #ffffff;
+  color: #0a0a0a;
+  font-size: 2.25rem;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  margin: 0 0 0.75rem;
+  text-align: left;
 }
 
 .partnerships-categories-subtitle {
-  margin: -1.25rem 0 0;
-  color: rgba(255, 255, 255, 0.78);
-  line-height: 1.6;
+  margin: 0;
+  color: #4a4a4f;
+  line-height: 1.65;
+  font-size: 1.0625rem;
+  text-align: left;
 }
 
 .partnerships-categories-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 1rem;
-  margin-top: 2rem;
+  gap: 1px;
+  background: #eef0f3;
+  border: 1px solid #eef0f3;
+  max-width: 1100px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .partnerships-category-card {
   background: #ffffff;
-  border: 1px solid rgba(15, 23, 42, 0.1);
+  border: none;
   border-radius: 0;
-  padding: 1.35rem;
-  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.05);
+  padding: 2rem 1.75rem;
+  box-shadow: none;
 }
 
 .partnerships-category-title {
-  margin: 0 0 0.7rem;
-  color: var(--text-primary);
-  font-size: 1.08rem;
-  line-height: 1.35;
+  margin: 0 0 0.85rem;
+  color: #0a0a0a;
+  font-size: 1.0625rem;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
 }
 
 .partnerships-category-list {
   margin: 0;
   padding-left: 1.05rem;
-  color: var(--text-secondary);
+  color: #4a4a4f;
   line-height: 1.65;
+  font-size: 0.9375rem;
 }
 
 .partnerships-why-minimal {
-  padding: 4.75rem 0;
-  background: #ffffff;
+  padding: 5.5rem 0;
+  background: #f5f5f7;
+}
+
+@media (min-width: 900px) {
+  .partnerships-why-minimal {
+    padding: 6rem 0;
+  }
 }
 
 .partnerships-why-minimal-head {
-  max-width: 760px;
-  margin: 0 auto 1.25rem;
-  text-align: center;
+  max-width: 1100px;
+  margin: 0 auto 2rem;
+  text-align: left;
 }
 
 .partnerships-why-minimal-eyebrow {
-  margin: 0 0 0.45rem;
+  margin: 0 0 0.75rem;
   text-transform: uppercase;
-  letter-spacing: 0.11em;
-  font-size: 0.74rem;
+  letter-spacing: 0.14em;
+  font-size: 0.78rem;
   font-weight: 600;
-  color: #64748b;
+  color: #6a6a70;
 }
 
 .partnerships-why-minimal-title {
   margin: 0;
-  color: #0f172a;
-  font-size: clamp(1.7rem, 2.7vw, 2.4rem);
-  line-height: 1.2;
-  letter-spacing: -0.02em;
+  color: #0a0a0a;
+  font-size: 2.25rem;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  font-weight: 600;
 }
 
 .partnerships-why-minimal-list {
-  max-width: 980px;
+  max-width: 1100px;
   margin: 2rem auto 0;
-  border-top: 1px solid #e2e8f0;
+  border-top: 1px solid #d4d8df;
 }
 
 .partnerships-why-minimal-item {
@@ -3193,130 +3219,148 @@ body {
   grid-template-columns: 210px 1fr;
   gap: 1.25rem;
   align-items: start;
-  padding: 1.2rem 0;
-  border-bottom: 1px solid #e2e8f0;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid #d4d8df;
 }
 
 .partnerships-why-minimal-key {
-  color: #64748b;
+  color: #007FFA;
   font-size: 0.78rem;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   font-weight: 600;
 }
 
 .partnerships-why-minimal-text {
   margin: 0;
-  color: #334155;
+  color: #4a4a4f;
   line-height: 1.65;
+  font-size: 0.9375rem;
 }
 
 .partnerships-how {
-  padding: 4.25rem 0 5rem;
-  background: #f8fafc;
+  padding: 5.5rem 0;
+  background: #007FFA;
+}
+
+@media (min-width: 900px) {
+  .partnerships-how {
+    padding: 6rem 0;
+  }
 }
 
 .partnerships-how-shell {
-  max-width: 980px;
+  max-width: 1100px;
   margin: 0 auto;
-  padding: 2rem 2.1rem;
-  border: 1px solid #e2e8f0;
-  background: #ffffff;
+  padding: 0;
+  border: none;
+  background: transparent;
 }
 
 .partnerships-how-head {
   text-align: left;
+  margin-bottom: 2rem;
 }
 
 .partnerships-how-eyebrow {
-  margin: 0;
-  font-size: 0.74rem;
-  letter-spacing: 0.1em;
+  margin: 0 0 0.75rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: #64748b;
+  color: rgba(255, 255, 255, 0.7);
   font-weight: 600;
 }
 
 .partnerships-how-title {
-  margin: 0.45rem 0 0;
-  font-size: clamp(1.55rem, 2.4vw, 2.2rem);
-  line-height: 1.2;
-  color: #0f172a;
-  letter-spacing: -0.02em;
+  margin: 0;
+  font-size: 2.25rem;
+  line-height: 1.15;
+  color: #ffffff;
+  letter-spacing: -0.03em;
+  font-weight: 600;
 }
 
 .partnerships-how-steps {
-  margin: 1.6rem 0 0;
+  margin: 0;
   padding: 0;
   list-style: none;
   display: grid;
-  gap: 0.9rem;
+  gap: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.25);
 }
 
 .partnerships-how-step {
   display: grid;
   grid-template-columns: 56px 1fr;
-  gap: 0.9rem;
+  gap: 1.25rem;
   align-items: start;
-  padding: 0.9rem 0;
-  border-top: 1px solid #e2e8f0;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+  border-top: none;
 }
 
 .partnerships-how-step-index {
-  color: #94a3b8;
+  color: rgba(255, 255, 255, 0.8);
   font-size: 0.85rem;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: 0.08em;
-  margin-top: 0.1rem;
+  margin-top: 0.15rem;
 }
 
 .partnerships-how-step-title {
-  margin: 0 0 0.2rem;
-  font-size: 1.05rem;
-  color: #0f172a;
+  margin: 0 0 0.35rem;
+  font-size: 1.0625rem;
+  color: #ffffff;
+  font-weight: 600;
+  letter-spacing: -0.01em;
 }
 
 .partnerships-how-step-text {
   margin: 0;
-  color: #475569;
-  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.65;
+  font-size: 0.9375rem;
 }
 
 .partnerships-how-cta {
-  margin-top: 1.5rem;
+  margin-top: 2rem;
 }
 
 .partnerships-how-button {
   display: inline-block;
-  background: #0f172a;
-  color: #ffffff;
-  border: 1px solid #0f172a;
-  padding: 0.72rem 1.3rem;
-  font-size: 0.94rem;
+  background: #ffffff;
+  color: #007FFA;
+  border: 1px solid #ffffff;
+  padding: 0.95rem 1.6rem;
+  font-size: 0.95rem;
   font-weight: 600;
-  transition:
-    background 0.2s ease,
-    transform 0.2s ease;
+  border-radius: 0;
+  text-decoration: none;
+  letter-spacing: -0.005em;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.15s ease;
 }
 
 .partnerships-how-button:hover {
-  background: #020617;
+  background: #0a0a0a;
+  color: #ffffff;
+  border-color: #0a0a0a;
   transform: translateY(-1px);
 }
 
 /* Partners logo strip */
 .partnerships-partners {
   padding: 4.5rem 0 5rem;
-  background: #0d0d0d;
+  background: #f5f5f7;
 }
 
 .partnerships-partners-title {
   text-align: center;
-  font-size: 0.95rem;
-  font-weight: 400;
-  color: #6b7280;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #6a6a70;
   margin: 0 0 2.75rem;
-  letter-spacing: 0.01em;
 }
 
 .partnerships-partners-logos {
@@ -3328,18 +3372,19 @@ body {
 }
 
 .partnerships-partner-item {
-  background: #161616;
-  border: 1px solid #222222;
-  border-radius: 8px;
+  background: #ffffff;
+  border: 1px solid #eef0f3;
+  border-radius: 0;
   padding: 2rem 3rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: border-color 0.2s ease;
+  transition: border-color 0.2s ease, transform 0.2s ease;
 }
 
 .partnerships-partner-item:hover {
-  border-color: #333333;
+  border-color: #d4d8df;
+  transform: translateY(-1px);
 }
 
 .partnerships-partner-logo {
@@ -3347,6 +3392,14 @@ body {
   width: auto;
   max-width: 140px;
   object-fit: contain;
+  filter: grayscale(1);
+  opacity: 0.85;
+  transition: filter 0.2s ease, opacity 0.2s ease;
+}
+
+.partnerships-partner-item:hover .partnerships-partner-logo {
+  filter: grayscale(0);
+  opacity: 1;
 }
 
 @media (max-width: 480px) {
@@ -3389,36 +3442,47 @@ body {
   }
 
   .partnerships-categories {
-    min-height: 100vh;
-    padding: 3.25rem 0;
+    padding: 3.5rem 0;
   }
 
   .partnerships-categories-grid {
     grid-template-columns: 1fr;
-    gap: 0.9rem;
+    gap: 1px;
+  }
+
+  .partnerships-categories .section-title {
+    font-size: 1.85rem;
   }
 
   .partnerships-why-minimal {
-    padding: 3.2rem 0;
+    padding: 3.5rem 0;
   }
 
   .partnerships-why-minimal-item {
     grid-template-columns: 1fr;
     gap: 0.5rem;
-    padding: 1rem 0;
+    padding: 1.25rem 0;
+  }
+
+  .partnerships-why-minimal-title {
+    font-size: 1.85rem;
   }
 
   .partnerships-how {
-    padding: 2.8rem 0 3.2rem;
+    padding: 3.5rem 0;
   }
 
   .partnerships-how-shell {
-    padding: 1.35rem;
+    padding: 0;
   }
 
   .partnerships-how-step {
     grid-template-columns: 1fr;
     gap: 0.35rem;
+  }
+
+  .partnerships-how-title {
+    font-size: 1.85rem;
   }
 }
 
@@ -5944,33 +6008,31 @@ body {
   text-align: center;
 }
 
-/* Help page hero – help.jpg background */
-.help-hero {
-  background: #0f172a;
-  background-image:
-    linear-gradient(
-      to bottom,
-      rgba(15, 23, 42, 0.75) 0%,
-      rgba(15, 23, 42, 0.5) 100%
-    ),
-    url("assets/help.jpg");
-  background-position: center center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  align-items: flex-start;
+/* Help page hero – clean minimal, no background image, fills viewport */
+.help-hero.legal-hero {
+  background: #f5f5f7;
+  background-image: none;
+  min-height: 100vh;
+  align-items: center;
   justify-content: flex-start;
-  padding-top: 6rem;
+  padding-top: 110px;
+  padding-bottom: 60px;
   text-align: left;
+}
+
+.help-hero.legal-hero::after,
+.help-hero.legal-hero::before {
+  display: none;
+  content: none;
 }
 
 .help-hero .container,
 .help-hero-container {
   width: 100%;
-  max-width: 900px;
-  margin-left: 0;
-  margin-right: auto;
-  padding-left: 2rem;
-  padding-right: 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding-left: 5%;
+  padding-right: 5%;
   text-align: left;
   display: block;
 }
@@ -5978,20 +6040,29 @@ body {
 .help-hero-content {
   display: block;
   width: 100%;
+  max-width: 720px;
 }
 
 .help-hero .page-title {
-  color: #fff;
-  margin: 0 0 0.35rem 0;
+  color: #0a0a0a;
+  margin: 0 0 1.25rem 0;
   text-align: left;
+  font-size: clamp(2.5rem, 5.5vw, 4.5rem);
+  font-weight: 600;
+  line-height: 1.02;
+  letter-spacing: -0.04em;
+  text-shadow: none;
 }
 
 .help-hero .page-subtitle {
-  color: #fff;
+  color: #4a4a4f;
   margin: 0;
-  max-width: none;
-  white-space: nowrap;
+  max-width: 560px;
+  white-space: normal;
   text-align: left;
+  font-size: clamp(1.05rem, 1.4vw, 1.2rem);
+  line-height: 1.6;
+  text-shadow: none;
 }
 
 .legal-content {
@@ -6050,7 +6121,7 @@ body {
 
 /* Help page: toggle, panels, cards, socials */
 .help-toggle-section {
-  padding: 2rem 0 2rem;
+  padding: 3rem 0 2rem;
   background: #ffffff;
 }
 
@@ -6060,40 +6131,41 @@ body {
 
 .help-toggle {
   display: inline-flex;
-  background: #f0f0f0;
+  background: #f5f5f7;
   border-radius: 0;
   padding: 4px;
   gap: 0;
-  border: 1px solid #e0e0e0;
+  border: 1px solid #eef0f3;
 }
 
 .help-toggle-btn {
-  padding: 0.6rem 1.5rem;
+  padding: 0.75rem 1.75rem;
   font-family: inherit;
   font-size: 0.95rem;
   font-weight: 500;
-  color: var(--text-secondary);
+  color: #4a4a4f;
   background: transparent;
   border: none;
   border-radius: 0;
   cursor: pointer;
+  letter-spacing: -0.005em;
   transition:
     color 0.2s ease,
     background 0.2s ease;
 }
 
 .help-toggle-btn:hover {
-  color: var(--text-primary);
+  color: #0a0a0a;
 }
 
 .help-toggle-btn.is-active {
-  background: #ffffff;
-  color: var(--text-primary);
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+  background: #0a0a0a;
+  color: #ffffff;
+  box-shadow: none;
 }
 
 .help-panels {
-  background: #fafafa;
+  background: #ffffff;
 }
 
 .help-panel {
@@ -6119,32 +6191,39 @@ body {
 
 .help-card {
   background: #ffffff;
-  padding: 1.5rem 1.75rem;
+  padding: 1.75rem 2rem;
   border-radius: 0;
-  border: 1px solid #ebebeb;
+  border: 1px solid #eef0f3;
   box-shadow: none;
-  transition:
-    border-color 0.2s ease,
-    box-shadow 0.2s ease;
+  transition: border-color 0.2s ease;
 }
 
 .help-card:hover {
-  border-color: #e0e0e0;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  border-color: #007FFA;
+  box-shadow: none;
 }
 
 .help-card-title {
-  font-size: 1.15rem;
+  font-size: 1.0625rem;
   font-weight: 600;
-  color: var(--text-primary);
-  margin: 0 0 0.6rem;
+  color: #0a0a0a;
+  margin: 0 0 0.65rem;
   line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+.help-card a {
+  color: #007FFA;
+}
+
+.help-card a:hover {
+  color: #0067d1;
 }
 
 .help-card p {
-  font-size: 0.95rem;
+  font-size: 0.9375rem;
   line-height: 1.7;
-  color: var(--text-secondary);
+  color: #4a4a4f;
   margin: 0 0 0.5rem;
 }
 
@@ -6165,13 +6244,11 @@ body {
 }
 
 .help-card a {
-  color: var(--primary-color);
   text-decoration: none;
   transition: color 0.2s ease;
 }
 
 .help-card a:hover {
-  color: var(--primary-dark);
   text-decoration: underline;
 }
 
@@ -6247,39 +6324,47 @@ body {
   width: 100%;
 }
 
-/* Help socials - same sharp-edged card style as Finances & Earnings */
+/* Help socials — brand blue accent band */
 .help-socials-section {
-  background: #000000;
+  background: #007FFA;
   padding: 5rem 0;
   width: 100%;
   max-width: 100%;
   box-sizing: border-box;
 }
 
+@media (min-width: 900px) {
+  .help-socials-section {
+    padding: 6rem 0;
+  }
+}
+
 .help-socials-title {
-  font-size: 2.5rem;
-  font-weight: 700;
+  font-size: 2.25rem;
+  font-weight: 600;
   color: #ffffff;
-  text-align: center;
-  margin-bottom: 1rem;
+  text-align: left;
+  margin: 0 auto 0.75rem;
   max-width: 1100px;
-  margin-left: auto;
-  margin-right: auto;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
 }
 
 .help-socials-intro {
-  font-size: 1.05rem;
-  line-height: 1.7;
-  color: rgba(255, 255, 255, 0.8);
-  text-align: center;
-  max-width: 600px;
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.85);
+  text-align: left;
+  max-width: 1100px;
   margin: 0 auto 3rem;
 }
 
 .help-socials-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 1.5rem;
+  gap: 1px;
+  background: rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.18);
   max-width: 1100px;
   margin: 0 auto;
   width: 100%;
@@ -6287,26 +6372,24 @@ body {
 }
 
 .help-social-card {
-  background: #ffffff;
+  background: #007FFA;
   padding: 2.5rem 2rem;
   border-radius: 0;
   text-align: center;
   border: none;
   box-shadow: none;
   text-decoration: none;
-  color: var(--text-primary);
-  transition:
-    transform 0.2s ease,
-    background 0.2s ease;
+  color: #ffffff;
+  transition: background 0.2s ease;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
+  gap: 0.85rem;
 }
 
 .help-social-card:hover {
-  transform: translateY(-2px);
-  background: #f8f8f8;
+  transform: none;
+  background: #0067d1;
 }
 
 .help-social-icon {
@@ -6315,43 +6398,47 @@ body {
   justify-content: center;
   width: 48px;
   height: 48px;
-  color: var(--text-primary);
+  color: #ffffff;
 }
 
 .help-social-icon svg {
-  width: 28px;
-  height: 28px;
+  width: 26px;
+  height: 26px;
 }
 
 .help-social-card h3 {
-  font-size: 1.25rem;
-  font-weight: 700;
+  font-size: 1.0625rem;
+  font-weight: 600;
   margin: 0;
   line-height: 1.3;
+  letter-spacing: -0.01em;
+  color: #ffffff;
 }
 
 /* Help page newsletter section */
 .help-newsletter-section {
-  background: #fafafa;
-  padding: 4rem 0;
-  border-top: 1px solid #ebebeb;
+  background: #f5f5f7;
+  padding: 5rem 0;
+  border-top: none;
 }
 
 .help-newsletter-title {
-  font-size: 2rem;
-  font-weight: 700;
-  color: var(--text-primary);
+  font-size: 2.25rem;
+  font-weight: 600;
+  color: #0a0a0a;
   text-align: center;
-  margin: 0 0 0.5rem;
+  margin: 0 0 0.75rem;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
 }
 
 .help-newsletter-intro {
-  font-size: 1rem;
-  color: var(--text-secondary);
+  font-size: 1.0625rem;
+  color: #4a4a4f;
   text-align: center;
-  max-width: 480px;
+  max-width: 520px;
   margin: 0 auto 2rem;
-  line-height: 1.6;
+  line-height: 1.65;
 }
 
 .help-newsletter-form {
