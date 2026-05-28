@@ -5273,7 +5273,7 @@ body {
   margin: 0.75rem auto 0;
 }
 
-/* Delete account hero – image biased right; left copy on a seamless dark fade (no card) */
+/* Delete account hero – clean, no image, light surface to match host/partnership design */
 .delete-hero {
   position: relative;
   min-height: 100vh;
@@ -5281,32 +5281,12 @@ body {
   align-items: center;
   justify-content: flex-start;
   margin-top: 0;
-  padding-top: 70px;
-  padding-bottom: 0;
+  padding-top: 100px;
+  padding-bottom: 60px;
   box-sizing: border-box;
-  background-color: #0a0a0a;
-  background-image: url("/assets/delete.jpg");
-  background-size: cover;
-  background-position: 86% center;
-  background-repeat: no-repeat;
+  background: #f5f5f7;
   text-align: left;
-}
-
-/* Vignette on the left only: reads as shadow from the same scene, not a floating panel */
-.delete-hero::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  background: linear-gradient(
-    90deg,
-    rgba(6, 6, 8, 0.97) 0%,
-    rgba(6, 6, 8, 0.88) 18%,
-    rgba(6, 6, 8, 0.5) 38%,
-    rgba(6, 6, 8, 0.18) 52%,
-    transparent 68%
-  );
+  overflow: hidden;
 }
 
 .delete-hero-container {
@@ -5323,28 +5303,85 @@ body {
 }
 
 .delete-hero-inner {
-  max-width: 28rem;
+  max-width: 720px;
   margin: 0;
-  padding: 0.5rem 0;
+  padding: 0;
   text-align: left;
 }
 
-.delete-hero-title {
-  margin: 0 0 0.85rem;
-  font-size: 2.125rem;
+.delete-eyebrow {
+  margin: 0 0 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.78rem;
   font-weight: 600;
-  letter-spacing: -0.03em;
-  line-height: 1.2;
-  color: #ffffff;
-  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+  color: #007FFA;
+}
+
+.delete-hero-title {
+  margin: 0 0 1.25rem;
+  font-size: clamp(2.25rem, 5vw, 4rem);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 1.04;
+  color: #0a0a0a;
 }
 
 .delete-hero-lead {
-  margin: 0;
-  font-size: 1.0625rem;
-  line-height: 1.65;
-  color: rgba(255, 255, 255, 0.93);
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  margin: 0 0 2.25rem;
+  font-size: clamp(1.05rem, 1.4vw, 1.2rem);
+  line-height: 1.6;
+  color: #4a4a4f;
+  max-width: 560px;
+}
+
+.delete-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.delete-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 1.7rem;
+  background: #007FFA;
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: 0;
+  border: 1px solid #007FFA;
+  letter-spacing: -0.005em;
+  text-decoration: none;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+}
+
+.delete-cta:hover {
+  background: #0067d1;
+  border-color: #0067d1;
+  transform: translateY(-1px);
+}
+
+.delete-cta--ghost {
+  background: transparent;
+  color: #0a0a0a;
+  border-color: #0a0a0a;
+}
+
+.delete-cta--ghost:hover {
+  background: #0a0a0a;
+  color: #ffffff;
+  border-color: #0a0a0a;
+  transform: translateY(-1px);
+}
+
+.delete-cta--submit {
+  margin-top: 0.5rem;
+  align-self: flex-start;
 }
 
 /* Insurance page hero – insure.jpg right; navy fade on left (matches photo wall #1a2b4b) */
@@ -6606,139 +6643,185 @@ body {
   border: 0;
 }
 
-.delete-section {
-  padding: 3rem 0;
+/* Delete page split sections – heading on one side, content on the other */
+.delete-split {
+  padding: 5.5rem 0;
+  background: #ffffff;
 }
 
-.delete-section-right {
-  background: #fafafa;
+.delete-split--alt {
+  background: #f5f5f7;
 }
 
-.delete-section-right .container.container--wide {
-  max-width: 960px;
-}
-
-.delete-prose {
-  max-width: 42rem;
-  margin: 0 auto;
-}
-
-.delete-prose h2 {
-  font-size: 1.5rem;
-  font-weight: 600;
-  margin-bottom: 1rem;
-  color: var(--text-primary);
-}
-
-.delete-prose p,
-.delete-prose li {
-  font-size: 1rem;
-  line-height: 1.7;
-}
-
-.delete-prose ul {
-  margin: 1rem 0;
-}
-
-.delete-prose ul li {
-  margin-bottom: 0.5rem;
-}
-
-.delete-prose .steps-list {
-  margin: 1rem 0;
-}
-
-.delete-prose .steps-list li {
-  margin-bottom: 0.75rem;
-}
-
-.delete-section-app {
-  background: #f0f0f0;
-}
-
-.delete-section .container {
-  max-width: 720px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.delete-section-app .container.container--wide {
-  max-width: 960px;
-}
-
-.delete-section .legal-section {
-  margin-bottom: 0;
-}
-
-.delete-section .legal-section h2 {
-  font-size: 1.5rem;
-  font-weight: 600;
-  margin-bottom: 1rem;
-}
-
-.delete-section .legal-section p,
-.delete-section .legal-section li {
-  font-size: 1rem;
-  line-height: 1.7;
-}
-
-.delete-form-layout {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2.5rem 3rem;
-  align-items: start;
-  margin-top: 1.5rem;
-}
-
-.delete-form-text {
-  text-align: left;
-}
-
-.delete-form-text h2 {
-  margin-top: 0;
-}
-
-.delete-form-text p {
-  margin-bottom: 1rem;
-  font-size: 1rem;
-  line-height: 1.7;
-}
-
-.delete-form-text .form-note {
-  font-size: 0.9rem;
-  color: var(--text-secondary);
-  margin-bottom: 0;
-}
-
-.delete-account-form {
-  max-width: 100%;
-  margin-top: 0;
-  border: 1px solid var(--border-color);
-  border-radius: 0;
-  padding: 1.25rem;
-  background: #fff;
-}
-
-@media (max-width: 768px) {
-  .delete-form-layout {
-    grid-template-columns: 1fr;
+@media (min-width: 900px) {
+  .delete-split {
+    padding: 6rem 0;
   }
 }
 
+.delete-split-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
+  gap: 3.5rem;
+  align-items: start;
+}
+
+.delete-split--alt .delete-split-container {
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+}
+
+.delete-split--alt .delete-split-head {
+  order: 2;
+}
+
+.delete-split--alt .delete-split-body {
+  order: 1;
+}
+
+.delete-split-head {
+  position: relative;
+}
+
+.delete-section-eyebrow {
+  margin: 0 0 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #007FFA;
+}
+
+.delete-section-title {
+  margin: 0 0 1rem;
+  color: #0a0a0a;
+  font-size: clamp(1.65rem, 2.6vw, 2.25rem);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+}
+
+.delete-section-tagline {
+  margin: 0;
+  color: #4a4a4f;
+  line-height: 1.65;
+  font-size: 1.0625rem;
+  max-width: 38ch;
+}
+
+.delete-section-note {
+  margin: 1rem 0 0;
+  font-size: 0.9rem;
+  color: #6a6a70;
+  line-height: 1.6;
+  max-width: 38ch;
+}
+
+.delete-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid #d4d8df;
+}
+
+.delete-list li {
+  padding: 1.1rem 0;
+  border-bottom: 1px solid #d4d8df;
+  color: #2a2a2f;
+  line-height: 1.6;
+  font-size: 1rem;
+}
+
+.delete-list-note {
+  margin: 1.25rem 0 0;
+  color: #6a6a70;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.delete-steps {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid #d4d8df;
+}
+
+.delete-split--alt .delete-steps {
+  border-top-color: #c8ccd4;
+}
+
+.delete-step {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: 1.25rem;
+  align-items: start;
+  padding: 1.4rem 0;
+  border-bottom: 1px solid #d4d8df;
+}
+
+.delete-split--alt .delete-step {
+  border-bottom-color: #c8ccd4;
+}
+
+.delete-step-index {
+  color: #007FFA;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  margin-top: 0.2rem;
+}
+
+.delete-step-title {
+  margin: 0 0 0.3rem;
+  font-size: 1.0625rem;
+  color: #0a0a0a;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.delete-step-text {
+  margin: 0;
+  color: #4a4a4f;
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+/* Form section – heading left, form right */
+.delete-form-section {
+  padding: 5.5rem 0;
+  background: #ffffff;
+}
+
+@media (min-width: 900px) {
+  .delete-form-section {
+    padding: 6rem 0;
+  }
+}
+
+.delete-account-form {
+  margin: 0;
+  border: 1px solid #d4d8df;
+  border-radius: 0;
+  padding: 1.5rem;
+  background: #ffffff;
+  box-sizing: border-box;
+}
+
 .delete-account-form .form-group {
-  margin-bottom: 0.75rem;
+  margin-bottom: 1rem;
 }
 
 .delete-account-form .form-group:last-of-type {
-  margin-bottom: 0.6rem;
+  margin-bottom: 1rem;
 }
 
 .delete-account-form label {
   display: block;
   font-weight: 600;
   font-size: 0.875rem;
-  color: var(--text-primary);
-  margin-bottom: 0.25rem;
+  color: #0a0a0a;
+  margin-bottom: 0.4rem;
 }
 
 .delete-account-form input[type="text"],
@@ -6746,29 +6829,52 @@ body {
 .delete-account-form input[type="password"],
 .delete-account-form textarea {
   width: 100%;
-  padding: 0.4rem 0.6rem;
+  padding: 0.7rem 0.85rem;
   font-size: 0.95rem;
   font-family: inherit;
-  border: 1px solid var(--border-color);
+  border: 1px solid #d4d8df;
   border-radius: 0;
-  color: var(--text-primary);
-  background: #fff;
+  color: #0a0a0a;
+  background: #ffffff;
   box-sizing: border-box;
+  transition: border-color 0.2s ease;
+}
+
+.delete-account-form input[type="text"]:focus,
+.delete-account-form input[type="email"]:focus,
+.delete-account-form input[type="password"]:focus,
+.delete-account-form textarea:focus {
+  outline: none;
+  border-color: #007FFA;
 }
 
 .delete-account-form textarea {
   resize: vertical;
-  min-height: 52px;
+  min-height: 72px;
 }
 
-.delete-account-form .form-note {
-  font-size: 0.9rem;
-  color: var(--text-secondary);
-  margin-bottom: 1.25rem;
-}
+@media (max-width: 899px) {
+  .delete-split-container {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2rem;
+  }
 
-.delete-account-form .btn {
-  margin-top: 0.25rem;
+  .delete-split--alt .delete-split-container {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .delete-split--alt .delete-split-head {
+    order: 1;
+  }
+
+  .delete-split--alt .delete-split-body {
+    order: 2;
+  }
+
+  .delete-section-tagline,
+  .delete-section-note {
+    max-width: none;
+  }
 }
 
 /* Footer - premium white card with rounded corners, inspired by modern footer design */
@@ -7980,21 +8086,6 @@ body {
     padding: 1.5rem 2rem;
   }
 
-  .delete-hero {
-    background-position: 78% center;
-  }
-
-  .delete-hero::after {
-    background: linear-gradient(
-      90deg,
-      rgba(6, 6, 8, 0.98) 0%,
-      rgba(6, 6, 8, 0.9) 32%,
-      rgba(6, 6, 8, 0.55) 55%,
-      rgba(6, 6, 8, 0.2) 72%,
-      transparent 88%
-    );
-  }
-
   .insurance-hero {
     background-position: 76% center;
   }
@@ -8071,15 +8162,7 @@ body {
 
   .delete-hero-inner {
     max-width: 100%;
-    padding: 0.35rem 0;
-  }
-
-  .delete-hero-title {
-    font-size: 1.65rem;
-  }
-
-  .delete-hero-lead {
-    font-size: 1rem;
+    padding: 0;
   }
 
   .legal-section h2 {
