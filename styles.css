@@ -5998,78 +5998,7 @@ body {
   }
 }
 
-/* Legal hub page – legal.jpg right; warm cream fade on left (matches bokeh), dark type */
-.legal-hub-hero {
-  position: relative;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  margin-top: 0;
-  padding-top: 70px;
-  padding-bottom: 0;
-  box-sizing: border-box;
-  background-color: #ebe6dd;
-  background-image: url("/assets/legal.jpg");
-  background-size: cover;
-  background-position: 82% center;
-  background-repeat: no-repeat;
-  text-align: left;
-}
-
-.legal-hub-hero::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  background: linear-gradient(
-    90deg,
-    rgba(247, 243, 236, 0.98) 0%,
-    rgba(247, 243, 236, 0.94) 18%,
-    rgba(247, 243, 236, 0.65) 38%,
-    rgba(247, 243, 236, 0.22) 54%,
-    transparent 70%
-  );
-}
-
-.legal-hub-hero-container {
-  position: relative;
-  z-index: 2;
-  width: 100%;
-  margin: 0 auto;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  text-align: left;
-}
-
-.legal-hub-hero-inner {
-  max-width: 28rem;
-  margin: 0;
-  padding: 0.5rem 0;
-  text-align: left;
-}
-
-.legal-hub-hero-title {
-  margin: 0 0 0.85rem;
-  font-size: 2.125rem;
-  font-weight: 600;
-  letter-spacing: -0.03em;
-  line-height: 1.2;
-  color: #1c1917;
-}
-
-.legal-hub-hero-lead {
-  margin: 0;
-  font-size: 1.0625rem;
-  line-height: 1.65;
-  color: #44403c;
-}
-
-/* Terms & Conditions – no image; warm paper + bronze accent */
+.legal-hub-hero,
 .terms-hero {
   position: relative;
   min-height: 100vh;
@@ -6077,25 +6006,15 @@ body {
   align-items: center;
   justify-content: flex-start;
   margin-top: 0;
-  padding-top: 70px;
-  padding-bottom: 2.5rem;
+  padding-top: 100px;
+  padding-bottom: 60px;
   box-sizing: border-box;
-  background: #f4f1eb;
-  border-bottom: 1px solid rgba(90, 74, 58, 0.1);
+  background: #f5f5f7;
   text-align: left;
+  overflow: hidden;
 }
 
-.terms-hero::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: #b8976e;
-  pointer-events: none;
-}
-
+.legal-hub-hero-container,
 .terms-hero-container {
   width: 100%;
   margin: 0 auto;
@@ -6104,38 +6023,41 @@ body {
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
+  text-align: left;
 }
 
+.legal-hub-hero-inner,
 .terms-hero-inner {
-  max-width: 38rem;
+  max-width: 720px;
   margin: 0;
-  padding: 0.25rem 0 0.25rem 1.25rem;
-  border-left: 3px solid #b8976e;
+  padding: 0;
+  text-align: left;
 }
 
-.terms-hero-label {
-  margin: 0 0 0.65rem;
-  font-size: 0.6875rem;
-  font-weight: 600;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: #8f6f47;
-}
-
+.legal-hub-hero-title,
 .terms-hero-title {
-  margin: 0 0 0.65rem;
-  font-size: clamp(1.85rem, 4.2vw, 2.65rem);
+  margin: 0 0 1.25rem;
+  font-size: clamp(2.25rem, 5vw, 4rem);
   font-weight: 600;
-  letter-spacing: -0.025em;
-  line-height: 1.15;
-  color: #1c1917;
+  letter-spacing: -0.04em;
+  line-height: 1.04;
+  color: #0a0a0a;
+}
+
+.legal-hub-hero-lead,
+.terms-hero-lead {
+  margin: 0 0 1rem;
+  font-size: clamp(1.05rem, 1.4vw, 1.2rem);
+  line-height: 1.6;
+  color: #4a4a4f;
+  max-width: 620px;
 }
 
 .terms-hero-meta {
   margin: 0;
-  font-size: 1rem;
-  line-height: 1.5;
-  color: #57534e;
+  font-size: 0.85rem;
+  color: #6a6a70;
+  letter-spacing: 0.01em;
 }
 
 .privacy-hero {
@@ -8605,45 +8527,10 @@ body {
     font-size: 1rem;
   }
 
-  .legal-hub-hero {
-    background-position: 74% center;
-  }
-
-  .legal-hub-hero::after {
-    background: linear-gradient(
-      90deg,
-      rgba(247, 243, 236, 0.99) 0%,
-      rgba(247, 243, 236, 0.95) 30%,
-      rgba(247, 243, 236, 0.7) 52%,
-      rgba(247, 243, 236, 0.28) 70%,
-      transparent 88%
-    );
-  }
-
-  .legal-hub-hero-inner {
-    max-width: 100%;
-    padding: 0.35rem 0;
-  }
-
-  .legal-hub-hero-title {
-    font-size: 1.65rem;
-  }
-
-  .legal-hub-hero-lead {
-    font-size: 1rem;
-  }
-
+  .legal-hub-hero-inner,
+  .terms-hero-inner,
   .privacy-hero-inner {
     max-width: 100%;
-  }
-
-  .terms-hero-inner {
-    padding-left: 1rem;
-    max-width: 100%;
-  }
-
-  .terms-hero-title {
-    font-size: 1.65rem;
   }
 
   .delete-hero-inner {
