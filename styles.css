@@ -10252,83 +10252,154 @@ body {
   white-space: pre-line;
 }
 
+/* Specifications — clean rows with icons, no boxes */
 .car-specs {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: 0.85rem;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 1.25rem 1.5rem;
 }
 
 .car-spec {
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.car-spec-icon {
+  flex-shrink: 0;
+  width: 2.6rem;
+  height: 2.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
   background: var(--background-light);
-  border: 1px solid var(--border-color);
-  border-radius: 0.75rem;
-  padding: 0.85rem 1rem;
+  color: var(--text-primary);
+}
+
+.car-spec-icon svg {
+  width: 1.3rem;
+  height: 1.3rem;
+}
+
+.car-spec-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+  min-width: 0;
 }
 
 .car-spec-value {
-  font-size: 1.05rem;
+  font-size: 1rem;
   font-weight: 600;
   color: var(--text-primary);
 }
 
 .car-spec-label {
-  font-size: 0.8rem;
+  font-size: 0.82rem;
   color: var(--text-light);
 }
 
+/* Features — icon chips */
 .car-amenities {
   list-style: none;
   padding: 0;
   margin: 0;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 0.85rem 1.5rem;
+  gap: 1rem 1.5rem;
 }
 
 .car-amenity {
   display: flex;
   align-items: center;
-  gap: 0.65rem;
+  gap: 0.8rem;
   font-size: 0.98rem;
   color: var(--text-secondary);
 }
 
-.car-amenity-check {
-  color: var(--accent-green);
-  font-weight: 700;
+.car-amenity-icon {
   flex-shrink: 0;
+  width: 2.4rem;
+  height: 2.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(138, 225, 60, 0.14);
+  color: #4d7c0f;
 }
 
-.car-terms {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 0.85rem;
+.car-amenity-icon svg {
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+/* Rental terms — quick-fact pills + numbered rules */
+.car-term-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.car-term-pill {
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
+  background: var(--background-light);
+  border: 1px solid var(--border-color);
+  border-radius: 0.85rem;
+  padding: 0.6rem 1rem;
+  min-width: 110px;
 }
 
-.car-terms li {
-  font-size: 0.98rem;
-  color: var(--text-secondary);
-  padding-left: 1.2rem;
-  position: relative;
-}
-
-.car-terms li::before {
-  content: "•";
-  position: absolute;
-  left: 0.2rem;
+.car-term-pill-label {
+  font-size: 0.72rem;
   color: var(--text-light);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
-.car-rules {
-  font-size: 0.95rem;
-  line-height: 1.7;
-  color: var(--text-secondary);
+.car-term-pill-value {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.car-rules-list {
+  list-style: none;
+  counter-reset: rule;
+  padding: 0;
   margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.car-rules-list li {
+  counter-increment: rule;
+  position: relative;
+  padding-left: 2.6rem;
+  font-size: 0.96rem;
+  line-height: 1.55;
+  color: var(--text-secondary);
+}
+
+.car-rules-list li::before {
+  content: counter(rule);
+  position: absolute;
+  left: 0;
+  top: -0.05rem;
+  width: 1.8rem;
+  height: 1.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--primary-color);
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 600;
 }
 
 /* Booking card (sticky) */
