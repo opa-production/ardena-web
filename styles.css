@@ -2924,10 +2924,10 @@ body {
 .bio-modal-dialog {
   position: relative;
   display: grid;
-  grid-template-columns: 240px 1fr;
+  grid-template-columns: 200px 1fr;
   background: #fff;
   border-radius: 4px;
-  max-width: 760px;
+  max-width: 720px;
   width: 100%;
   max-height: 88vh;
   overflow: hidden;
@@ -2971,16 +2971,21 @@ body {
 }
 
 .bio-modal-media {
-  background: #e8e8e8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.25rem;
+  background: var(--background-light);
 }
 
 .bio-modal-photo {
-  width: 100%;
-  height: 100%;
-  min-height: 280px;
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
   object-fit: cover;
   object-position: center 25%;
   display: block;
+  flex-shrink: 0;
 }
 
 .bio-modal-content {
@@ -3019,12 +3024,19 @@ body {
     max-height: 90vh;
     overflow-y: auto;
   }
+  .bio-modal-media {
+    padding: 1.75rem 1rem 0.5rem;
+  }
   .bio-modal-photo {
-    min-height: 220px;
-    max-height: 260px;
+    width: 110px;
+    height: 110px;
   }
   .bio-modal-content {
-    padding: 1.5rem 1.35rem;
+    padding: 1.25rem 1.35rem 1.5rem;
+    text-align: center;
+  }
+  .bio-modal-body {
+    text-align: left;
   }
 }
 
