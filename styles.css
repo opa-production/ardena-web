@@ -2887,6 +2887,147 @@ body {
   height: 18px;
 }
 
+/* Bio button (replaces the website icon) */
+.team-card-bio-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  font: inherit;
+  line-height: 0;
+}
+
+/* Team member bio modal */
+.bio-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 3500;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+}
+
+.bio-modal.is-open {
+  display: flex;
+}
+
+.bio-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+}
+
+.bio-modal-dialog {
+  position: relative;
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  background: #fff;
+  border-radius: 4px;
+  max-width: 760px;
+  width: 100%;
+  max-height: 88vh;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  animation: bioModalIn 0.25s ease;
+}
+
+@keyframes bioModalIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.bio-modal-close {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.75rem;
+  z-index: 2;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  border-radius: 4px;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.bio-modal-close:hover {
+  background: #fff;
+}
+
+.bio-modal-media {
+  background: #e8e8e8;
+}
+
+.bio-modal-photo {
+  width: 100%;
+  height: 100%;
+  min-height: 280px;
+  object-fit: cover;
+  object-position: center 25%;
+  display: block;
+}
+
+.bio-modal-content {
+  padding: 2rem 1.9rem;
+  overflow-y: auto;
+}
+
+.bio-modal-name {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.bio-modal-role {
+  font-size: 0.95rem;
+  color: #4d7c0f;
+  font-weight: 500;
+  margin: 0.2rem 0 1.1rem;
+}
+
+.bio-modal-body p {
+  font-size: 0.96rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  margin: 0 0 1rem;
+}
+
+.bio-modal-body p:last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 600px) {
+  .bio-modal-dialog {
+    grid-template-columns: 1fr;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+  .bio-modal-photo {
+    min-height: 220px;
+    max-height: 260px;
+  }
+  .bio-modal-content {
+    padding: 1.5rem 1.35rem;
+  }
+}
+
 @media (max-width: 1024px) {
   .team-grid {
     grid-template-columns: repeat(2, 1fr);
