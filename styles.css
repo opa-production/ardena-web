@@ -9522,6 +9522,7 @@ body {
   flex-direction: column;
   border-radius: 1rem;
   outline: none;
+  min-width: 0; /* let cards shrink so columns never overflow the viewport */
 }
 
 .fleet-card-media {
@@ -9997,8 +9998,8 @@ body {
   }
 
   .fleet-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem 1rem;
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
   }
 
   .fleet-modal-body {
