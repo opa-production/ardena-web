@@ -73,3 +73,23 @@
   from = "/applications/"
   to = "/applications.html"
   status = 200
+
+[[redirects]]
+  from = "/fleet"
+  to = "/fleet.html"
+  status = 200
+
+[[redirects]]
+  from = "/fleet/"
+  to = "/fleet.html"
+  status = 200
+
+[[redirects]]
+  from = "/car"
+  to = "/car.html"
+  status = 200
+
+[[redirects]]
+  from = "/car/"
+  to = "/car.html"
+  status = 200

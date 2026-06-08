@@ -32,6 +32,10 @@
     { "source": "/location/", "destination": "/location.html" },
     { "source": "/applications", "destination": "/applications.html" },
     { "source": "/applications/", "destination": "/applications.html" },
+    { "source": "/fleet", "destination": "/fleet.html" },
+    { "source": "/fleet/", "destination": "/fleet.html" },
+    { "source": "/car", "destination": "/car.html" },
+    { "source": "/car/", "destination": "/car.html" },
     { "source": "/dojah-partnership", "destination": "/dojah-partnership.html" },
     { "source": "/dojah-partnership/", "destination": "/dojah-partnership.html" }
   ],
