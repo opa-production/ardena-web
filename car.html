@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="View car details on ardena—specs, features, photos and pricing for verified cars across Kenya. Browse here, then book securely in the ardena app.">
+    <meta name="description" content="View car details on ardena: specs, features, photos and pricing for verified cars across Kenya. Browse here, then book securely in the ardena app.">
     <meta name="robots" content="index, follow">
     <meta property="og:type" content="website">
     <meta property="og:title" content="Car details | ardena">
@@ -188,7 +188,7 @@
               </li>
               <li>
                 <span class="footer-contact-icon" aria-hidden="true">☎</span>
-                +254 702 248 984
+                +254 707 856 829
               </li>
               <li>
                 <span class="footer-contact-icon" aria-hidden="true"
@@ -254,7 +254,7 @@
                   /></svg
               ></a>
               <a
-                href="https://wa.me/254702248984"
+                href="https://wa.me/254707856829"
                 class="footer-social-icon"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -340,7 +340,7 @@
 
     <script>
       /*
-       * Car details page — reads ?id= from the URL and renders the full car from
+       * Car details page, reads ?id= from the URL and renders the full car from
        * GET /api/v1/cars/{id} (see api.md). Browse-only: the only call to action
        * is "Book in the app". Host overridable via window.ARDENA_API_BASE.
        */
@@ -588,7 +588,7 @@
               "</section>";
           }
 
-          // Rental terms — quick facts as pills, rules as a numbered list
+          // Rental terms, quick facts as pills, rules as a numbered list
           var terms = [
             car.min_rental_days != null
               ? { label: "Min. rental", value: car.min_rental_days + (car.min_rental_days === 1 ? " day" : " days") }
@@ -684,10 +684,10 @@
             (rates ? '<ul class="car-book-rates">' + rates + "</ul>" : "") +
             depositHtml +
             '<div class="car-book-cta">' +
-            '<p class="car-book-note"><strong>Booking happens in the ardena app.</strong> Browse here, then book in the app — check availability, choose your dates, and pay securely.</p>' +
+            '<p class="car-book-note"><strong>Booking happens in the ardena app.</strong> Browse here, then book in the app, check availability, choose your dates, and pay securely.</p>' +
             '<div class="car-book-badges">' +
-            '<a href="' + APP_LINKS.ios + '" target="_blank" rel="noopener noreferrer" class="car-store-badge" aria-label="Book on iOS — App Store"><img src="/assets/appstore.png" alt="Download on the App Store" width="135" height="40" decoding="async" /></a>' +
-            '<a href="' + APP_LINKS.android + '" target="_blank" rel="noopener noreferrer" class="car-store-badge" aria-label="Book on Android — Google Play"><img src="/assets/play.png" alt="Get it on Google Play" width="135" height="40" decoding="async" /></a>' +
+            '<a href="' + APP_LINKS.ios + '" target="_blank" rel="noopener noreferrer" class="car-store-badge" aria-label="Book on iOS, App Store"><img src="/assets/appstore.png" alt="Download on the App Store" width="135" height="40" decoding="async" /></a>' +
+            '<a href="' + APP_LINKS.android + '" target="_blank" rel="noopener noreferrer" class="car-store-badge" aria-label="Book on Android, Google Play"><img src="/assets/play.png" alt="Get it on Google Play" width="135" height="40" decoding="async" /></a>' +
             "</div></div>" +
             "</div></aside>" +
             "</div>";

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Browse the ardena fleet—verified cars available for rent across Kenya. View vehicle details, specs, and pricing. Complete your reservation securely in the ardena mobile app.">
+    <meta name="description" content="Browse the ardena fleet, verified cars available for rent across Kenya. View vehicle details, specs, and pricing. Complete your reservation securely in the ardena mobile app.">
     <meta name="keywords" content="ardena fleet, car rental Kenya, browse cars, car hire Nairobi, vehicles for rent Kenya">
     <meta name="author" content="ardena">
     <meta name="robots" content="index, follow">
@@ -186,7 +186,7 @@
               </li>
               <li>
                 <span class="footer-contact-icon" aria-hidden="true">☎</span>
-                +254 702 248 984
+                +254 707 856 829
               </li>
               <li>
                 <span class="footer-contact-icon" aria-hidden="true"
@@ -252,7 +252,7 @@
                   /></svg
               ></a>
               <a
-                href="https://wa.me/254702248984"
+                href="https://wa.me/254707856829"
                 class="footer-social-icon"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -317,7 +317,7 @@
 
     <script>
       /*
-       * Live fleet — data comes from the public, read-only ardena browse API.
+       * Live fleet, data comes from the public, read-only ardena browse API.
        * See api.md. The website is browse-only: it lists cars and shows details,
        * but all booking happens in the mobile app.
        *   - Grid:    GET /api/v1/client/cars/explore
@@ -326,8 +326,8 @@
        */
       (function initFleet() {
         function apiBase() {
-          // The browse API is hosted remotely. Default to it everywhere — including
-          // local dev — so the fleet loads without running a backend. Set
+          // The browse API is hosted remotely. Default to it everywhere, including
+          // local dev, so the fleet loads without running a backend. Set
           // window.ARDENA_API_BASE to point at a local API if you ever need to.
           if (typeof window.ARDENA_API_BASE === "string" && window.ARDENA_API_BASE) {
             return window.ARDENA_API_BASE.replace(/\/$/, "");
@@ -430,7 +430,7 @@
               var cars = (data && data.cars) || [];
               grid.innerHTML = cars.length
                 ? cars.map(renderCard).join("")
-                : '<p class="fleet-empty">No cars are listed yet. Check back soon — or download the app to be the first to know.</p>';
+                : '<p class="fleet-empty">No cars are listed yet. Check back soon, or download the app to be the first to know.</p>';
             })
             .catch(function () {
               grid.innerHTML =
