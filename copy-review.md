@@ -15,7 +15,7 @@ Main points only, ordered by priority. Page references in brackets.
 
 ## 3. Kill "cheap" language on city pages ✅ DONE
 - ✅ Nakuru H1 → "Car hire in Nakuru"; "cheapest" → "best-value"; meta/schema descriptions → "Affordable…". "cheap" survives only in the invisible keywords meta tag.
-- ✅ Competitor names removed from the hero lead; the comparison card stays lower on the page (SEO). Note: competitor names still in the `<title>` tag — kept deliberately for "Carento alternative" searches; say the word to remove.
+- ✅ Competitor names removed from the hero lead and the `<title>`/og/schema titles (now "Car hire in Nakuru | ardena", matching the other city pages); the comparison card stays lower on the page for SEO.
 
 ## 4. Remove/soften claims we can't back yet ✅ DONE
 - ✅ "rated as one of the best" → "built to be one of the best". [car-rental-nakuru FAQ schema]
