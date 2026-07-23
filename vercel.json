@@ -37,7 +37,9 @@
     { "source": "/car", "destination": "/car.html" },
     { "source": "/car/", "destination": "/car.html" },
     { "source": "/dojah-partnership", "destination": "/dojah-partnership.html" },
-    { "source": "/dojah-partnership/", "destination": "/dojah-partnership.html" }
+    { "source": "/dojah-partnership/", "destination": "/dojah-partnership.html" },
+    { "source": "/refer", "destination": "/refer.html" },
+    { "source": "/refer/", "destination": "/refer.html" }
   ],
   "headers": [
     {
