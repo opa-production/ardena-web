@@ -76,13 +76,13 @@
 
 [[redirects]]
   from = "/fleet"
-  to = "/fleet.html"
-  status = 200
+  to = "https://booking.ardena.co.ke"
+  status = 301
 
 [[redirects]]
   from = "/fleet/"
-  to = "/fleet.html"
-  status = 200
+  to = "https://booking.ardena.co.ke"
+  status = 301
 
 [[redirects]]
   from = "/car"
