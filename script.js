@@ -425,7 +425,15 @@ document.addEventListener("DOMContentLoaded", () => {
         counters.forEach((counter) => {
           if (counter.dataset.animated === "true") return;
           const valueText = counter.textContent.trim();
-          const targetValue = Number(valueText.replace(/[+]/g, "")) || 0;
+          // Values are not always plain numbers ("52+", "100%", "24/7"), so pull
+          // out the leading number and keep whatever wraps it intact.
+          const parsed = valueText.match(/^(\D*)(\d+)(.*)$/);
+          if (!parsed) {
+            counter.dataset.animated = "true";
+            return;
+          }
+          const [, prefix, numberText, suffix] = parsed;
+          const targetValue = Number(numberText);
           const duration = 1100;
           let start = null;
 
@@ -433,11 +441,11 @@ document.addEventListener("DOMContentLoaded", () => {
             if (!start) start = timestamp;
             const progress = Math.min((timestamp - start) / duration, 1);
             const current = Math.floor(1 + (targetValue - 1) * progress);
-            counter.textContent = `${current}${valueText.includes("+") ? "+" : ""}`;
+            counter.textContent = `${prefix}${current}${suffix}`;
             if (progress < 1) {
               window.requestAnimationFrame(step);
             } else {
-              counter.textContent = `${targetValue}${valueText.includes("+") ? "+" : ""}`;
+              counter.textContent = valueText;
               counter.dataset.animated = "true";
             }
           };
