@@ -11225,3 +11225,108 @@ body {
     padding: 1.75rem 1.35rem;
   }
 }
+
+/* ==========================================================================
+   Host page: split hero + lavender brand accent
+   Both .host-page-hero-container and .host-steps-section are shared with
+   refer.html, so these use --split / --accent modifiers applied on host.html
+   only.
+   ========================================================================== */
+
+:root {
+  --brand-lavender: rgb(183, 172, 232);
+  --brand-lavender-ink: #2f2455;
+  --brand-lavender-muted: #463a6e;
+}
+
+/* Hero: copy on the left, illustration on the right (stacks under 900px). */
+.host-page-hero-container--split {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2.5rem;
+}
+
+.host-page-hero-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+  width: 100%;
+}
+
+.host-page-hero-art {
+  width: 100%;
+  min-width: 0;
+  display: flex;
+  /* Left aligned rather than centred: the page is wider than the viewport on
+     small screens (pre-existing), so centring pushes the art off to the right. */
+  justify-content: flex-start;
+}
+
+.host-page-hero-art-img {
+  display: block;
+  width: 100%;
+  /* Capped against the viewport, not the parent: the page has a pre-existing
+     horizontal overflow on small screens, so a percentage of the parent can
+     still be wider than the screen. */
+  max-width: min(560px, 86vw);
+  height: auto;
+}
+
+@media (min-width: 900px) {
+  .host-page-hero-container--split {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+    align-items: center;
+    gap: 3.5rem;
+  }
+
+  .host-page-hero-container--split .host-page-hero-art {
+    justify-content: flex-end;
+  }
+
+  .host-page-hero-art-img {
+    max-width: min(620px, 45vw);
+  }
+
+  /* The headline now lives in a half-width column, so it needs a smaller
+     ceiling than the full-bleed hero it was written for. */
+  .host-page-hero-container--split .host-page-title {
+    font-size: clamp(2.25rem, 3.6vw, 3.5rem);
+  }
+}
+
+/* The store badges sit tighter than the old pill buttons did. */
+.host-page-hero-container--split .host-page-subtitle {
+  margin-bottom: 2rem;
+}
+
+.host-page-hero-container--split .host-page-hero-actions {
+  gap: 1rem;
+}
+
+/* Lavender accent section. The shared greys used elsewhere do not carry
+   enough contrast on this background, so ink colours are set explicitly. */
+.host-steps-section--accent {
+  background: var(--brand-lavender);
+}
+
+.host-steps-section--accent .host-steps-label {
+  color: var(--brand-lavender-muted);
+}
+
+.host-steps-section--accent .host-steps-heading,
+.host-steps-section--accent .host-step-content h3 {
+  color: var(--brand-lavender-ink);
+}
+
+.host-steps-section--accent .host-steps-tagline,
+.host-steps-section--accent .host-step-content p,
+.host-steps-section--accent .host-step-marker {
+  color: var(--brand-lavender-muted);
+}
+
+.host-steps-section--accent .host-step-item {
+  border-bottom-color: rgba(47, 36, 85, 0.18);
+}
