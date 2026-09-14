@@ -7,7 +7,8 @@
     <link
       rel="preload"
       as="image"
-      href="/assets/hero.jpg"
+      type="image/webp"
+      href="/assets/hero.webp"
       fetchpriority="high"
     />
     <meta
@@ -56,7 +57,7 @@
       href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="/styles.css?v=20" />
+    <link rel="stylesheet" href="/styles.css?v=23" />
     <link rel="canonical" href="https://ardena.co.ke/" />
     <link rel="icon" type="image/jpeg" href="/assets/logo.jpg" />
 
@@ -70,9 +71,9 @@
         "logo": "https://ardena.co.ke/assets/logo.jpg",
         "description": "Find reliable car rentals in Kenya with no hidden fees. Browse verified vehicles, compare prices, and book confidently with ardena.",
         "sameAs": [
-          "https://x.com/ardenagroupcomp",
-          "https://www.instagram.com/ardenacompanies",
-          "https://reddit.com/r/ardena"
+          "https://x.com/ardenaAfrica",
+          "https://www.linkedin.com/company/ardena-group/",
+          "https://www.instagram.com/ardena_carrental"
         ],
         "areaServed": [
           {
@@ -260,12 +261,13 @@
       <!-- Hero Section -->
       <section class="hero">
         <picture class="hero-picture">
+          <source type="image/webp" srcset="/assets/hero.webp" />
           <img
             src="/assets/hero.jpg"
             alt="Hero background"
             class="hero-image"
             width="1920"
-            height="1080"
+            height="2880"
             sizes="100vw"
             loading="eager"
             fetchpriority="high"
@@ -332,9 +334,10 @@
           <div class="hero-content">
             <h1 class="hero-title">Car hire in Kenya, from anywhere to wherever</h1>
             <p class="hero-subtitle">
-              Self drive car rental from verified owners in Nairobi, Nakuru,
-              Mombasa and Kisumu.<br />Reliable vehicles, transparent pricing
-              and seamless booking, all in one place.
+              Self drive car rental from verified owners. Live in Nakuru and
+              rolling out across Nairobi, Mombasa and Kisumu.<br />Reliable
+              vehicles, transparent pricing and seamless booking, all in one
+              place.
             </p>
             <div class="hero-buttons">
               <a href="/applications" class="btn btn-hero-cta"
@@ -792,7 +795,7 @@
                   /></svg
               ></a>
               <a
-                href="https://www.instagram.com/ardena_carrental?igsh=MTE4YmlkdDg4em82MQ=="
+                href="https://www.instagram.com/ardena_carrental"
                 class="footer-social-icon"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -1000,7 +1003,7 @@
         }, 5200); // let stars finish the last bit after flow ends
       })();
     </script>
-    <script src="script.js"></script>
+    <script src="script.js?v=23"></script>
     <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "c6270f0c14ab4ec4b223c4e01ee85657"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
 </html>
