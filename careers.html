@@ -18,7 +18,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=33">
+    <link rel="stylesheet" href="styles.css?v=36">
     <link rel="canonical" href="https://ardena.co.ke/careers">
     <link rel="icon" type="image/jpeg" href="/assets/logo.jpg">
     <script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments);};</script>
@@ -87,7 +87,9 @@
                 <li class="nav-menu-item--mobile-only"><a href="/refer" class="nav-link">Refer &amp; earn</a></li>
                 
             </ul>
-            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+            <div class="nav-end">
+                <a href="/help" class="nav-contact-link nav-menu-item--desktop-only">Contact us</a>
+                <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
                     <span></span>
                     <span></span>
                     <span></span>
@@ -104,74 +106,71 @@
             </div>
         </section>
 
-        <section class="careers-section" id="open-positions">
+        <section class="careers-section" id="open-positions" aria-labelledby="careers-closed-title">
             <div class="container">
-                <div class="careers-split">
-
-                    <!-- Left: closed notice -->
-                    <div class="careers-split-left">
-                        <h2 class="careers-closed-title">No open roles right now</h2>
-                        <p class="careers-closed-desc">We’re focused on building ardena and aren’t actively hiring right now. But that’s going to change, and when it does, we’d love to already know you.</p>
-                        <p class="careers-closed-desc">Tell us what you’re good at and what you’d love to work on. If something opens up that fits, you’ll be the first we reach out to.</p>
-                        <ul class="careers-perks">
-                            <li>First priority when roles open</li>
-                            <li>No application deadline</li>
-                            <li>We read every submission</li>
-                        </ul>
-                    </div>
-
-                    <!-- Right: interest form -->
-                    <div class="careers-split-right">
-                        <form class="careers-form" id="careersForm" novalidate>
-                            <h3 class="careers-form-title">Express your interest</h3>
-                            <p class="careers-form-sub">Let us know who you are and what you’d bring to the team.</p>
-
-                            <div class="careers-form-row">
-                                <div class="careers-form-group">
-                                    <label for="cf-name" class="careers-form-label">Full name</label>
-                                    <input type="text" id="cf-name" name="name" class="careers-form-input" placeholder="Your name" required>
-                                </div>
-                                <div class="careers-form-group">
-                                    <label for="cf-email" class="careers-form-label">Email</label>
-                                    <input type="email" id="cf-email" name="email" class="careers-form-input" placeholder="you@example.com" required>
-                                </div>
-                            </div>
-
-                            <div class="careers-form-group">
-                                <label for="cf-role" class="careers-form-label">What kind of work are you into?</label>
-                                <select id="cf-role" name="role" class="careers-form-input careers-form-select" required>
-                                    <option value="" disabled selected>Select an area</option>
-                                    <option value="Engineering">Engineering / Tech</option>
-                                    <option value="Marketing">Marketing</option>
-                                    <option value="Operations">Operations</option>
-                                    <option value="Business Development">Business Development</option>
-                                    <option value="Design">Design</option>
-                                    <option value="Customer Support">Customer Support</option>
-                                    <option value="Finance">Finance</option>
-                                    <option value="Other">Other</option>
-                                </select>
-                            </div>
-
-                            <div class="careers-form-group">
-                                <label for="cf-message" class="careers-form-label">Tell us about yourself</label>
-                                <textarea id="cf-message" name="message" class="careers-form-input careers-form-textarea" placeholder="What you do, what excites you, and why ardena…" rows="4" required></textarea>
-                            </div>
-
-                            <button type="submit" class="careers-form-btn" id="careersSubmitBtn">Send my interest</button>
-                        </form>
-
-                        <div class="careers-success" id="careersSuccess" hidden>
-                            <div class="careers-success-icon" aria-hidden="true">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28"><polyline points="20 6 9 17 4 12"/></svg>
-                            </div>
-                            <h3 class="careers-success-title">We’ve got your details</h3>
-                            <p class="careers-success-desc">Thanks for reaching out. We’ll keep you in mind and get in touch when something that fits opens up.</p>
+                <div class="careers-block">
+                    <div class="careers-intro">
+                        <div class="careers-intro-copy">
+                            <h2 id="careers-closed-title" class="careers-closed-title">No open roles right now</h2>
+                            <p class="careers-closed-lead">We are focused on building ardena and are not actively hiring. That will change, and when it does we would rather already know you than start from scratch.</p>
+                            <p class="careers-closed-lead">Send us a note about what you are good at and what you would want to work on. If something opens up that fits, you are the first we reach out to.</p>
+                        </div>
+                        <div class="careers-intro-action">
+                            <a href="mailto:info@ardena.co.ke?subject=Expression%20of%20interest" class="careers-cta-button">Email info@ardena.co.ke</a>
+                            <p class="careers-cta-hint">Tell us who you are, the kind of work you want, and anything that shows what you can do. A CV or a portfolio link is welcome but not required.</p>
                         </div>
                     </div>
 
                 </div>
             </div>
         </section>
+
+        <section class="careers-expect-section" aria-labelledby="careers-expect-title">
+            <div class="container">
+                <div class="careers-block">
+                    <h2 id="careers-expect-title" class="careers-expect-title">What to expect</h2>
+                    <p class="careers-expect-lead">Writing in when nothing is posted can feel like shouting into a void. Here is what actually happens to your note.</p>
+                    <div class="careers-stack">
+                        <article class="careers-stack-item">
+                            <h3>First priority when roles open</h3>
+                            <p>We go back through the notes we have received before we post anything publicly.</p>
+                        </article>
+                        <article class="careers-stack-item">
+                            <h3>No application deadline</h3>
+                            <p>There is nothing to miss. Write whenever you are ready and it stays on file.</p>
+                        </article>
+                        <article class="careers-stack-item">
+                            <h3>We read every submission</h3>
+                            <p>A person reads your note, not a filter. Keep it short and specific and it will land.</p>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="careers-about-section" aria-labelledby="careers-about-title">
+            <div class="container">
+                <div class="careers-block">
+                    <h2 id="careers-about-title" class="careers-about-title">What working here looks like</h2>
+                    <p class="careers-about-lead">We are a small team in Nakuru building for the whole country. That shapes how we work more than anything else.</p>
+                    <div class="careers-stack">
+                        <article class="careers-stack-item">
+                            <h3>Small team, wide scope</h3>
+                            <p>Nobody here does one narrow thing. You will own work end to end and see it reach real hosts and renters quickly.</p>
+                        </article>
+                        <article class="careers-stack-item">
+                            <h3>Close to the customer</h3>
+                            <p>Hosts and renters are a phone call away, not an abstraction. The fastest way to settle a debate is to go and ask them.</p>
+                        </article>
+                        <article class="careers-stack-item">
+                            <h3>Built in Kenya, for Kenya</h3>
+                            <p>M-Pesa, local roads, local trust. We build for how people actually move here rather than importing someone else's model.</p>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <footer class="footer">
@@ -363,36 +362,6 @@
     </script>
     <script defer src="/_vercel/speed-insights/script.js" data-sdkn="@vercel/speed-insights" data-sdkv="2.0.0"></script>
     <script src="script.js?v=23"></script>
-    <script>
-        const form = document.getElementById('careersForm');
-        const success = document.getElementById('careersSuccess');
-        const btn = document.getElementById('careersSubmitBtn');
-
-        form.addEventListener('submit', async function(e) {
-            e.preventDefault();
-            btn.disabled = true;
-            btn.textContent = 'Sending…';
-
-            try {
-                const res = await fetch('https://formspree.io/f/xrereren', {
-                    method: 'POST',
-                    headers: { 'Accept': 'application/json' },
-                    body: new FormData(form)
-                });
-
-                if (res.ok) {
-                    form.hidden = true;
-                    success.hidden = false;
-                } else {
-                    btn.disabled = false;
-                    btn.textContent = 'Send my interest';
-                }
-            } catch {
-                btn.disabled = false;
-                btn.textContent = 'Send my interest';
-            }
-        });
-    </script>
   <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "c6270f0c14ab4ec4b223c4e01ee85657"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
 </html>
