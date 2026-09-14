@@ -26,7 +26,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/styles.css?v=30">
+    <link rel="stylesheet" href="/styles.css?v=31">
     <link rel="canonical" href="https://ardena.co.ke/refer">
     <link rel="icon" type="image/jpeg" href="/assets/logo.jpg">
     <script type="application/ld+json">
@@ -127,19 +127,23 @@
 
     <main>
         <section class="host-page-hero refer-hero">
-            <div class="container host-page-hero-container">
-                <p class="refer-hero-eyebrow">Refer &amp; earn</p>
-                <h1 class="host-page-title">Refer a host.<br>Earn up to KSh&nbsp;3,500.</h1>
-                <p class="host-page-subtitle">Know someone with a car sitting idle? Bring them to ardena and you earn on every car they list, and again when that car gets booked. Renters and hosts can both refer.</p>
-                <div class="host-page-hero-actions">
-                    <a href="/applications" class="host-page-cta">
-                        <span>Get your referral code</span>
-                    </a>
-                    <a href="#how-referrals-work" class="host-page-cta host-page-cta--ghost">
-                        <span>See how it works</span>
-                    </a>
+            <div class="container host-page-hero-container host-page-hero-container--split">
+                <div class="host-page-hero-copy">
+                    <h1 class="host-page-title">Refer a host.<br>Earn up to KSh&nbsp;3,500.</h1>
+                    <p class="host-page-subtitle">Know someone with a car sitting idle? Bring them to ardena and you earn on every car they list, and again when that car gets booked. Renters and hosts can both refer.</p>
+                    <div class="host-page-hero-actions">
+                        <a href="/applications" class="host-page-cta">
+                            <span>Get your referral code</span>
+                        </a>
+                        <a href="#how-referrals-work" class="host-page-cta host-page-cta--ghost">
+                            <span>See how it works</span>
+                        </a>
+                    </div>
+                    <p class="host-page-hero-meta">Your referral link and code are in the ardena app and the ardena host app</p>
                 </div>
-                <p class="host-page-hero-meta">Your referral link and code are in the ardena app and the ardena host app</p>
+                <div class="host-page-hero-art">
+                    <img src="/assets/refer.svg" alt="" class="host-page-hero-art-img" width="800" height="500" decoding="async">
+                </div>
             </div>
         </section>
 
@@ -147,7 +151,6 @@
             <div class="container">
                 <div class="host-steps-inner">
                     <div class="host-steps-intro">
-                        <p class="host-steps-label">How it works</p>
                         <h2 class="host-steps-heading">Four steps, then you get paid</h2>
                         <p class="host-steps-tagline">There is no form to fill in and nothing to apply for. Your referral link and code are already waiting in the app.</p>
                     </div>
@@ -187,55 +190,69 @@
 
         <section class="refer-math-section" aria-labelledby="refer-math-title">
             <div class="container">
-                <h2 id="refer-math-title" class="refer-math-title">How KSh 3,500 adds up</h2>
-                <p class="refer-math-intro">Referral earnings are counted per car, not per sign-up. The more cars your host puts on ardena, the further a single referral goes.</p>
-                <div class="refer-math-grid">
-                    <div class="refer-math-card">
-                        <span class="refer-math-amount">KSh 150</span>
-                        <h3>When a car is listed</h3>
-                        <p>Paid for every car your referred host adds to ardena, once the listing is verified and live.</p>
+                <div class="refer-math-inner">
+                    <h2 id="refer-math-title" class="refer-math-title">How KSh 3,500 adds up</h2>
+                    <p class="refer-math-intro">Referral earnings are counted per car, not per sign-up. The more cars your host puts on ardena, the further a single referral goes.</p>
+
+                    <div class="refer-sum">
+                        <div class="refer-sum-term">
+                            <span class="refer-sum-amount">KSh 150</span>
+                            <h3 class="refer-sum-label">When a car is listed</h3>
+                            <p class="refer-sum-text">Paid for every car your referred host adds to ardena, once the listing is verified and live.</p>
+                        </div>
+                        <span class="refer-sum-op" aria-hidden="true">+</span>
+                        <div class="refer-sum-term">
+                            <span class="refer-sum-amount">KSh 200</span>
+                            <h3 class="refer-sum-label">When that car gets booked</h3>
+                            <p class="refer-sum-text">Paid on top of the listing amount, the first time that car takes a booking on the platform.</p>
+                        </div>
+                        <span class="refer-sum-op" aria-hidden="true">=</span>
+                        <div class="refer-sum-term refer-sum-term--result">
+                            <span class="refer-sum-amount">KSh 350</span>
+                            <h3 class="refer-sum-label">Per car, in full</h3>
+                            <p class="refer-sum-text">Listed and booked. That is what one car from your referred host is worth to you.</p>
+                        </div>
                     </div>
-                    <div class="refer-math-card">
-                        <span class="refer-math-amount">KSh 200</span>
-                        <h3>When that car gets booked</h3>
-                        <p>Paid on top of the listing amount, the first time that car takes a booking on the platform.</p>
+
+                    <div class="refer-sum-total">
+                        <p class="refer-sum-total-eq">KSh 350 per car, up to ten cars per host</p>
+                        <p class="refer-sum-total-figure">KSh 3,500</p>
+                        <p class="refer-sum-total-text">A host can list up to ten cars on ardena. Ten cars at KSh 350 each is KSh 3,500 from one referral, and there is no limit on how many hosts you refer.</p>
                     </div>
-                    <div class="refer-math-card">
-                        <span class="refer-math-amount">KSh 350</span>
-                        <h3>Per car, in full</h3>
-                        <p>Listed and booked. That is what one car from your referred host is worth to you.</p>
-                    </div>
+
+                    <p class="refer-math-note">Amounts are in Kenyan shillings and apply per referred host. Payouts follow the same schedule as the rest of your ardena earnings.</p>
                 </div>
-                <div class="refer-math-total">
-                    <span class="refer-math-total-figure">KSh 3,500</span>
-                    <p class="refer-math-total-text">A host can list up to ten cars on ardena. Ten cars at KSh 350 each is KSh 3,500 from one referral, and there is no limit on how many hosts you refer.</p>
-                </div>
-                <p class="refer-math-note">Amounts are in Kenyan shillings and apply per referred host. Payouts follow the same schedule as the rest of your ardena earnings.</p>
             </div>
         </section>
 
         <section class="refer-who-section" aria-labelledby="refer-who-title">
             <div class="container">
-                <h2 id="refer-who-title" class="host-tips-title">Who can refer</h2>
-                <p class="host-tips-intro">You do not have to own a car to earn from this. Every ardena account comes with a referral link and code.</p>
-                <div class="refer-who-grid">
-                    <div class="refer-who-card">
-                        <h3>Renters</h3>
-                        <p>You rent on ardena and you know people with cars. That is all it takes.</p>
-                        <ul class="refer-who-list">
-                            <li>Your code lives in the ardena app, alongside your trips.</li>
-                            <li>The person you refer joins as a host, not as a renter.</li>
-                            <li>You earn the same KSh 350 per car a host would.</li>
-                        </ul>
-                    </div>
-                    <div class="refer-who-card">
-                        <h3>Hosts</h3>
-                        <p>Already listing with us? Bring another owner along and earn beside your rental income.</p>
-                        <ul class="refer-who-list">
-                            <li>Your code lives in the ardena host app, next to your listings.</li>
-                            <li>Referral earnings sit apart from what your own cars make.</li>
-                            <li>Refer as many hosts as you like.</li>
-                        </ul>
+                <div class="refer-block">
+                    <h2 id="refer-who-title" class="refer-block-title">Who can refer</h2>
+                    <p class="refer-block-intro">You do not have to own a car to earn from this. Every ardena account comes with a referral link and code.</p>
+                    <div class="refer-stack">
+                        <article class="refer-stack-item">
+                            <div class="refer-stack-key">
+                                <h3>Renters</h3>
+                                <p>You rent on ardena and you know people with cars. That is all it takes.</p>
+                            </div>
+                            <ul class="refer-stack-list">
+                                <li>Your code lives in the ardena app, alongside your trips.</li>
+                                <li>The person you refer joins as a host, not as a renter.</li>
+                                <li>You earn the same KSh 350 per car a host would.</li>
+                            </ul>
+                        </article>
+                        <article class="refer-stack-item">
+                            <div class="refer-stack-key">
+                                <h3>Hosts</h3>
+                                <p>Already listing with us? Bring another owner along and earn beside your rental income.</p>
+                            </div>
+                            <ul class="refer-stack-list">
+                                <li>Your code lives in the ardena host app, next to your listings.</li>
+                                <li>Referral earnings sit apart from what your own cars make.</li>
+                                <li>Refer as many hosts as you like.</li>
+                            </ul>
+                        </article>
                     </div>
                 </div>
             </div>
@@ -243,45 +260,80 @@
 
         <section class="refer-code-section" aria-labelledby="refer-code-title">
             <div class="container">
-                <h2 id="refer-code-title" class="host-tips-title">Where to find your link and code</h2>
-                <p class="host-tips-intro">Both ardena apps carry the same referral tools. Pick the one you already use.</p>
-                <div class="refer-code-grid">
-                    <div class="host-tip-card">
-                        <h3>ardena app</h3>
-                        <p>For renters. Open the app, go to your profile, and copy your referral link or code from the referral section.</p>
-                    </div>
-                    <div class="host-tip-card">
-                        <h3>ardena host app</h3>
-                        <p>For hosts. Your referral link and code sit in your profile, in the same place you manage your listings and payouts.</p>
-                    </div>
-                    <div class="host-tip-card">
-                        <h3>Share it anywhere</h3>
-                        <p>Send the link by message, post the code, or say it out loud. Whoever you refer enters it when they sign up.</p>
+                <div class="refer-block">
+                    <h2 id="refer-code-title" class="refer-block-title">Where to find your link and code</h2>
+                    <p class="refer-block-intro">Both ardena apps carry the same referral tools. Pick the one you already use.</p>
+                    <div class="refer-stack">
+                        <article class="refer-stack-item">
+                            <div class="refer-stack-key">
+                                <h3>ardena app</h3>
+                                <p>For renters.</p>
+                            </div>
+                            <div class="refer-stack-body">
+                                <p>Open the app, go to your profile, and copy your referral link or code from the referral section.</p>
+                            </div>
+                        </article>
+                        <article class="refer-stack-item">
+                            <div class="refer-stack-key">
+                                <h3>ardena host app</h3>
+                                <p>For hosts.</p>
+                            </div>
+                            <div class="refer-stack-body">
+                                <p>Your referral link and code sit in your profile, in the same place you manage your listings and payouts.</p>
+                            </div>
+                        </article>
+                        <article class="refer-stack-item">
+                            <div class="refer-stack-key">
+                                <h3>Share it anywhere</h3>
+                                <p>Message, post, or say it.</p>
+                            </div>
+                            <div class="refer-stack-body">
+                                <p>Send the link by message, post the code, or say it out loud. Whoever you refer enters it when they sign up.</p>
+                            </div>
+                        </article>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="host-tips-section" aria-labelledby="refer-notes-title">
+        <section class="refer-notes-section" aria-labelledby="refer-notes-title">
             <div class="container">
-                <h2 id="refer-notes-title" class="host-tips-title">Good to know</h2>
-                <p class="host-tips-intro">A few details worth reading before you start sharing.</p>
-                <div class="host-tips-grid">
-                    <div class="host-tip-card">
-                        <h3>Paid per car</h3>
-                        <p>The reward follows cars, not sign-ups. A host who lists five cars is worth more to you than one who lists a single car.</p>
-                    </div>
-                    <div class="host-tip-card">
-                        <h3>The cap is per host</h3>
-                        <p>KSh 3,500 is the most a single referred host can earn you, based on ten cars at KSh 350 each.</p>
-                    </div>
-                    <div class="host-tip-card">
-                        <h3>Use the code at sign-up</h3>
-                        <p>Ask your referral to sign up through your link, or enter your code when they register, so the referral is credited to you.</p>
-                    </div>
-                    <div class="host-tip-card">
-                        <h3>New hosts only</h3>
-                        <p>Referrals apply to people joining ardena for the first time. Existing accounts cannot be referred again.</p>
+                <div class="refer-block">
+                    <h2 id="refer-notes-title" class="refer-block-title">Good to know</h2>
+                    <p class="refer-block-intro">A few details worth reading before you start sharing.</p>
+                    <div class="refer-stack">
+                        <article class="refer-stack-item">
+                            <div class="refer-stack-key">
+                                <h3>Paid per car</h3>
+                            </div>
+                            <div class="refer-stack-body">
+                                <p>The reward follows cars, not sign-ups. A host who lists five cars is worth more to you than one who lists a single car.</p>
+                            </div>
+                        </article>
+                        <article class="refer-stack-item">
+                            <div class="refer-stack-key">
+                                <h3>The cap is per host</h3>
+                            </div>
+                            <div class="refer-stack-body">
+                                <p>KSh 3,500 is the most a single referred host can earn you, based on ten cars at KSh 350 each.</p>
+                            </div>
+                        </article>
+                        <article class="refer-stack-item">
+                            <div class="refer-stack-key">
+                                <h3>Use the code at sign-up</h3>
+                            </div>
+                            <div class="refer-stack-body">
+                                <p>Ask your referral to sign up through your link, or enter your code when they register, so the referral is credited to you.</p>
+                            </div>
+                        </article>
+                        <article class="refer-stack-item">
+                            <div class="refer-stack-key">
+                                <h3>New hosts only</h3>
+                            </div>
+                            <div class="refer-stack-body">
+                                <p>Referrals apply to people joining ardena for the first time. Existing accounts cannot be referred again.</p>
+                            </div>
+                        </article>
                     </div>
                 </div>
             </div>
