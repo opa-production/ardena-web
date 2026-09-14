@@ -3688,10 +3688,49 @@ body {
 }
 
 .careers-hero-container {
-  max-width: 900px;
-  margin-left: 0;
-  margin-right: auto;
+  max-width: 1100px;
+  margin: 0 auto;
+  width: 100%;
   text-align: left;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.careers-hero-copy {
+  min-width: 0;
+}
+
+.careers-hero-art {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  min-width: 0;
+}
+
+.careers-hero-art-img {
+  display: block;
+  width: 100%;
+  /* Capped against the viewport, not the parent, so it cannot outrun the
+     screen on small widths. */
+  max-width: min(520px, 86vw);
+  height: auto;
+}
+
+@media (min-width: 900px) {
+  .careers-hero-container {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+    gap: 3.5rem;
+  }
+
+  .careers-hero-art {
+    justify-content: flex-end;
+  }
+
+  .careers-hero-art-img {
+    max-width: min(540px, 42vw);
+  }
 }
 
 .careers-hero-title {
@@ -3704,7 +3743,7 @@ body {
 }
 
 .careers-hero-subtitle {
-  font-size: 1.0625rem;
+  font-size: 1.15rem;
   color: var(--brand-lavender-muted);
   margin: 1rem 0 0;
   line-height: 1.7;
