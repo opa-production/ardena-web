@@ -11307,26 +11307,30 @@ body {
 }
 
 /* Lavender accent section. The shared greys used elsewhere do not carry
-   enough contrast on this background, so ink colours are set explicitly. */
-.host-steps-section--accent {
+   enough contrast on this background, so ink colours are set explicitly.
+   .host-tips-section and .host-tip-card are also used by refer.html, so this
+   is scoped to the --accent modifier that only host.html carries. */
+.host-tips-section--accent {
   background: var(--brand-lavender);
 }
 
-.host-steps-section--accent .host-steps-label {
-  color: var(--brand-lavender-muted);
-}
-
-.host-steps-section--accent .host-steps-heading,
-.host-steps-section--accent .host-step-content h3 {
+.host-tips-section--accent .host-tips-title {
   color: var(--brand-lavender-ink);
 }
 
-.host-steps-section--accent .host-steps-tagline,
-.host-steps-section--accent .host-step-content p,
-.host-steps-section--accent .host-step-marker {
+.host-tips-section--accent .host-tip-card h3 {
+  color: var(--brand-lavender-ink);
+}
+
+.host-tips-section--accent .host-tips-intro,
+.host-tips-section--accent .host-tip-card p {
   color: var(--brand-lavender-muted);
 }
 
-.host-steps-section--accent .host-step-item {
-  border-bottom-color: rgba(47, 36, 85, 0.18);
+/* No card treatment here: the tips sit straight on the section background. */
+.host-tips-section--accent .host-tip-card {
+  background: transparent;
+  border-top: none;
+  box-shadow: none;
+  padding: 0;
 }
