@@ -37,7 +37,9 @@
     { "source": "/dojah-partnership", "destination": "/dojah-partnership.html" },
     { "source": "/dojah-partnership/", "destination": "/dojah-partnership.html" },
     { "source": "/refer", "destination": "/refer.html" },
-    { "source": "/refer/", "destination": "/refer.html" }
+    { "source": "/refer/", "destination": "/refer.html" },
+    { "source": "/status", "destination": "/status.html" },
+    { "source": "/status/", "destination": "/status.html" }
   ],
   "redirects": [
     { "source": "/fleet", "destination": "https://booking.ardena.co.ke", "permanent": true },

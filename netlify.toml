@@ -103,3 +103,13 @@
   from = "/refer/"
   to = "/refer.html"
   status = 200
+
+[[redirects]]
+  from = "/status"
+  to = "/status.html"
+  status = 200
+
+[[redirects]]
+  from = "/status/"
+  to = "/status.html"
+  status = 200

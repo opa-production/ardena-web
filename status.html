@@ -1,37 +1,34 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Learn about ardena - trusted car rental platform in Kenya connecting verified car owners with renters.">
-    <meta name="keywords" content="about ardena, car rental platform Kenya, peer-to-peer car rental, ardena company">
+    <meta name="description" content="Live status of Ardena's host app, client app, booking website and payments, with 90-day uptime history.">
     <meta name="robots" content="index, follow">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://ardena.co.ke/about">
-    <meta property="og:title" content="About us - ardena">
-    <meta property="og:description" content="Learn about ardena - trusted car rental platform in Kenya connecting verified car owners with renters.">
+    <meta property="og:url" content="https://ardena.co.ke/status">
+    <meta property="og:title" content="Status - ardena">
+    <meta property="og:description" content="Live status of Ardena's host app, client app, booking website and payments, with 90-day uptime history.">
     <meta property="og:image" content="https://ardena.co.ke/assets/logo.jpg">
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://ardena.co.ke/about">
-    <meta property="twitter:title" content="About us - ardena">
-    <meta property="twitter:description" content="Learn about ardena - trusted car rental platform in Kenya connecting verified car owners with renters.">
+    <meta property="twitter:url" content="https://ardena.co.ke/status">
+    <meta property="twitter:title" content="Status - ardena">
+    <meta property="twitter:description" content="Live status of Ardena's host app, client app, booking website and payments, with 90-day uptime history.">
     <meta property="twitter:image" content="https://ardena.co.ke/assets/logo.jpg">
     
-    <title>About us - ardena</title>
+    <title>Status - ardena</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/styles.css?v=38">
-    <link rel="canonical" href="https://ardena.co.ke/about">
+    <link rel="canonical" href="https://ardena.co.ke/status">
+    <link rel="stylesheet" href="/status.css?v=1">
     <link rel="icon" type="image/jpeg" href="/assets/logo.jpg">
-    <!-- Vercel Web Analytics -->
-    <script>
-      window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
-    </script>
+    <script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments);};</script>
     <script defer src="/_vercel/insights/script.js"></script>
     <script src="https://t.contentsquare.net/uxa/615cb913014ec.js"></script>
   </head>
@@ -90,7 +87,7 @@
                         </div>
                     </div>
                 </li>
-                <li class="nav-menu-item--mobile-only"><a href="/about" class="nav-link active">About</a></li>
+                <li class="nav-menu-item--mobile-only"><a href="/about" class="nav-link">About</a></li>
                 <li class="nav-menu-item--mobile-only"><a href="/teams" class="nav-link">Team</a></li>
                 <li class="nav-menu-item--mobile-only"><a href="/help" class="nav-link">Help</a></li>
                 <li class="nav-menu-item--mobile-only"><a href="/careers" class="nav-link">Careers</a></li>
@@ -108,116 +105,62 @@
         </nav>
     </header>
 
-    <main>
-        <section class="about-hero">
-            <div class="container">
-                <h1 class="about-title">Built to make car rental simple and honest.</h1>
-                <p class="about-subtitle">ardena connects drivers with verified cars and trusted hosts, no hidden fees, no last-minute surprises.</p>
-            </div>
-        </section>
 
-        <section class="problems-section">
-            <div class="container">
-                <h2 class="problems-title">Problems we're fixing</h2>
-                <div class="problems-grid">
-                    <div class="problem-card">
-                        <h3 class="problem-card-title">Unclear prices</h3>
-                        <p class="problem-card-text">Car rentals are overpriced with hidden fees and confusing terms that only show up later.</p>
-                    </div>
-                    <div class="problem-card">
-                        <h3 class="problem-card-title">Unreliable</h3>
-                        <p class="problem-card-text">Last-minute surprises, vehicles that don't match the listing, and cancellations without warning.</p>
-                    </div>
-                    <div class="problem-card">
-                        <h3 class="problem-card-title">No trust</h3>
-                        <p class="problem-card-text">When things go wrong, there's no accountability and no one to help you resolve issues.</p>
+    <main class="status-page">
+        <section class="status-hero">
+            <div class="status-wrap">
+                <p class="status-eyebrow">Ardena status</p>
+                <h1 class="status-title">System status</h1>
+                <div class="status-banner is-loading" id="statusBanner" role="status" aria-live="polite">
+                    <span class="status-banner-icon" aria-hidden="true"></span>
+                    <div class="status-banner-text">
+                        <strong id="statusBannerTitle">Checking systems&hellip;</strong>
+                        <span id="statusBannerMeta">Fetching the latest checks</span>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="differentiators-section">
-            <div class="container">
-                <div class="differentiators-inner">
-                    <div class="differentiators-intro">
-                        <p class="differentiators-label">▪ OUR APPROACH</p>
-                        <h2 class="differentiators-heading">How ardena is different</h2>
-                        <p class="differentiators-tagline">We built the platform around what actually matters.</p>
-                    </div>
-                    <div class="differentiators-list">
-                        <div class="differentiator-item">
-                            <span class="differentiator-marker">01</span>
-                            <div class="differentiator-content">
-                                <h3>Verified cars only</h3>
-                                <p>Every vehicle is inspected and every host is ID-verified.</p>
-                            </div>
-                        </div>
-                        <div class="differentiator-item">
-                            <span class="differentiator-marker">02</span>
-                            <div class="differentiator-content">
-                                <h3>Transparent pricing</h3>
-                                <p>You see the full cost upfront. No hidden fees, no surprises.</p>
-                            </div>
-                        </div>
-                        <div class="differentiator-item">
-                            <span class="differentiator-marker">03</span>
-                            <div class="differentiator-content">
-                                <h3>Local support</h3>
-                                <p>Real people in Kenya, available 24/7 when you need help.</p>
-                            </div>
-                        </div>
-                        <div class="differentiator-item">
-                            <span class="differentiator-marker">04</span>
-                            <div class="differentiator-content">
-                                <h3>Built for African roads</h3>
-                                <p>We understand the local context, payments, and what drivers actually need.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <section class="status-section" id="activeIncidentsSection" hidden>
+            <div class="status-wrap">
+                <h2 class="status-h2">Active incidents</h2>
+                <div id="activeIncidents"></div>
             </div>
         </section>
 
-        <section class="story-section">
-            <div class="container">
-                <div class="story-content">
-                    <h2>Our story</h2>
-                    <p>We started ardena in early 2026 after seeing how broken car rental was for everyday Kenyans. The opportunity was clear: connect people who have cars with people who need them, and handle everything in between properly. We're live in Nakuru and rolling out across Kenya.</p>
+        <section class="status-section">
+            <div class="status-wrap">
+                <div class="status-uptime-head">
+                    <h2 class="status-h2">Uptime</h2>
+                    <div class="status-range" role="tablist" aria-label="Uptime window">
+                        <button type="button" class="status-range-btn" data-days="30" role="tab" aria-selected="false">30 days</button>
+                        <button type="button" class="status-range-btn" data-days="60" role="tab" aria-selected="false">60 days</button>
+                        <button type="button" class="status-range-btn is-active" data-days="90" role="tab" aria-selected="true">90 days</button>
+                    </div>
                 </div>
+                <ul class="status-legend" aria-label="Legend">
+                    <li><span class="status-swatch is-operational"></span>Operational</li>
+                    <li><span class="status-swatch is-degraded"></span>Degraded</li>
+                    <li><span class="status-swatch is-partial_outage"></span>Partial outage</li>
+                    <li><span class="status-swatch is-major_outage"></span>Major outage</li>
+                    <li><span class="status-swatch is-no_data"></span>No data</li>
+                </ul>
+                <div class="status-components" id="statusComponents" aria-busy="true">
+                    <div class="status-card status-card--skeleton"></div>
+                    <div class="status-card status-card--skeleton"></div>
+                    <div class="status-card status-card--skeleton"></div>
+                </div>
+                <noscript><p class="status-note">Enable JavaScript to see live platform status.</p></noscript>
             </div>
         </section>
 
-        <section class="help-section">
-            <div class="container">
-                <div class="help-layout">
-                    <div class="help-text">
-                        <h2 class="section-title">Get help</h2>
-                        <p class="help-intro">Have questions or need assistance? We're here to help. Send us a message using the form on the right.</p>
-                    </div>
-                    <div class="help-form-box">
-                        <h3>Send us a message</h3>
-                        <form class="contact-form help-contact-form" id="helpContactForm">
-                            <div class="form-group">
-                                <label for="helpName">Name</label>
-                                <input type="text" id="helpName" name="name" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="helpEmail">Email</label>
-                                <input type="email" id="helpEmail" name="email" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="helpSubject">Subject</label>
-                                <input type="text" id="helpSubject" name="subject" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="helpMessage">Message</label>
-                                <textarea id="helpMessage" name="message" rows="4" required></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-primary btn-large">Send Message</button>
-                            <div class="form-message" id="helpFormMessage"></div>
-                        </form>
-                    </div>
-                </div>
+        <section class="status-section">
+            <div class="status-wrap">
+                <h2 class="status-h2">Past incidents</h2>
+                <div id="pastIncidents"><p class="status-note">Loading&hellip;</p></div>
+                <p class="status-note status-help">
+                    Having trouble that isn't listed here? <a href="/help">Contact support</a>.
+                </p>
             </div>
         </section>
     </main>
@@ -308,7 +251,8 @@
       window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
     </script>
     <script defer src="/_vercel/speed-insights/script.js" data-sdkn="@vercel/speed-insights" data-sdkv="2.0.0"></script>
-    <script src="script.js?v=23"></script>
+    <script src="/script.js?v=23"></script>
+    <script src="/status.js?v=1"></script>
   <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "c6270f0c14ab4ec4b223c4e01ee85657"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
 </html>
