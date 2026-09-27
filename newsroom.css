@@ -629,7 +629,8 @@
 .nr-gate-card h1 { margin: 0 0 0.5rem; font-size: 1.75rem; letter-spacing: -0.02em; color: var(--nr-ink); }
 .nr-gate-card > p { margin: 0 0 1.75rem; color: var(--nr-muted); line-height: 1.6; }
 .nr-gate-card label { display: block; margin-bottom: 1rem; font-size: 0.875rem; font-weight: 600; color: var(--nr-ink); }
-.nr-gate-card input {
+.nr-gate-card input,
+.nr-gate-card textarea {
   display: block;
   width: 100%;
   box-sizing: border-box;
@@ -640,7 +641,15 @@
   font: inherit;
   font-weight: 400;
 }
-.nr-gate-card input:focus { outline: 2px solid var(--nr-accent); outline-offset: -1px; border-color: transparent; }
+.nr-gate-card input:focus,
+.nr-gate-card textarea:focus { outline: 2px solid var(--nr-accent); outline-offset: -1px; border-color: transparent; }
+.nr-gate-card textarea { resize: vertical; min-height: 6rem; line-height: 1.5; }
+.nr-gate-card form > p { margin: 0 0 1.75rem; color: var(--nr-muted); line-height: 1.6; }
+.nr-optional { font-weight: 400; color: var(--nr-muted); }
+.nr-hint { margin: -0.4rem 0 1rem; font-size: 0.8rem; color: var(--nr-muted); }
+.nr-gate-links { display: flex; justify-content: center; margin-top: 1rem; }
+.nr-gate-alt { margin-top: 1.75rem; padding-top: 1.5rem; border-top: 1px solid var(--nr-line); text-align: center; }
+.nr-gate-alt p { margin: 0 0 0.75rem; color: var(--nr-muted); }
 .nr-gate-card .nr-btn { width: 100%; justify-content: center; margin-top: 0.5rem; }
 .nr-gate-msg { margin: 0 0 1rem; padding: 0.75rem 0.9rem; border-radius: 8px; background: var(--nr-soft); font-size: 0.9rem; }
 

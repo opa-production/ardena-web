@@ -60,33 +60,143 @@
     countWords();
   }
 
-  function showGate(message) {
-    els.editor.hidden = true;
-    els.publish.hidden = els.saveDraft.hidden = true;
-    els.gate.hidden = false;
+  // ------------------------------------------------------------ gate
+  // Four views in one card: sign in, request to write, forgot password, and
+  // set password (from an ?invite= or ?reset= link). Writing needs an account
+  // with publishing rights; the server checks that on every save, so the gate
+  // is a convenience, never the lock.
+  var gateViews = Array.prototype.slice.call(els.gate.querySelectorAll("[data-view]"));
+  var linkToken = params.get("invite") || params.get("reset") || "";
+
+  function note(message) {
     els.gateMsg.textContent = message || "";
     els.gateMsg.hidden = !message;
   }
 
-  api.me().then(function (me) {
-    if (me && me.can_publish) openEditor(me);
-    else if (me) showGate("Your account doesn't have publishing rights yet. Ask an admin to enable them.");
-    else showGate();
+  function showView(name, message) {
+    els.editor.hidden = true;
+    els.publish.hidden = els.saveDraft.hidden = true;
+    els.gate.hidden = false;
+    gateViews.forEach(function (v) { v.hidden = v.getAttribute("data-view") !== name; });
+    note(message);
+    var first = els.gate.querySelector('[data-view="' + name + '"] input');
+    if (first) first.focus();
+  }
+
+  function showGate(message) { showView("signin", message); }
+
+  // Signed in but not (yet) allowed to publish: say so, and let them switch account.
+  function showPending(me) {
+    showView("signin", (me && me.name ? me.name + ", your" : "Your") +
+      " account doesn't have publishing rights yet. The newsroom team will switch them on once you're approved.");
+    els.signOut.hidden = false;
+  }
+
+  function withButton(form, work) {
+    var btn = form.querySelector('button[type="submit"]');
+    btn.disabled = true;
+    return work().then(function () { btn.disabled = false; }, function () { btn.disabled = false; });
+  }
+
+  Array.prototype.forEach.call(els.gate.querySelectorAll("[data-go]"), function (b) {
+    b.addEventListener("click", function () { showView(b.getAttribute("data-go")); });
   });
+
+  function forgetLinkToken() {
+    linkToken = "";
+    params.delete("invite");
+    params.delete("reset");
+    var q = params.toString();
+    window.history.replaceState(null, "", window.location.pathname + (q ? "?" + q : ""));
+  }
+
+  if (linkToken) {
+    // A link from an email: find out who it's for before asking for a password.
+    api.tokenInfo(linkToken)
+      .then(function (info) {
+        var reset = info.purpose === "reset";
+        $("nrSetTitle").textContent = reset ? "Choose a new password" : "Welcome to the newsroom";
+        $("nrSetIntro").textContent = (reset ? "Choose a new password for " : "Hi " + info.name.split(" ")[0] + ", set a password for ") + info.email + ".";
+        showView("set");
+      })
+      .catch(function (err) {
+        forgetLinkToken();
+        showGate(err.status === 410 ? "That link has expired or was already used. Sign in, or use Forgot password for a new one." : "We couldn't check that link. Please try again.");
+      });
+  } else {
+    api.me().then(function (me) {
+      if (me && me.can_publish) openEditor(me);
+      else if (me) showPending(me);
+      else showGate();
+    });
+  }
 
   els.gateForm.addEventListener("submit", function (e) {
     e.preventDefault();
-    var btn = els.gateForm.querySelector("button");
-    btn.disabled = true;
-    api.login(els.gateForm.email.value.trim(), els.gateForm.password.value)
-      .then(function (user) {
-        if (user && user.can_publish) openEditor(user);
-        else showGate("Signed in, but this account doesn't have publishing rights yet.");
+    var form = els.gateForm;
+    withButton(form, function () {
+      return api.login(form.email.value.trim(), form.password.value)
+        .then(function (user) {
+          if (user && user.can_publish) openEditor(user);
+          else showPending(user);
+        })
+        .catch(function (err) {
+          showGate(
+            err.status === 401 ? "That email and password don't match." :
+            err.status === 429 ? "Too many attempts. Wait a few minutes and try again." :
+            "We couldn't sign you in right now. Please try again."
+          );
+        });
+    });
+  });
+
+  $("nrRequestForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var form = e.target;
+    withButton(form, function () {
+      return api.requestAccess({
+        full_name: form.full_name.value.trim(),
+        email: form.email.value.trim(),
+        about: form.about.value.trim(),
+        portfolio_url: form.portfolio_url.value.trim() || null,
       })
-      .catch(function (err) {
-        showGate(err.status === 401 ? "That email and password don't match." : "We couldn't sign you in right now. Please try again.");
-      })
-      .then(function () { btn.disabled = false; });
+        .then(function () {
+          form.reset();
+          showGate("Thanks. We'll email you once the newsroom team has looked at your request.");
+        })
+        .catch(function (err) {
+          note(err.status === 429 ? "You've sent a few requests already. Please try again later." :
+               err.status === 422 ? err.message : "We couldn't send that. Please try again.");
+        });
+    });
+  });
+
+  $("nrForgotForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var form = e.target;
+    withButton(form, function () {
+      return api.forgotPassword(form.email.value.trim())
+        .then(function () { showGate("If that email belongs to a newsroom writer, a reset link is on its way."); })
+        .catch(function () { note("We couldn't send that. Please try again in a few minutes."); });
+    });
+  });
+
+  $("nrSetForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var form = e.target;
+    if (form.password.value !== form.confirm.value) { note("The two passwords don't match."); return; }
+    withButton(form, function () {
+      return api.setPassword(linkToken, form.password.value)
+        .then(function (user) {
+          forgetLinkToken();
+          if (user && user.can_publish) openEditor(user);
+          else showPending(user);
+        })
+        .catch(function (err) {
+          if (err.status === 410) { forgetLinkToken(); showGate(err.message); }
+          else note(err.status === 422 ? err.message : "We couldn't save that. Please try again.");
+        });
+    });
   });
 
   els.signOut.addEventListener("click", function () {

@@ -145,7 +145,10 @@
         var data = null;
         try { data = text ? JSON.parse(text) : null; } catch (e) {}
         if (!res.ok) {
-          var err = new Error((data && (data.detail || data.message)) || "HTTP " + res.status);
+          var detail = data && (data.detail || data.message);
+          // FastAPI validation errors come back as a list; show the first one.
+          if (Array.isArray(detail)) detail = detail[0] && detail[0].msg;
+          var err = new Error(detail || "HTTP " + res.status);
           err.status = res.status;
           throw err;
         }
@@ -207,6 +210,28 @@
       });
     },
     logout: function () { sDel("localStorage", TOKEN_KEY); },
+    // Anyone can ask to write; an Ardena admin approves and emails a link.
+    requestAccess: function (body) {
+      if (MOCK) return resolve({ detail: "Preview: no request was sent." });
+      return request("POST", "/editor-requests", body);
+    },
+    // Who an invite or reset link (?invite= / ?reset=) is for.
+    tokenInfo: function (linkToken) {
+      if (MOCK) return resolve({ purpose: "invite", name: "Preview writer", email: "writer@example.com" });
+      return request("POST", "/auth/token-info", { token: linkToken });
+    },
+    // Redeem the link with a new password; signs the editor in.
+    setPassword: function (linkToken, password) {
+      if (MOCK) return resolve({ id: "mock", name: "Preview writer", can_publish: true });
+      return request("POST", "/auth/set-password", { token: linkToken, password: password }).then(function (data) {
+        sSet("localStorage", TOKEN_KEY, data.token);
+        return data.user;
+      });
+    },
+    forgotPassword: function (email) {
+      if (MOCK) return resolve({ detail: "Preview: no email was sent." });
+      return request("POST", "/auth/forgot-password", { email: email });
+    },
     save: function (article) {
       if (MOCK) {
         var list = localStories().filter(function (s) { return s.slug !== article.slug && s.id !== article.id; });
@@ -273,6 +298,12 @@
   }
 
   function showWriteButtons(slug) {
+    // The Write icon is for everyone: the editor asks who you are, and offers
+    // a way to request access if you aren't a writer yet.
+    Array.prototype.forEach.call(document.querySelectorAll("[data-nr-write]"), function (el) {
+      if (el.tagName === "A") el.href = urls.write();
+      el.hidden = false;
+    });
     api.me().then(function (me) {
       if (!me || !me.can_publish) return;
       Array.prototype.forEach.call(document.querySelectorAll("[data-nr-publisher]"), function (el) {
