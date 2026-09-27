@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Write and publish stories for the Ardena newsroom.">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Write a story - ardena newsroom</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css?v=38">
+    <link rel="stylesheet" href="/newsroom.css?v=1">
+    <link rel="icon" type="image/jpeg" href="/assets/logo.jpg">
+</head>
+<body data-nr-page="write">
+    <div class="nr-page nr-write">
+        <header class="nr-topbar">
+            <div class="nr-wrap nr-topbar-inner">
+                <div class="nr-topbar-left">
+                    <a href="/" aria-label="ardena home"><img src="/assets/ardena.png" alt="ardena"></a>
+                    <a class="nr-back" href="/newsroom" data-nr-list>Newsroom</a>
+                    <span class="nr-save-status" id="nrSaveStatus" aria-live="polite"></span>
+                </div>
+                <div class="nr-topbar-right">
+                    <button type="button" class="nr-link-btn" id="nrSignOut" hidden>Sign out</button>
+                    <button type="button" class="nr-btn nr-btn--ghost" id="nrSaveDraft">Save draft</button>
+                    <button type="button" class="nr-btn nr-btn--accent" id="nrPublish">Publish</button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Shown when nobody with publisher rights is signed in -->
+        <section class="nr-gate" id="nrGate" hidden>
+            <form class="nr-gate-card" id="nrGateForm">
+                <h1>Sign in to publish</h1>
+                <p>The newsroom editor is for Ardena team members with publisher rights.</p>
+                <p class="nr-gate-msg" id="nrGateMsg" hidden></p>
+                <label>Email<input type="email" name="email" autocomplete="username" required></label>
+                <label>Password<input type="password" name="password" autocomplete="current-password" required></label>
+                <button type="submit" class="nr-btn nr-btn--accent">Sign in</button>
+            </form>
+        </section>
+
+        <main class="nr-canvas nr-wrap nr-wrap--text" id="nrEditor" hidden>
+            <div class="nr-field-row">
+                <select class="nr-select" id="nrCategory" aria-label="Category">
+                    <option value="">Choose a category</option>
+                </select>
+                <span class="nr-who">Writing as <strong id="nrWho">you</strong></span>
+            </div>
+
+            <p class="nr-error" id="nrError" role="alert" hidden></p>
+
+            <div class="nr-cover" id="nrCover"></div>
+
+            <textarea class="nr-title-input" id="nrTitle" rows="1" placeholder="Title" aria-label="Title" maxlength="140"></textarea>
+            <textarea class="nr-excerpt-input" id="nrExcerpt" rows="1" placeholder="A one line summary readers see first" aria-label="Summary" maxlength="240"></textarea>
+
+            <div class="nr-toolbar" id="nrToolbar" role="toolbar" aria-label="Formatting">
+                <select class="nr-select" id="nrBlock" aria-label="Text style">
+                    <option value="p">Paragraph</option>
+                    <option value="h2">Heading</option>
+                    <option value="h3">Subheading</option>
+                </select>
+                <span class="nr-tool-sep" aria-hidden="true"></span>
+                <button type="button" class="nr-tool" data-cmd="bold" aria-label="Bold" title="Bold (Ctrl+B)" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"><path d="M7 5h6a3.5 3.5 0 0 1 0 7H7zM7 12h7a3.5 3.5 0 0 1 0 7H7z"/></svg></button>
+                <button type="button" class="nr-tool" data-cmd="italic" aria-label="Italic" title="Italic (Ctrl+I)" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 5h-8M13 19H5M15 5 9 19"/></svg></button>
+                <button type="button" class="nr-tool" data-cmd="link" aria-label="Link" title="Link (Ctrl+K)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></button>
+                <span class="nr-tool-sep" aria-hidden="true"></span>
+                <button type="button" class="nr-tool" data-cmd="quote" aria-label="Quote" title="Quote"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7.2 6C4.9 7.3 3.5 9.6 3.5 12.6V18H9v-5.5H6.3c0-1.9.9-3.3 2.4-4.2zm10 0c-2.3 1.3-3.7 3.6-3.7 6.6V18H19v-5.5h-2.7c0-1.9.9-3.3 2.4-4.2z"/></svg></button>
+                <button type="button" class="nr-tool" data-cmd="ul" aria-label="Bulleted list" title="Bulleted list" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.5" cy="6" r="1" fill="currentColor"/><circle cx="4.5" cy="12" r="1" fill="currentColor"/><circle cx="4.5" cy="18" r="1" fill="currentColor"/></svg></button>
+                <button type="button" class="nr-tool" data-cmd="ol" aria-label="Numbered list" title="Numbered list" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10 6h10M10 12h10M10 18h10"/><path d="M4 5h1.5v4M4 9h3M4 14.5c.5-.7 2.8-.9 2.8.6 0 1.1-2.8 2-2.8 2.9h3" stroke-width="1.4"/></svg></button>
+                <span class="nr-tool-sep" aria-hidden="true"></span>
+                <button type="button" class="nr-tool" data-cmd="image" aria-label="Insert image from Unsplash" title="Image from Unsplash"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="1.8"/><path d="m21 16-5-5L5 20"/></svg></button>
+                <button type="button" class="nr-tool" data-cmd="hr" aria-label="Section break" title="Section break"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 12h16"/></svg></button>
+                <span class="nr-words" id="nrWords">0 words</span>
+            </div>
+
+            <div class="nr-linkbar" id="nrLinkBar" hidden>
+                <form id="nrLinkForm">
+                    <input type="text" id="nrLinkInput" placeholder="Paste or type a link" aria-label="Link address">
+                    <button type="button" class="nr-btn nr-btn--ghost" id="nrLinkRemove">Remove</button>
+                    <button type="submit" class="nr-btn nr-btn--accent">Apply</button>
+                </form>
+            </div>
+
+            <div class="nr-prose nr-body-input" id="nrBody" contenteditable="true" role="textbox" aria-multiline="true" aria-label="Story" data-placeholder="Tell the story. Use the toolbar for headings, quotes, lists and images."></div>
+        </main>
+    </div>
+
+    <!-- Unsplash image picker -->
+    <div class="nr-modal" id="nrPhotoModal" role="dialog" aria-modal="true" aria-labelledby="nrPhotoTitle" hidden>
+        <div class="nr-modal-panel">
+            <div class="nr-modal-head">
+                <div>
+                    <h2 id="nrPhotoTitle">Choose a cover image</h2>
+                    <p>Free to use photos from <a href="https://unsplash.com/?utm_source=ardena&amp;utm_medium=referral" target="_blank" rel="noopener noreferrer">Unsplash</a>. Credit is added for you.</p>
+                </div>
+                <button type="button" class="nr-close" data-close aria-label="Close">&times;</button>
+            </div>
+            <form class="nr-photo-search" id="nrPhotoForm">
+                <input type="search" id="nrPhotoQuery" placeholder="Search photos" aria-label="Search Unsplash" value="car">
+                <button type="submit" class="nr-btn">Search</button>
+            </form>
+            <div class="nr-chips">
+                <button type="button" class="nr-chip">car</button>
+                <button type="button" class="nr-chip">road trip</button>
+                <button type="button" class="nr-chip">Kenya</button>
+                <button type="button" class="nr-chip">safari</button>
+                <button type="button" class="nr-chip">team</button>
+                <button type="button" class="nr-chip">phone</button>
+                <button type="button" class="nr-chip">city</button>
+            </div>
+            <div class="nr-photo-grid" id="nrPhotoGrid"></div>
+            <div class="nr-more-row"><button type="button" class="nr-btn nr-btn--ghost" id="nrPhotoMore" hidden>More photos</button></div>
+        </div>
+    </div>
+
+    <script src="/script.js?v=23"></script>
+    <script src="/newsroom-mock.js?v=1"></script>
+    <script src="/newsroom.js?v=1"></script>
+    <script src="/newsroom-editor.js?v=1"></script>
+</body>
+</html>

@@ -113,3 +113,28 @@
   from = "/status/"
   to = "/status.html"
   status = 200
+
+[[redirects]]
+  from = "/newsroom"
+  to = "/newsroom.html"
+  status = 200
+
+[[redirects]]
+  from = "/newsroom/"
+  to = "/newsroom.html"
+  status = 200
+
+[[redirects]]
+  from = "/newsroom/write"
+  to = "/newsroom-write.html"
+  status = 200
+
+[[redirects]]
+  from = "/newsroom/write/"
+  to = "/newsroom-write.html"
+  status = 200
+
+[[redirects]]
+  from = "/newsroom/*"
+  to = "/newsroom-article.html"
+  status = 200

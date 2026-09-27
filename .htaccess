@@ -8,7 +8,14 @@
   # And adding .html gives a file that exists
   RewriteCond %{REQUEST_FILENAME}.html -f
   RewriteRule ^(.+)$ $1.html [L]
+
+  # Newsroom: /newsroom/write is the editor, any other /newsroom/<slug> is a story
+  RewriteRule ^newsroom/?$ newsroom.html [L]
+  RewriteRule ^newsroom/write/?$ newsroom-write.html [L]
+  RewriteRule ^newsroom/([^/]+)/?$ newsroom-article.html [L]
 </IfModule>
+
+ErrorDocument 404 /404.html
 
 # Cache images for 1 year
 <IfModule mod_expires.c>
