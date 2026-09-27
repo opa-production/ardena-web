@@ -242,7 +242,6 @@
 .nr-card--feature .nr-card-title { font-size: clamp(1.75rem, 3vw, 2.5rem); line-height: 1.15; letter-spacing: -0.025em; }
 .nr-card-excerpt { margin: 1rem 0 1.5rem; font-size: 1.075rem; line-height: 1.6; color: var(--nr-muted); }
 .nr-readmore { font-weight: 600; color: var(--nr-ink); border-bottom: 1px solid currentColor; padding-bottom: 2px; }
-.nr-card--feature:hover .nr-readmore { color: var(--nr-accent); }
 
 .nr-grid-head {
   display: flex;
@@ -301,11 +300,11 @@
   display: inline-block;
   margin-bottom: 1.25rem;
   font-size: 0.9rem;
-  font-weight: 600;
-  color: var(--nr-accent-ink);
+  font-weight: 500;
+  color: var(--nr-muted);
   text-decoration: none;
 }
-.nr-crumb:hover { text-decoration: underline; }
+.nr-crumb:hover { color: var(--nr-ink); }
 .nr-article-title {
   margin: 0;
   font-size: clamp(2.1rem, 5.2vw, 3.4rem);
