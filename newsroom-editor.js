@@ -282,14 +282,25 @@
     var b = e.target.closest("button[data-cmd]");
     if (b) exec(b.getAttribute("data-cmd"));
   });
-  els.blockSelect.addEventListener("change", function () {
-    restoreRange();
-    document.execCommand("formatBlock", false, "<" + els.blockSelect.value + ">");
-    els.body.dispatchEvent(new Event("input"));
-    syncToolbar();
+  var blockStyle = NR.dropdown(els.blockSelect, {
+    items: [
+      { value: "p", label: "Paragraph" },
+      { value: "h2", label: "Heading" },
+      { value: "h3", label: "Subheading" },
+    ],
+    value: "p",
+    onChange: function (v) {
+      restoreRange();
+      document.execCommand("formatBlock", false, "<" + v + ">");
+      els.body.dispatchEvent(new Event("input"));
+      syncToolbar();
+    },
   });
-  els.blockSelect.addEventListener("mousedown", saveRange);
-  els.blockSelect.addEventListener("focus", saveRange);
+  // The menu takes focus, so remember where the caret was before it opens.
+  els.blockSelect.addEventListener("mousedown", saveRange, true);
+  els.blockSelect.addEventListener("keydown", function (e) {
+    if (e.target.classList.contains("nr-dd-btn")) saveRange();
+  }, true);
 
   function syncToolbar() {
     var sel = window.getSelection();
@@ -303,8 +314,14 @@
       btn.setAttribute("aria-pressed", on ? "true" : "false");
     });
     var block = currentBlock();
+    if (block === "h2" || block === "h3") {
+      // headings are bold by style, so don't show Bold as switched on
+      var bold = els.toolbar.querySelector('[data-cmd="bold"]');
+      bold.classList.remove("is-on");
+      bold.setAttribute("aria-pressed", "false");
+    }
     els.toolbar.querySelector('[data-cmd="quote"]').classList.toggle("is-on", block === "blockquote");
-    els.blockSelect.value = block === "h2" || block === "h3" ? block : "p";
+    blockStyle.set(block === "h2" || block === "h3" ? block : "p");
     var node = sel.anchorNode && (sel.anchorNode.nodeType === 1 ? sel.anchorNode : sel.anchorNode.parentNode);
     els.toolbar.querySelector('[data-cmd="link"]').classList.toggle("is-on", !!(node && node.closest("a")));
   }

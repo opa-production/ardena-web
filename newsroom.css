@@ -481,18 +481,6 @@
 
 .nr-canvas { padding: 2.5rem 1.25rem 8rem; }
 .nr-field-row { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 1.5rem; }
-.nr-select {
-  appearance: none;
-  padding: 0.5rem 2.2rem 0.5rem 0.95rem;
-  border: 1px solid var(--nr-line);
-  border-radius: 999px;
-  background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%235e6470' stroke-width='1.5'/%3E%3C/svg%3E") no-repeat right 0.9rem center;
-  font: inherit;
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: var(--nr-ink);
-  cursor: pointer;
-}
 .nr-who { font-size: 0.85rem; color: var(--nr-muted); }
 
 .nr-cover { margin-bottom: 2rem; }
@@ -563,8 +551,16 @@
   background: #fff;
   box-shadow: 0 4px 16px rgba(15, 20, 30, 0.05);
 }
-.nr-toolbar .nr-select { border: 0; border-radius: 6px; padding-top: 0.4rem; padding-bottom: 0.4rem; }
-.nr-toolbar .nr-select:hover { background-color: var(--nr-soft); }
+.nr-dd--toolbar .nr-dd-btn {
+  min-width: 132px;
+  justify-content: space-between;
+  padding: 0.45rem 0.7rem;
+  border: 0;
+  border-radius: 6px;
+}
+.nr-dd--toolbar .nr-dd-btn:hover,
+.nr-dd--toolbar.is-open .nr-dd-btn { background: var(--nr-soft); }
+.nr-dd--toolbar .nr-dd-menu { min-width: 180px; }
 .nr-tool {
   display: inline-grid;
   place-items: center;
