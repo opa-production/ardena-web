@@ -408,28 +408,61 @@
     var more = document.getElementById("nrMore");
     var empty = document.getElementById("nrEmpty");
     var title = document.getElementById("nrGridTitle");
+    var head = document.getElementById("nrGridHead");
     var state = { category: params.get("category") || "", offset: 0, lead: null };
     if (CATEGORIES.indexOf(state.category) === -1) state.category = "";
 
-    dropdown(document.getElementById("nrFilter"), {
+    var filter = dropdown(document.getElementById("nrFilter"), {
       items: [{ value: "", label: "All stories" }].concat(CATEGORIES.map(function (c) { return { value: c, label: c }; })),
       value: state.category,
-      onChange: function (v) {
-        state.category = v;
-        var u = new URL(window.location.href);
-        if (v) u.searchParams.set("category", v);
-        else u.searchParams.delete("category");
-        history.replaceState(null, "", u);
-        load(true);
-      },
+      onChange: function (v) { setCategory(v); },
+    });
+
+    function setCategory(v) {
+      state.category = v;
+      filter.set(v);
+      var u = new URL(window.location.href);
+      if (v) u.searchParams.set("category", v);
+      else u.searchParams.delete("category");
+      history.replaceState(null, "", u);
+      load(true);
+    }
+
+    // kind: "none" (no stories at all), "category" (filter has no matches),
+    // "error" (API unreachable), or "" to hide.
+    var emptyTitle = empty.querySelector(".nr-empty-title");
+    var emptyText = empty.querySelector(".nr-empty-text");
+    var emptyAction = empty.querySelector(".nr-empty-action");
+    function setEmpty(kind) {
+      empty.hidden = !kind;
+      if (!kind) return;
+      empty.className = "nr-empty nr-empty--" + kind;
+      emptyAction.hidden = kind === "none";
+      if (kind === "none") {
+        emptyTitle.textContent = "No stories yet";
+        emptyText.textContent = "News and updates from ardena will appear here.";
+      } else if (kind === "error") {
+        emptyTitle.textContent = "Couldn't load the newsroom";
+        emptyText.textContent = "Check your connection and try again.";
+        emptyAction.textContent = "Try again";
+      } else {
+        emptyTitle.textContent = "No " + state.category.toLowerCase() + " stories yet";
+        emptyText.textContent = "";
+        emptyAction.textContent = "Show all stories";
+      }
+    }
+    emptyAction.addEventListener("click", function () {
+      if (empty.classList.contains("nr-empty--error")) window.location.reload();
+      else setCategory("");
     });
 
     function fail() {
       grid.innerHTML = "";
       grid.setAttribute("aria-busy", "false");
-      empty.hidden = false;
-      empty.querySelector("p").textContent = "We couldn't load the newsroom right now. Please try again shortly.";
+      featured.hidden = true;
+      head.hidden = true;
       more.hidden = true;
+      setEmpty("error");
     }
 
     function load(reset) {
@@ -447,10 +480,10 @@
           if (reset) grid.innerHTML = "";
           grid.insertAdjacentHTML("beforeend", items.map(function (s) { return card(s); }).join(""));
           grid.setAttribute("aria-busy", "false");
-          empty.hidden = !!grid.children.length;
-          empty.querySelector("p").textContent = state.category
-            ? "No " + state.category.toLowerCase() + " stories yet. Check back soon."
-            : "No stories here yet. Check back soon.";
+          var none = !grid.children.length;
+          // With only the lead story and no filter, there's nothing to list below it.
+          head.hidden = none && !state.category;
+          setEmpty(none && state.category ? "category" : "");
           more.hidden = !data.has_more;
           more.disabled = false;
         })
@@ -463,11 +496,17 @@
     api.list({ offset: 0, limit: 1 })
       .then(function (data) {
         var lead = (data.items || [])[0];
-        if (lead) {
-          state.lead = lead.slug;
-          featured.innerHTML = card(lead, "feature");
-          featured.hidden = false;
+        if (!lead) {
+          // Nothing published yet: one calm message instead of an empty grid.
+          grid.innerHTML = "";
+          grid.setAttribute("aria-busy", "false");
+          head.hidden = true;
+          setEmpty("none");
+          return;
         }
+        state.lead = lead.slug;
+        featured.innerHTML = card(lead, "feature");
+        featured.hidden = false;
         load(true);
       })
       .catch(fail);

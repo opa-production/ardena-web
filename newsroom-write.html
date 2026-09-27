@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/styles.css?v=38">
-    <link rel="stylesheet" href="/newsroom.css?v=4">
+    <link rel="stylesheet" href="/newsroom.css?v=5">
     <link rel="icon" type="image/jpeg" href="/assets/logo.jpg">
 </head>
 <body data-nr-page="write">
@@ -37,41 +37,40 @@
 
                 <!-- Sign in -->
                 <form id="nrGateForm" data-view="signin">
-                    <h1>Sign in to write</h1>
-                    <p>The newsroom editor is for Ardena writers. Sign in with the account we set up for you.</p>
+                    <h1>Sign in</h1>
+                    <p>For newsroom writers.</p>
                     <label>Email<input type="email" name="email" autocomplete="username" required></label>
                     <label>Password<input type="password" name="password" autocomplete="current-password" required></label>
-                    <button type="submit" class="nr-btn nr-btn--accent">Sign in</button>
+                    <button type="submit" class="nr-gate-submit">Sign in</button>
                     <div class="nr-gate-links">
-                        <button type="button" class="nr-link-btn" data-go="forgot">Forgot password?</button>
-                    </div>
-                    <div class="nr-gate-alt">
-                        <p>Want to write for Ardena?</p>
-                        <button type="button" class="nr-btn nr-btn--ghost" data-go="request">Request to write</button>
+                        <button type="button" class="nr-link-btn" data-go="forgot">Forgot password</button>
+                        <button type="button" class="nr-link-btn" data-go="request">Request access</button>
                     </div>
                 </form>
 
                 <!-- Request to write -->
                 <form id="nrRequestForm" data-view="request" hidden>
-                    <h1>Write for Ardena</h1>
-                    <p>Tell us a little about yourself. The newsroom team reviews every request and emails you a link to set up your account once you're approved.</p>
-                    <label>Your name<input type="text" name="full_name" autocomplete="name" minlength="2" maxlength="120" required></label>
-                    <label>Email<input type="email" name="email" autocomplete="email" required></label>
-                    <label>What would you like to write about?<textarea name="about" rows="4" minlength="20" maxlength="1500" required placeholder="Road trips, hosting tips, travel in Kenya..."></textarea></label>
-                    <label>Link to your work <span class="nr-optional">(optional)</span><input type="url" name="portfolio_url" maxlength="500" placeholder="https://"></label>
-                    <button type="submit" class="nr-btn nr-btn--accent">Send request</button>
-                    <div class="nr-gate-links">
-                        <button type="button" class="nr-link-btn" data-go="signin">I already have an account</button>
+                    <h1>Request access</h1>
+                    <p>We'll email you once you're approved.</p>
+                    <div class="nr-gate-row">
+                        <label>Name<input type="text" name="full_name" autocomplete="name" minlength="2" maxlength="120" required></label>
+                        <label>Email<input type="email" name="email" autocomplete="email" required></label>
+                    </div>
+                    <label>What will you write about?<textarea name="about" rows="3" minlength="20" maxlength="1500" required></textarea></label>
+                    <label>Portfolio link <span class="nr-optional">(optional)</span><input type="url" name="portfolio_url" maxlength="500" placeholder="https://"></label>
+                    <button type="submit" class="nr-gate-submit">Send request</button>
+                    <div class="nr-gate-links nr-gate-links--center">
+                        <button type="button" class="nr-link-btn" data-go="signin">Back to sign in</button>
                     </div>
                 </form>
 
                 <!-- Forgot password -->
                 <form id="nrForgotForm" data-view="forgot" hidden>
-                    <h1>Reset your password</h1>
-                    <p>We'll email you a link to choose a new one.</p>
+                    <h1>Reset password</h1>
+                    <p>We'll email you a reset link.</p>
                     <label>Email<input type="email" name="email" autocomplete="username" required></label>
-                    <button type="submit" class="nr-btn nr-btn--accent">Email me a link</button>
-                    <div class="nr-gate-links">
+                    <button type="submit" class="nr-gate-submit">Send link</button>
+                    <div class="nr-gate-links nr-gate-links--center">
                         <button type="button" class="nr-link-btn" data-go="signin">Back to sign in</button>
                     </div>
                 </form>
@@ -79,11 +78,10 @@
                 <!-- Set password (from an invite or reset link) -->
                 <form id="nrSetForm" data-view="set" hidden>
                     <h1 id="nrSetTitle">Set your password</h1>
-                    <p id="nrSetIntro">Choose a password for your newsroom account.</p>
+                    <p id="nrSetIntro">At least 10 characters.</p>
                     <label>New password<input type="password" name="password" autocomplete="new-password" minlength="10" maxlength="128" required></label>
                     <label>Confirm password<input type="password" name="confirm" autocomplete="new-password" minlength="10" maxlength="128" required></label>
-                    <p class="nr-hint">At least 10 characters.</p>
-                    <button type="submit" class="nr-btn nr-btn--accent">Save and start writing</button>
+                    <button type="submit" class="nr-gate-submit">Save and continue</button>
                 </form>
             </div>
         </section>
@@ -158,8 +156,8 @@
     </div>
 
     <script src="/script.js?v=23"></script>
-    <script src="/newsroom-mock.js?v=2"></script>
-    <script src="/newsroom.js?v=4"></script>
-    <script src="/newsroom-editor.js?v=4"></script>
+    <script src="/newsroom-mock.js?v=5"></script>
+    <script src="/newsroom.js?v=5"></script>
+    <script src="/newsroom-editor.js?v=5"></script>
 </body>
 </html>

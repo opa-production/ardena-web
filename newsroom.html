@@ -26,7 +26,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/styles.css?v=38">
     <link rel="canonical" href="https://ardena.co.ke/newsroom">
-    <link rel="stylesheet" href="/newsroom.css?v=4">
+    <link rel="stylesheet" href="/newsroom.css?v=5">
     <link rel="icon" type="image/jpeg" href="/assets/logo.jpg">
     <script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments);};</script>
     <script defer src="/_vercel/insights/script.js"></script>
@@ -113,8 +113,8 @@
                         <h1>Newsroom</h1>
                         <p>Company news, product updates and stories from the road.</p>
                     </div>
-                    <a class="nr-icon-btn nr-icon-btn--accent nr-write-fab" data-nr-write href="/newsroom/write" aria-label="Write a story" title="Write a story">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+                    <a class="nr-icon-btn nr-write-fab" data-nr-write href="/newsroom/write" aria-label="Write a story" title="Write a story">
+                        <img src="/assets/write.svg" alt="" width="20" height="20">
                     </a>
                 </div>
             </div>
@@ -123,12 +123,17 @@
         <section class="nr-list">
             <div class="nr-wrap">
                 <div class="nr-featured" id="nrFeatured" hidden></div>
-                <div class="nr-grid-head">
+                <div class="nr-grid-head" id="nrGridHead">
                     <h2 class="nr-section-title" id="nrGridTitle">Latest stories</h2>
                     <div class="nr-dd nr-dd--right" id="nrFilter" data-label="Filter by category"></div>
                 </div>
                 <div class="nr-grid" id="nrGrid" aria-live="polite" aria-busy="true"></div>
-                <div class="nr-empty" id="nrEmpty" hidden><p>No stories here yet. Check back soon.</p></div>
+                <div class="nr-empty" id="nrEmpty" hidden>
+                    <img class="nr-empty-art" src="/assets/news.svg" alt="" width="609" height="765">
+                    <h2 class="nr-empty-title"></h2>
+                    <p class="nr-empty-text"></p>
+                    <button type="button" class="nr-empty-action" hidden></button>
+                </div>
                 <div class="nr-more-row"><button type="button" class="nr-btn nr-btn--ghost" id="nrMore" hidden>Load more stories</button></div>
             </div>
         </section>
@@ -235,8 +240,8 @@
     </script>
     <script defer src="/_vercel/speed-insights/script.js" data-sdkn="@vercel/speed-insights" data-sdkv="2.0.0"></script>
     <script src="/script.js?v=23"></script>
-    <script src="/newsroom-mock.js?v=2"></script>
-    <script src="/newsroom.js?v=4"></script>
+    <script src="/newsroom-mock.js?v=5"></script>
+    <script src="/newsroom.js?v=5"></script>
   <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "c6270f0c14ab4ec4b223c4e01ee85657"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
 </html>

@@ -87,8 +87,7 @@
 
   // Signed in but not (yet) allowed to publish: say so, and let them switch account.
   function showPending(me) {
-    showView("signin", (me && me.name ? me.name + ", your" : "Your") +
-      " account doesn't have publishing rights yet. The newsroom team will switch them on once you're approved.");
+    showView("signin", "Your account is waiting for approval.");
     els.signOut.hidden = false;
   }
 
@@ -115,13 +114,13 @@
     api.tokenInfo(linkToken)
       .then(function (info) {
         var reset = info.purpose === "reset";
-        $("nrSetTitle").textContent = reset ? "Choose a new password" : "Welcome to the newsroom";
-        $("nrSetIntro").textContent = (reset ? "Choose a new password for " : "Hi " + info.name.split(" ")[0] + ", set a password for ") + info.email + ".";
+        $("nrSetTitle").textContent = reset ? "New password" : "Welcome, " + info.name.split(" ")[0];
+        $("nrSetIntro").textContent = info.email + ". At least 10 characters.";
         showView("set");
       })
       .catch(function (err) {
         forgetLinkToken();
-        showGate(err.status === 410 ? "That link has expired or was already used. Sign in, or use Forgot password for a new one." : "We couldn't check that link. Please try again.");
+        showGate(err.status === 410 ? "That link has expired. Request a new one with Forgot password." : "Couldn't check that link. Try again.");
       });
   } else {
     api.me().then(function (me) {
@@ -142,9 +141,9 @@
         })
         .catch(function (err) {
           showGate(
-            err.status === 401 ? "That email and password don't match." :
-            err.status === 429 ? "Too many attempts. Wait a few minutes and try again." :
-            "We couldn't sign you in right now. Please try again."
+            err.status === 401 ? "Wrong email or password." :
+            err.status === 429 ? "Too many attempts. Try again in a few minutes." :
+            "Couldn't sign in. Try again."
           );
         });
     });
@@ -162,11 +161,11 @@
       })
         .then(function () {
           form.reset();
-          showGate("Thanks. We'll email you once the newsroom team has looked at your request.");
+          showGate("Request sent. We'll email you.");
         })
         .catch(function (err) {
-          note(err.status === 429 ? "You've sent a few requests already. Please try again later." :
-               err.status === 422 ? err.message : "We couldn't send that. Please try again.");
+          note(err.status === 429 ? "Too many requests. Try again later." :
+               err.status === 422 ? err.message : "Couldn't send that. Try again.");
         });
     });
   });
@@ -176,15 +175,15 @@
     var form = e.target;
     withButton(form, function () {
       return api.forgotPassword(form.email.value.trim())
-        .then(function () { showGate("If that email belongs to a newsroom writer, a reset link is on its way."); })
-        .catch(function () { note("We couldn't send that. Please try again in a few minutes."); });
+        .then(function () { showGate("If that email is registered, a link is on its way."); })
+        .catch(function () { note("Couldn't send that. Try again in a few minutes."); });
     });
   });
 
   $("nrSetForm").addEventListener("submit", function (e) {
     e.preventDefault();
     var form = e.target;
-    if (form.password.value !== form.confirm.value) { note("The two passwords don't match."); return; }
+    if (form.password.value !== form.confirm.value) { note("Passwords don't match."); return; }
     withButton(form, function () {
       return api.setPassword(linkToken, form.password.value)
         .then(function (user) {
@@ -194,7 +193,7 @@
         })
         .catch(function (err) {
           if (err.status === 410) { forgetLinkToken(); showGate(err.message); }
-          else note(err.status === 422 ? err.message : "We couldn't save that. Please try again.");
+          else note(err.status === 422 ? err.message : "Couldn't save that. Try again.");
         });
     });
   });
