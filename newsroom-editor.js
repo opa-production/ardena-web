@@ -477,6 +477,7 @@
 
   // ------------------------------------------------------------ cover
   function credit(p) {
+    if (!p.photographer_name) return ""; // our own upload: nothing to credit
     if (p.photographer_name === "Unsplash") return 'Photo: <a href="https://unsplash.com/?utm_source=ardena&utm_medium=referral" target="_blank" rel="noopener noreferrer">Unsplash</a>';
     return (
       'Photo by <a href="' + esc(p.photographer_url) + '?utm_source=ardena&utm_medium=referral" target="_blank" rel="noopener noreferrer">' +
@@ -490,13 +491,13 @@
       els.cover.innerHTML =
         '<button type="button" class="nr-cover-empty" data-cover="pick">' +
         '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="m21 16-5-5L5 20"/></svg>' +
-        "<span>Add a cover image from Unsplash</span></button>";
+        "<span>Add a cover image</span></button>";
       return;
     }
     els.cover.innerHTML =
       '<figure class="nr-cover-set"><img src="' + esc(c.url) + '" alt="' + esc(c.alt || "") + '">' +
       '<div class="nr-cover-actions"><button type="button" data-cover="pick">Change</button><button type="button" data-cover="remove">Remove</button></div>' +
-      "<figcaption>" + credit(c) + "</figcaption></figure>";
+      (credit(c) ? "<figcaption>" + credit(c) + "</figcaption>" : "") + "</figure>";
   }
   els.cover.addEventListener("click", function (e) {
     var b = e.target.closest("[data-cover]");
@@ -545,7 +546,7 @@
         els.photoMore.hidden = !(data.total_pages && picker.page < data.total_pages);
       })
       .catch(function () {
-        els.photoGrid.innerHTML = '<p class="nr-photo-note">Unsplash is unavailable right now. Please try again in a moment.</p>';
+        els.photoGrid.innerHTML = '<p class="nr-photo-note">Unsplash isn\'t available yet. Upload an image from your computer instead.</p>';
       });
   }
 
@@ -575,6 +576,7 @@
     var photo = {
       id: p.id, url: p.url, thumb: p.thumb, alt: p.alt || "",
       photographer_name: p.photographer_name, photographer_url: p.photographer_url, unsplash_url: p.unsplash_url,
+      source: p.source,
     };
     if (picker.mode === "cover") {
       state.cover = photo;
@@ -585,11 +587,38 @@
       document.execCommand(
         "insertHTML",
         false,
-        '<figure><img src="' + esc(photo.url) + '" alt="' + esc(photo.alt) + '"><figcaption>' + credit(photo) + "</figcaption></figure><p><br></p>"
+        '<figure><img src="' + esc(photo.url) + '" alt="' + esc(photo.alt) + '">' +
+          (credit(photo) ? "<figcaption>" + credit(photo) + "</figcaption>" : "") + "</figure><p><br></p>"
       );
     }
     markDirty();
   }
+
+  // ------------------------------------------------------------ upload
+  var uploadBtn = $("nrUploadBtn");
+  var uploadInput = $("nrUploadInput");
+  var uploadNote = $("nrUploadNote");
+  var UPLOAD_HINT = uploadNote.textContent;
+
+  uploadBtn.addEventListener("click", function () { uploadInput.click(); });
+  uploadInput.addEventListener("change", function () {
+    var file = uploadInput.files && uploadInput.files[0];
+    uploadInput.value = "";
+    if (!file) return;
+    if (!/^image\/(jpeg|png|webp)$/.test(file.type)) { uploadNote.textContent = "Use a JPEG, PNG or WebP image."; return; }
+    if (file.size > 10 * 1024 * 1024) { uploadNote.textContent = "That image is over 10 MB."; return; }
+    uploadBtn.disabled = true;
+    uploadNote.textContent = "Uploading";
+    api.uploadImage(file)
+      .then(function (img) {
+        uploadNote.textContent = UPLOAD_HINT;
+        choose(img);
+      })
+      .catch(function (err) {
+        uploadNote.textContent = err.status === 422 || err.status === 413 ? err.message : "Upload failed. Try again.";
+      })
+      .then(function () { uploadBtn.disabled = false; });
+  });
 
   // ------------------------------------------------------------ publish
   function validate(a) {

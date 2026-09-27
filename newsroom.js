@@ -78,7 +78,14 @@
   };
   function safeUrl(u, forImg) {
     u = String(u || "").trim();
-    if (forImg) return /^https:\/\/images\.unsplash\.com\//.test(u) ? u : "";
+    // Images come from Unsplash or were uploaded through the editor (our
+    // storage, newsroom/ prefix). The API applies the same rule.
+    if (forImg) {
+      if (/^https:\/\/images\.unsplash\.com\//.test(u)) return u;
+      if (/^https:\/\/[a-z0-9]+\.supabase\.co\/storage\/v1\/object\/public\/b2b-media\/newsroom\/[^?#]+$/.test(u) && u.indexOf("..") === -1) return u;
+      if (MOCK && /^data:image\/(jpeg|png|webp);base64,/.test(u)) return u;
+      return "";
+    }
     return /^(https?:|mailto:|\/(?!\/))/i.test(u) ? u : "";
   }
   function sanitize(html) {
@@ -246,6 +253,37 @@
       return article.id
         ? request("PATCH", "/articles/" + encodeURIComponent(article.id), article)
         : request("POST", "/articles", article);
+    },
+    // An image from the writer's computer. Multipart, so it can't go through
+    // request(), which sends JSON.
+    uploadImage: function (file) {
+      if (MOCK) {
+        return new Promise(function (ok, fail) {
+          var reader = new FileReader();
+          reader.onload = function () { ok({ id: "local", url: reader.result, thumb: reader.result, alt: "", source: "upload" }); };
+          reader.onerror = fail;
+          reader.readAsDataURL(file);
+        });
+      }
+      var form = new FormData();
+      form.append("file", file);
+      var headers = { Accept: "application/json" };
+      var t = token();
+      if (t) headers.Authorization = "Bearer " + t;
+      return fetch(apiBase() + "/api/v1/newsroom/uploads", { method: "POST", headers: headers, body: form })
+        .then(function (res) {
+          if (res.status === 401) sDel("localStorage", TOKEN_KEY);
+          return res.json().catch(function () { return null; }).then(function (data) {
+            if (!res.ok) {
+              var detail = data && (data.detail || data.message);
+              if (Array.isArray(detail)) detail = detail[0] && detail[0].msg;
+              var err = new Error(detail || "HTTP " + res.status);
+              err.status = res.status;
+              throw err;
+            }
+            return data;
+          });
+        });
     },
     searchPhotos: function (query, page) {
       page = page || 1;

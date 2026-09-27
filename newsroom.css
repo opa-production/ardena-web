@@ -747,6 +747,23 @@ body.nr-modal-open { overflow: hidden; }
 .nr-modal-head p { margin: 0.2rem 0 0; font-size: 0.85rem; color: var(--nr-muted); }
 .nr-modal-head p a { color: inherit; }
 .nr-close { width: 36px; height: 36px; border: 0; border-radius: 50%; background: var(--nr-soft); font-size: 1.2rem; cursor: pointer; }
+/* Upload from the writer's computer: plain black, square, like the form buttons. */
+.nr-upload-row { display: flex; align-items: center; flex-wrap: wrap; gap: 0.5rem 0.9rem; margin: 0 0 1rem; }
+.nr-upload-btn {
+  padding: 0.7rem 1.1rem;
+  border: 0;
+  border-radius: 0;
+  background: var(--nr-ink);
+  color: #fff;
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.nr-upload-btn:hover { background: #2a2d33; }
+.nr-upload-btn:disabled { opacity: 0.55; cursor: default; }
+.nr-upload-btn:focus-visible { outline: 2px solid var(--nr-ink); outline-offset: 2px; }
+.nr-upload-note { font-size: 0.85rem; color: var(--nr-muted); }
 .nr-photo-search { display: flex; gap: 0.5rem; }
 .nr-photo-search input {
   flex: 1;
