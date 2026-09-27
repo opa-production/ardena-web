@@ -42,8 +42,10 @@
 
   // ------------------------------------------------------------ access
   NR.mockBanner();
-  NR.categories.forEach(function (c) {
-    els.category.insertAdjacentHTML("beforeend", '<option value="' + c + '">' + c + "</option>");
+  var category = NR.dropdown(els.category, {
+    items: NR.categories.map(function (c) { return { value: c, label: c }; }),
+    placeholder: "Choose a category",
+    onChange: function () { markDirty(); },
   });
 
   function openEditor(me) {
@@ -97,7 +99,7 @@
     return {
       id: state.id,
       slug: state.slug,
-      category: els.category.value,
+      category: category.get(),
       title: els.title.value.trim(),
       excerpt: els.excerpt.value.trim(),
       cover_image: state.cover,
@@ -113,7 +115,7 @@
     state.cover = a.cover_image || null;
     state.published_at = a.published_at || null;
     state.downloads = a.unsplash_downloads || [];
-    els.category.value = a.category || "";
+    category.set(a.category);
     els.title.value = a.title || "";
     els.excerpt.value = a.excerpt || "";
     els.body.innerHTML = NR.sanitize(a.body || "") || "<p><br></p>";
@@ -187,7 +189,6 @@
       }
     });
   });
-  els.category.addEventListener("change", markDirty);
 
   function countWords() {
     var text = els.body.innerText || "";

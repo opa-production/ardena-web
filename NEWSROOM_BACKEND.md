@@ -51,7 +51,7 @@ If the admin panel already has a login endpoint and token format, reuse it and p
 ### `GET /api/v1/newsroom/me` (auth)
 
 ```json
-{ "id": "u_123", "name": "Jane Doe", "can_publish": true }
+{ "id": "u_123", "name": "Jane Doe", "can_publish": true, "avatar_url": "https://.../avatar.jpg" }
 ```
 
 The listing and article pages call this on load when a token is present. If `can_publish` is true they show "Write a story" and "Edit story".
@@ -93,6 +93,8 @@ newsroom_article
 }
 ```
 
+**Author profile.** The story page shows the author's photo, name and optional job title right under the headline. Add `avatar_url` and `job_title` to the staff user (editable in admin) and return them on articles as `author_avatar` and `author_title`. Without a photo the page shows the author's initials. Stories posted as the house byline ("Ardena Newsroom") should use the Ardena logo as `author_avatar`.
+
 Keep the category list in one place (a constant or a table). If it changes, update `CATEGORIES` in `newsroom.js` and the tabs in `newsroom.html`.
 
 ## 4. Public endpoints (no auth)
@@ -123,13 +125,18 @@ Returns published stories only, newest `published_at` first. Put `featured = tru
   "excerpt": "Verified cars from local owners...",
   "cover_image": { "url": "...", "thumb": "...", "alt": "...", "photographer_name": "...", "photographer_url": "...", "unsplash_url": "..." },
   "author": "Ardena Newsroom",
+  "author_title": "Head of Communications",
+  "author_avatar": "https://.../avatar.jpg",
   "published_at": "2026-09-18T09:00:00Z",
   "reading_minutes": 3,
   "featured": true
 }
 ```
 
-Note: the first page on the "All" tab asks for `limit = 10` (one feature slot plus a grid of 9). Later pages use `limit = 9` with the running `offset`.
+How the listing page calls this:
+
+1. `?offset=0&limit=1` with no category, to get the lead story shown large at the top (so return a `featured` story first).
+2. `?exclude=<lead slug>&offset=0&limit=9`, plus `&category=...` when the reader picks one from the filter dropdown. The lead story stays at the top whatever the filter; only the grid changes. "Load more" repeats this with the running `offset`.
 
 ### `GET /api/v1/newsroom/articles/:slug`
 

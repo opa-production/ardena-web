@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/styles.css?v=38">
-    <link rel="stylesheet" href="/newsroom.css?v=1">
+    <link rel="stylesheet" href="/newsroom.css?v=2">
     <link rel="icon" type="image/jpeg" href="/assets/logo.jpg">
 </head>
 <body data-nr-page="write">
@@ -44,9 +44,7 @@
 
         <main class="nr-canvas nr-wrap nr-wrap--text" id="nrEditor" hidden>
             <div class="nr-field-row">
-                <select class="nr-select" id="nrCategory" aria-label="Category">
-                    <option value="">Choose a category</option>
-                </select>
+                <div id="nrCategory" data-label="Category"></div>
                 <span class="nr-who">Writing as <strong id="nrWho">you</strong></span>
             </div>
 
@@ -118,8 +116,8 @@
     </div>
 
     <script src="/script.js?v=23"></script>
-    <script src="/newsroom-mock.js?v=1"></script>
-    <script src="/newsroom.js?v=1"></script>
-    <script src="/newsroom-editor.js?v=1"></script>
+    <script src="/newsroom-mock.js?v=2"></script>
+    <script src="/newsroom.js?v=2"></script>
+    <script src="/newsroom-editor.js?v=2"></script>
 </body>
 </html>

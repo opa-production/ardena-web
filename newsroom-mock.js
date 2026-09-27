@@ -241,6 +241,7 @@
     var c = byId(s.cover);
     s.cover_image = { url: c.url, thumb: c.thumb, alt: c.alt, photographer_name: c.photographer_name, photographer_url: c.photographer_url, unsplash_url: c.unsplash_url };
     delete s.cover;
+    s.author_avatar = "/assets/logo.jpg";
     s.reading_minutes = Math.max(2, Math.round(s.body.replace(/<[^>]+>/g, " ").split(/\s+/).length / 200));
   });
 

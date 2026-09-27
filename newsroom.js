@@ -240,6 +240,17 @@
   };
 
   // ------------------------------------------------------------ shared UI
+  var ICONS = {
+    link: '<svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg>',
+    share: '<svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15V3"/><path d="m7 8 5-5 5 5"/><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg>',
+    edit: '<svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>',
+    check: '<svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>',
+  };
+
+  function initials(name) {
+    return String(name || "A").trim().split(/\s+/).slice(0, 2).map(function (w) { return w.charAt(0).toUpperCase(); }).join("");
+  }
+
   function card(s, variant) {
     var img = s.cover_image || {};
     return (
@@ -271,80 +282,164 @@
     });
   }
 
+  // ------------------------------------------------------------ dropdown
+  // Custom listbox used for the listing filter and the editor's category.
+  // dropdown(el, { items: [{ value, label }], value, placeholder, onChange })
+  var CHEVRON = '<svg viewBox="0 0 12 8" width="10" height="7" aria-hidden="true"><path d="M1 1.5l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  var CHECK = '<svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  var ddCount = 0;
+
+  function dropdown(el, opts) {
+    var id = "nrdd" + ++ddCount;
+    var value = opts.value || "";
+    el.classList.add("nr-dd");
+    el.innerHTML =
+      '<button type="button" class="nr-dd-btn" aria-haspopup="listbox" aria-expanded="false" aria-controls="' + id + '"' +
+      (el.getAttribute("data-label") ? ' aria-label="' + esc(el.getAttribute("data-label")) + '"' : "") + ">" +
+      '<span class="nr-dd-value"></span>' + CHEVRON + "</button>" +
+      '<ul class="nr-dd-menu" id="' + id + '" role="listbox" tabindex="-1" hidden>' +
+      opts.items.map(function (it, i) {
+        return '<li role="option" id="' + id + "-" + i + '" class="nr-dd-opt" data-value="' + esc(it.value) + '" aria-selected="false">' +
+          "<span>" + esc(it.label) + "</span>" + CHECK + "</li>";
+      }).join("") +
+      "</ul>";
+    var btn = el.querySelector(".nr-dd-btn");
+    var menu = el.querySelector(".nr-dd-menu");
+    var options = Array.prototype.slice.call(menu.querySelectorAll(".nr-dd-opt"));
+    var active = -1;
+
+    function render() {
+      var hit = opts.items.filter(function (it) { return it.value === value; })[0];
+      el.querySelector(".nr-dd-value").textContent = hit ? hit.label : opts.placeholder || "Select";
+      btn.classList.toggle("is-placeholder", !hit);
+      options.forEach(function (o) { o.setAttribute("aria-selected", o.getAttribute("data-value") === value ? "true" : "false"); });
+    }
+    function highlight(i) {
+      active = Math.max(0, Math.min(options.length - 1, i));
+      options.forEach(function (o, j) { o.classList.toggle("is-active", j === active); });
+      options[active].scrollIntoView({ block: "nearest" });
+      menu.setAttribute("aria-activedescendant", options[active].id);
+    }
+    function open() {
+      menu.hidden = false;
+      el.classList.add("is-open");
+      btn.setAttribute("aria-expanded", "true");
+      var cur = options.map(function (o) { return o.getAttribute("data-value"); }).indexOf(value);
+      highlight(cur === -1 ? 0 : cur);
+      menu.focus();
+    }
+    function close(focusBtn) {
+      if (menu.hidden) return;
+      menu.hidden = true;
+      el.classList.remove("is-open");
+      btn.setAttribute("aria-expanded", "false");
+      if (focusBtn) btn.focus();
+    }
+    function pick(i) {
+      var v = options[i].getAttribute("data-value");
+      close(true);
+      if (v === value) return;
+      value = v;
+      render();
+      if (opts.onChange) opts.onChange(value);
+    }
+
+    btn.addEventListener("click", function () { if (menu.hidden) open(); else close(); });
+    btn.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowDown" || e.key === "ArrowUp") { e.preventDefault(); open(); }
+    });
+    menu.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowDown") { e.preventDefault(); highlight(active + 1); }
+      else if (e.key === "ArrowUp") { e.preventDefault(); highlight(active - 1); }
+      else if (e.key === "Home") { e.preventDefault(); highlight(0); }
+      else if (e.key === "End") { e.preventDefault(); highlight(options.length - 1); }
+      else if (e.key === "Enter" || e.key === " ") { e.preventDefault(); pick(active); }
+      else if (e.key === "Escape") { e.preventDefault(); close(true); }
+      else if (e.key === "Tab") close();
+    });
+    options.forEach(function (o, i) {
+      o.addEventListener("mousemove", function () { if (active !== i) highlight(i); });
+      o.addEventListener("click", function () { pick(i); });
+    });
+    document.addEventListener("click", function (e) { if (!el.contains(e.target)) close(); });
+
+    render();
+    return {
+      get: function () { return value; },
+      set: function (v) { value = v || ""; render(); },
+    };
+  }
+
   // ------------------------------------------------------------ listing page
   function initList() {
     var grid = document.getElementById("nrGrid");
     var featured = document.getElementById("nrFeatured");
     var more = document.getElementById("nrMore");
-    var tabs = document.querySelectorAll(".nr-tab");
     var empty = document.getElementById("nrEmpty");
-    var state = { category: params.get("category") || "", offset: 0 };
+    var title = document.getElementById("nrGridTitle");
+    var state = { category: params.get("category") || "", offset: 0, lead: null };
     if (CATEGORIES.indexOf(state.category) === -1) state.category = "";
 
-    function setTabs() {
-      Array.prototype.forEach.call(tabs, function (t) {
-        var on = (t.getAttribute("data-category") || "") === state.category;
-        t.classList.toggle("is-active", on);
-        t.setAttribute("aria-selected", on ? "true" : "false");
-      });
+    dropdown(document.getElementById("nrFilter"), {
+      items: [{ value: "", label: "All stories" }].concat(CATEGORIES.map(function (c) { return { value: c, label: c }; })),
+      value: state.category,
+      onChange: function (v) {
+        state.category = v;
+        var u = new URL(window.location.href);
+        if (v) u.searchParams.set("category", v);
+        else u.searchParams.delete("category");
+        history.replaceState(null, "", u);
+        load(true);
+      },
+    });
+
+    function fail() {
+      grid.innerHTML = "";
+      grid.setAttribute("aria-busy", "false");
+      empty.hidden = false;
+      empty.querySelector("p").textContent = "We couldn't load the newsroom right now. Please try again shortly.";
+      more.hidden = true;
     }
 
     function load(reset) {
       if (reset) {
         state.offset = 0;
+        title.textContent = state.category || "Latest stories";
         grid.setAttribute("aria-busy", "true");
         grid.innerHTML = new Array(7).join('<div class="nr-card nr-card--skeleton"><div class="nr-card-media"></div><div class="nr-card-body"><span></span><span></span></div></div>');
-        featured.innerHTML = "";
-        featured.hidden = true;
       }
       more.disabled = true;
-      // The first page on "All" pulls one extra story to fill the feature slot.
-      var extra = !state.category && state.offset === 0 ? 1 : 0;
-      var limit = PAGE_SIZE + extra;
-      api.list({ category: state.category, offset: state.offset, limit: limit })
+      api.list({ category: state.category, exclude: state.lead, offset: state.offset, limit: PAGE_SIZE })
         .then(function (data) {
           var items = data.items || [];
           state.offset += items.length;
           if (reset) grid.innerHTML = "";
-          if (extra && items.length) {
-            var lead = items.filter(function (s) { return s.featured; })[0] || items[0];
-            items = items.filter(function (s) { return s !== lead; });
-            featured.innerHTML = card(lead, "feature");
-            featured.hidden = false;
-          }
           grid.insertAdjacentHTML("beforeend", items.map(function (s) { return card(s); }).join(""));
           grid.setAttribute("aria-busy", "false");
-          empty.hidden = !!(grid.children.length || !featured.hidden);
+          empty.hidden = !!grid.children.length;
+          empty.querySelector("p").textContent = state.category
+            ? "No " + state.category.toLowerCase() + " stories yet. Check back soon."
+            : "No stories here yet. Check back soon.";
           more.hidden = !data.has_more;
           more.disabled = false;
         })
-        .catch(function () {
-          grid.innerHTML = "";
-          grid.setAttribute("aria-busy", "false");
-          empty.hidden = false;
-          empty.querySelector("p").textContent = "We couldn't load the newsroom right now. Please try again shortly.";
-          more.hidden = true;
-        });
+        .catch(fail);
     }
 
-    Array.prototype.forEach.call(tabs, function (t) {
-      t.addEventListener("click", function () {
-        state.category = t.getAttribute("data-category") || "";
-        var u = new URL(window.location.href);
-        if (state.category) u.searchParams.set("category", state.category);
-        else u.searchParams.delete("category");
-        history.replaceState(null, "", u);
-        setTabs();
+    more.addEventListener("click", function () { load(false); });
+
+    // The lead story stays put; the filter only drives the grid below it.
+    api.list({ offset: 0, limit: 1 })
+      .then(function (data) {
+        var lead = (data.items || [])[0];
+        if (lead) {
+          state.lead = lead.slug;
+          featured.innerHTML = card(lead, "feature");
+          featured.hidden = false;
+        }
         load(true);
-      });
-    });
-
-    more.addEventListener("click", function () {
-      load(false);
-    });
-
-    setTabs();
-    load(true);
+      })
+      .catch(fail);
     showWriteButtons();
   }
 
@@ -377,20 +472,34 @@
           ? 'Photo by <a href="' + esc(img.photographer_url) + '?utm_source=ardena&utm_medium=referral" target="_blank" rel="noopener noreferrer">' + esc(img.photographer_name) + '</a> on <a href="https://unsplash.com/?utm_source=ardena&utm_medium=referral" target="_blank" rel="noopener noreferrer">Unsplash</a>'
           : "";
 
+        var author = s.author || "Ardena Newsroom";
+        var avatar = s.author_avatar
+          ? '<img class="nr-avatar" src="' + esc(s.author_avatar) + '" alt="">'
+          : '<span class="nr-avatar nr-avatar--initials" aria-hidden="true">' + esc(initials(author)) + "</span>";
+
         root.innerHTML =
           '<header class="nr-article-head nr-wrap nr-wrap--text">' +
           '<a class="nr-crumb" href="' + urls.list() + "?category=" + encodeURIComponent(s.category) + '">' + esc(s.category) + "</a>" +
           '<h1 class="nr-article-title">' + esc(s.title) + "</h1>" +
+          '<div class="nr-byline">' +
+          '<div class="nr-author">' + avatar +
+          '<div><p class="nr-author-name">' + esc(author) + "</p>" +
+          '<p class="nr-author-meta">' + (s.author_title ? esc(s.author_title) + " &middot; " : "") +
+          formatDate(s.published_at) + " &middot; " + (s.reading_minutes || 3) + " min read</p></div></div>" +
+          '<div class="nr-actions">' +
+          '<button type="button" class="nr-icon-btn nr-copy" data-tip="Copy link" aria-label="Copy link">' + ICONS.link + "</button>" +
+          '<div class="nr-share-wrap">' +
+          '<button type="button" class="nr-icon-btn nr-share-btn" data-tip="Share" aria-label="Share" aria-haspopup="menu" aria-expanded="false">' + ICONS.share + "</button>" +
+          '<div class="nr-share-menu" role="menu" hidden>' +
+          '<a role="menuitem" href="https://wa.me/?text=' + encodeURIComponent(s.title + " " + shareUrl) + '" target="_blank" rel="noopener noreferrer">WhatsApp</a>' +
+          '<a role="menuitem" href="https://x.com/intent/post?url=' + encodeURIComponent(shareUrl) + "&text=" + encodeURIComponent(s.title) + '" target="_blank" rel="noopener noreferrer">X</a>' +
+          '<a role="menuitem" href="https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(shareUrl) + '" target="_blank" rel="noopener noreferrer">LinkedIn</a>' +
+          '<a role="menuitem" href="mailto:?subject=' + encodeURIComponent(s.title) + "&body=" + encodeURIComponent(shareUrl) + '">Email</a>' +
+          "</div></div>" +
+          '<a class="nr-icon-btn" data-nr-publisher data-nr-edit data-tip="Edit story" aria-label="Edit story" hidden>' + ICONS.edit + "</a>" +
+          "</div></div>" +
           (s.excerpt ? '<p class="nr-article-dek">' + esc(s.excerpt) + "</p>" : "") +
-          '<div class="nr-article-byline">' +
-          '<p class="nr-meta"><span>' + esc(s.author || "Ardena Newsroom") + "</span><span>" + formatDate(s.published_at) + "</span><span>" + (s.reading_minutes || 3) + " min read</span></p>" +
-          '<div class="nr-share" aria-label="Share this story">' +
-          '<a href="https://wa.me/?text=' + encodeURIComponent(s.title + " " + shareUrl) + '" target="_blank" rel="noopener noreferrer" aria-label="Share on WhatsApp">WhatsApp</a>' +
-          '<a href="https://x.com/intent/post?url=' + encodeURIComponent(shareUrl) + "&text=" + encodeURIComponent(s.title) + '" target="_blank" rel="noopener noreferrer" aria-label="Share on X">X</a>' +
-          '<a href="https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(shareUrl) + '" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn">LinkedIn</a>' +
-          '<button type="button" class="nr-copy" data-url="' + esc(shareUrl) + '">Copy link</button>' +
-          '<a class="nr-edit-link" data-nr-publisher data-nr-edit hidden>Edit story</a>' +
-          "</div></div></header>" +
+          "</header>" +
           (img.url
             ? '<figure class="nr-article-cover nr-wrap nr-wrap--wide"><img src="' + esc(img.url) + '" alt="' + esc(img.alt || "") + '">' +
               (credit ? "<figcaption>" + credit + "</figcaption>" : "") + "</figure>"
@@ -399,9 +508,34 @@
 
         var copy = root.querySelector(".nr-copy");
         copy.addEventListener("click", function () {
-          var done = function () { copy.textContent = "Link copied"; setTimeout(function () { copy.textContent = "Copy link"; }, 2000); };
-          if (navigator.clipboard) navigator.clipboard.writeText(copy.getAttribute("data-url")).then(done, function () {});
+          var done = function () {
+            copy.innerHTML = ICONS.check;
+            copy.setAttribute("data-tip", "Copied");
+            copy.classList.add("is-done");
+            setTimeout(function () {
+              copy.innerHTML = ICONS.link;
+              copy.setAttribute("data-tip", "Copy link");
+              copy.classList.remove("is-done");
+            }, 1800);
+          };
+          if (navigator.clipboard) navigator.clipboard.writeText(shareUrl).then(done, function () {});
         });
+
+        var shareBtn = root.querySelector(".nr-share-btn");
+        var shareMenu = root.querySelector(".nr-share-menu");
+        function closeShare() { shareMenu.hidden = true; shareBtn.setAttribute("aria-expanded", "false"); }
+        shareBtn.addEventListener("click", function () {
+          // Phones get the native share sheet; desktops get the small menu.
+          if (navigator.share && window.matchMedia("(pointer: coarse)").matches) {
+            navigator.share({ title: s.title, text: s.excerpt || "", url: shareUrl }).catch(function () {});
+            return;
+          }
+          var opening = shareMenu.hidden;
+          shareMenu.hidden = !opening;
+          shareBtn.setAttribute("aria-expanded", opening ? "true" : "false");
+        });
+        document.addEventListener("click", function (e) { if (!e.target.closest(".nr-share-wrap")) closeShare(); });
+        document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeShare(); });
 
         showWriteButtons(slug);
         loadRelated(s);
@@ -453,6 +587,7 @@
     formatDate: formatDate,
     categories: CATEGORIES,
     mockBanner: mockBanner,
+    dropdown: dropdown,
   };
 
   Array.prototype.forEach.call(document.querySelectorAll("[data-nr-list]"), function (a) { a.href = urls.list(); });
