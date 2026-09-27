@@ -30,8 +30,10 @@
       h1 { margin: 0 0 0.5rem; font-size: 1.6rem; font-weight: 700; letter-spacing: -0.02em; }
       p { margin: 0 0 2rem; font-size: 0.95rem; line-height: 1.6; color: #6b7280; }
       p strong { color: #374151; font-weight: 600; word-break: break-all; }
+      .actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; }
       a {
         display: inline-block;
+        border: 1px solid #0b0b0f;
         padding: 0.8rem 1.4rem;
         border-radius: 3px;
         background: #0b0b0f;
@@ -40,7 +42,9 @@
         font-weight: 600;
         text-decoration: none;
       }
-      a:hover { background: #2a2d33; }
+      a:hover { background: #2a2d33; border-color: #2a2d33; }
+      a.secondary { background: #fff; color: #0b0b0f; border-color: #d9dce1; }
+      a.secondary:hover { background: #fff; border-color: #0b0b0f; }
       a:focus-visible { outline: 2px solid #0b0b0f; outline-offset: 3px; }
       @media (max-width: 480px) { img { max-width: 190px; } h1 { font-size: 1.4rem; } }
     </style>
@@ -50,7 +54,10 @@
         <img src="/assets/404.svg" alt="A puppy sitting next to a chewed up page" width="645" height="750">
         <h1>This page got eaten</h1>
         <p id="msg">The link may be out of date, or the address may have a typo in it.</p>
-        <a href="/">Go to the homepage</a>
+        <div class="actions">
+            <a href="https://booking.ardena.co.ke">Book a car</a>
+            <a href="/applications" class="secondary">View our apps</a>
+        </div>
     </main>
     <script>
       (function () {
