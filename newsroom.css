@@ -509,21 +509,32 @@
 .nr-cover { margin-bottom: 2rem; }
 .nr-cover-empty {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 0.6rem;
+  gap: 1rem;
   width: 100%;
   aspect-ratio: 16 / 7;
   border: 1.5px dashed #cfd2d8;
-  border-radius: var(--nr-radius);
   background: var(--nr-soft);
+  text-align: center;
+}
+.nr-cover-empty p { margin: 0; font-size: 0.95rem; font-weight: 500; color: var(--nr-muted); }
+.nr-cover-choices { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.6rem; }
+.nr-cover-primary,
+.nr-cover-secondary {
+  padding: 0.65rem 1.1rem;
+  border: 1px solid var(--nr-ink);
+  border-radius: 0;
   font: inherit;
-  font-size: 0.95rem;
-  font-weight: 500;
-  color: var(--nr-muted);
+  font-size: 0.875rem;
+  font-weight: 600;
   cursor: pointer;
 }
-.nr-cover-empty:hover { border-color: var(--nr-accent); color: var(--nr-accent-ink); }
+.nr-cover-primary { background: var(--nr-ink); color: #fff; }
+.nr-cover-primary:hover { background: #2a2d33; border-color: #2a2d33; }
+.nr-cover-secondary { background: #fff; color: var(--nr-ink); border-color: #d9dce1; }
+.nr-cover-secondary:hover { border-color: var(--nr-ink); }
 .nr-cover-set { position: relative; margin: 0; }
 .nr-cover-set img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: var(--nr-radius); }
 .nr-cover-set figcaption { margin-top: 0.5rem; font-size: 0.8rem; color: var(--nr-muted); }

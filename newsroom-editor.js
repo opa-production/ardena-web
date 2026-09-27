@@ -378,6 +378,10 @@
         saveRange();
         openPicker("inline");
         return;
+      case "upload":
+        saveRange();
+        startUpload("inline");
+        return;
     }
     syncToolbar();
     els.body.dispatchEvent(new Event("input"));
@@ -489,20 +493,25 @@
     var c = state.cover;
     if (!c) {
       els.cover.innerHTML =
-        '<button type="button" class="nr-cover-empty" data-cover="pick">' +
-        '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="m21 16-5-5L5 20"/></svg>' +
-        "<span>Add a cover image</span></button>";
+        '<div class="nr-cover-empty">' +
+        "<p>Add a cover image</p>" +
+        '<div class="nr-cover-choices">' +
+        '<button type="button" class="nr-cover-primary" data-cover="upload">Upload image</button>' +
+        '<button type="button" class="nr-cover-secondary" data-cover="pick">Choose from Unsplash</button>' +
+        "</div></div>";
       return;
     }
     els.cover.innerHTML =
       '<figure class="nr-cover-set"><img src="' + esc(c.url) + '" alt="' + esc(c.alt || "") + '">' +
-      '<div class="nr-cover-actions"><button type="button" data-cover="pick">Change</button><button type="button" data-cover="remove">Remove</button></div>' +
+      '<div class="nr-cover-actions"><button type="button" data-cover="upload">Upload</button><button type="button" data-cover="pick">Unsplash</button><button type="button" data-cover="remove">Remove</button></div>' +
       (credit(c) ? "<figcaption>" + credit(c) + "</figcaption>" : "") + "</figure>";
   }
   els.cover.addEventListener("click", function (e) {
     var b = e.target.closest("[data-cover]");
     if (!b) return;
-    if (b.getAttribute("data-cover") === "remove") { state.cover = null; renderCover(); markDirty(); }
+    var action = b.getAttribute("data-cover");
+    if (action === "remove") { state.cover = null; renderCover(); markDirty(); }
+    else if (action === "upload") startUpload("cover");
     else openPicker("cover");
   });
 
@@ -600,22 +609,35 @@
   var uploadNote = $("nrUploadNote");
   var UPLOAD_HINT = uploadNote.textContent;
 
+  // Upload can start from the cover, the toolbar or the picker window. Report
+  // in the picker when it's open, otherwise in the editor itself.
+  function startUpload(mode) {
+    picker.mode = mode;
+    uploadInput.click();
+  }
+  function uploadMessage(text, isError) {
+    if (!els.modal.hidden) { uploadNote.textContent = text || UPLOAD_HINT; return; }
+    if (isError) showError(text);
+    else setStatus(text || "");
+  }
+
   uploadBtn.addEventListener("click", function () { uploadInput.click(); });
   uploadInput.addEventListener("change", function () {
     var file = uploadInput.files && uploadInput.files[0];
     uploadInput.value = "";
     if (!file) return;
-    if (!/^image\/(jpeg|png|webp)$/.test(file.type)) { uploadNote.textContent = "Use a JPEG, PNG or WebP image."; return; }
-    if (file.size > 10 * 1024 * 1024) { uploadNote.textContent = "That image is over 10 MB."; return; }
+    if (!/^image\/(jpeg|png|webp)$/.test(file.type)) { uploadMessage("Use a JPEG, PNG or WebP image.", true); return; }
+    if (file.size > 10 * 1024 * 1024) { uploadMessage("That image is over 10 MB.", true); return; }
     uploadBtn.disabled = true;
-    uploadNote.textContent = "Uploading";
+    showError("");
+    uploadMessage("Uploading image");
     api.uploadImage(file)
       .then(function (img) {
-        uploadNote.textContent = UPLOAD_HINT;
+        uploadMessage("");
         choose(img);
       })
       .catch(function (err) {
-        uploadNote.textContent = err.status === 422 || err.status === 413 ? err.message : "Upload failed. Try again.";
+        uploadMessage(err.status === 422 || err.status === 413 ? err.message : "Upload failed. Try again.", true);
       })
       .then(function () { uploadBtn.disabled = false; });
   });
