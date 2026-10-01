@@ -178,6 +178,42 @@
   }
   function resolve(v) { return new Promise(function (r) { setTimeout(function () { r(v); }, 120); }); }
 
+  // Page cache (stale while revalidate). swr() paints the copy saved on the
+  // last visit straight away, fetches in the background, and paints again
+  // only if the API came back with something different. Returns true when
+  // there was a saved copy, so callers can skip their loading state.
+  var CACHE_PREFIX = "ardena_newsroom_cache:" + (MOCK ? "mock:" : "");
+  function cacheSet(key, raw) {
+    var ls = store("localStorage");
+    if (!ls) return;
+    try { ls.setItem(CACHE_PREFIX + key, raw); } catch (e) {
+      // Storage is full: drop the older copies and keep this one.
+      try {
+        Object.keys(ls).forEach(function (k) { if (k.indexOf("ardena_newsroom_cache:") === 0) ls.removeItem(k); });
+        ls.setItem(CACHE_PREFIX + key, raw);
+      } catch (e2) {}
+    }
+  }
+  function swr(key, fetcher, render, fail) {
+    var raw = sGet("localStorage", CACHE_PREFIX + key);
+    var cached = null;
+    try { cached = raw ? JSON.parse(raw) : null; } catch (e) {}
+    if (cached) render(cached);
+    fetcher().then(function (fresh) {
+      var next = JSON.stringify(fresh);
+      if (cached && next === raw) return;
+      cacheSet(key, next);
+      render(fresh);
+    }, function (err) {
+      // Offline or the API is down: the saved copy stays on screen. A 404
+      // means the story is gone, so the saved copy goes too.
+      if (cached && !(err && err.status === 404)) return;
+      sDel("localStorage", CACHE_PREFIX + key);
+      if (fail) fail(err);
+    });
+    return !!cached;
+  }
+
   var api = {
     mock: MOCK,
     list: function (opts) {
@@ -240,6 +276,14 @@
       return request("POST", "/auth/forgot-password", { email: email });
     },
     save: function (article) {
+      // Readers of the saved story (the writer, right after publishing) get
+      // the new version from the page cache instead of the one before it.
+      return api.write(article).then(function (saved) {
+        if (saved && saved.slug && saved.body) cacheSet("article:" + saved.slug, JSON.stringify(saved));
+        return saved;
+      });
+    },
+    write: function (article) {
       if (MOCK) {
         var list = localStories().filter(function (s) { return s.slug !== article.slug && s.id !== article.id; });
         article.id = article.id || "local-" + Date.now();
@@ -447,7 +491,7 @@
     var empty = document.getElementById("nrEmpty");
     var title = document.getElementById("nrGridTitle");
     var head = document.getElementById("nrGridHead");
-    var state = { category: params.get("category") || "", offset: 0, lead: null };
+    var state = { category: params.get("category") || "", offset: 0, lead: null, seq: 0 };
     if (CATEGORIES.indexOf(state.category) === -1) state.category = "";
 
     var filter = dropdown(document.getElementById("nrFilter"), {
@@ -504,50 +548,62 @@
     }
 
     function load(reset) {
-      if (reset) {
-        state.offset = 0;
-        title.textContent = state.category || "Latest stories";
+      // A newer load (filter change, load more, fresh lead) supersedes this one.
+      var seq = ++state.seq;
+      var opts = { category: state.category, exclude: state.lead, offset: reset ? 0 : state.offset, limit: PAGE_SIZE };
+      function render(data) {
+        if (seq !== state.seq) return;
+        var items = data.items || [];
+        state.offset = opts.offset + items.length;
+        if (reset) grid.innerHTML = "";
+        grid.insertAdjacentHTML("beforeend", items.map(function (s) { return card(s); }).join(""));
+        grid.setAttribute("aria-busy", "false");
+        var none = !grid.children.length;
+        // With only the lead story and no filter, there's nothing to list below it.
+        head.hidden = none && !state.category;
+        setEmpty(none && state.category ? "category" : "");
+        more.hidden = !data.has_more;
+        more.disabled = false;
+      }
+      function failed() { if (seq === state.seq) fail(); }
+
+      more.disabled = true;
+      if (!reset) { api.list(opts).then(render).catch(failed); return; }
+      title.textContent = state.category || "Latest stories";
+      // Only the first page is cached; skeletons show on a first visit only.
+      var hit = swr("list:" + state.category + ":" + state.lead, function () { return api.list(opts); }, render, failed);
+      if (!hit) {
         grid.setAttribute("aria-busy", "true");
         grid.innerHTML = new Array(7).join('<div class="nr-card nr-card--skeleton"><div class="nr-card-media"></div><div class="nr-card-body"><span></span><span></span></div></div>');
       }
-      more.disabled = true;
-      api.list({ category: state.category, exclude: state.lead, offset: state.offset, limit: PAGE_SIZE })
-        .then(function (data) {
-          var items = data.items || [];
-          state.offset += items.length;
-          if (reset) grid.innerHTML = "";
-          grid.insertAdjacentHTML("beforeend", items.map(function (s) { return card(s); }).join(""));
-          grid.setAttribute("aria-busy", "false");
-          var none = !grid.children.length;
-          // With only the lead story and no filter, there's nothing to list below it.
-          head.hidden = none && !state.category;
-          setEmpty(none && state.category ? "category" : "");
-          more.hidden = !data.has_more;
-          more.disabled = false;
-        })
-        .catch(fail);
     }
 
     more.addEventListener("click", function () { load(false); });
 
     // The lead story stays put; the filter only drives the grid below it.
-    api.list({ offset: 0, limit: 1 })
-      .then(function (data) {
-        var lead = (data.items || [])[0];
-        if (!lead) {
-          // Nothing published yet: one calm message instead of an empty grid.
-          grid.innerHTML = "";
-          grid.setAttribute("aria-busy", "false");
-          head.hidden = true;
-          setEmpty("none");
-          return;
-        }
-        state.lead = lead.slug;
-        featured.innerHTML = card(lead, "feature");
-        featured.hidden = false;
-        load(true);
-      })
-      .catch(fail);
+    swr("lead", function () { return api.list({ offset: 0, limit: 1 }); }, function (data) {
+      var lead = (data.items || [])[0];
+      if (!lead) {
+        // Nothing published yet: one calm message instead of an empty grid.
+        state.seq++;
+        state.lead = null;
+        featured.hidden = true;
+        grid.innerHTML = "";
+        grid.setAttribute("aria-busy", "false");
+        head.hidden = true;
+        more.hidden = true;
+        setEmpty("none");
+        return;
+      }
+      featured.innerHTML = card(lead, "feature");
+      featured.hidden = false;
+      // Same lead as the saved copy: the grid below it is already loading.
+      if (state.lead === lead.slug) return;
+      state.lead = lead.slug;
+      head.hidden = false;
+      setEmpty("");
+      load(true);
+    }, fail);
     showWriteButtons();
   }
 
@@ -565,8 +621,17 @@
 
     if (!slug) { notFound(); return; }
 
-    api.get(slug)
-      .then(function (s) {
+    function closeShare() {
+      var menu = root.querySelector(".nr-share-menu");
+      if (!menu) return;
+      menu.hidden = true;
+      root.querySelector(".nr-share-btn").setAttribute("aria-expanded", "false");
+    }
+    document.addEventListener("click", function (e) { if (!e.target.closest(".nr-share-wrap")) closeShare(); });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeShare(); });
+
+    // Runs once from the saved copy, and again if the story has changed since.
+    swr("article:" + slug, function () { return api.get(slug); }, function (s) {
         document.title = s.title + " - ardena newsroom";
         var desc = document.querySelector('meta[name="description"]');
         if (desc) desc.setAttribute("content", s.excerpt || "");
@@ -631,7 +696,6 @@
 
         var shareBtn = root.querySelector(".nr-share-btn");
         var shareMenu = root.querySelector(".nr-share-menu");
-        function closeShare() { shareMenu.hidden = true; shareBtn.setAttribute("aria-expanded", "false"); }
         shareBtn.addEventListener("click", function () {
           // Phones get the native share sheet; desktops get the small menu.
           if (navigator.share && window.matchMedia("(pointer: coarse)").matches) {
@@ -642,19 +706,17 @@
           shareMenu.hidden = !opening;
           shareBtn.setAttribute("aria-expanded", opening ? "true" : "false");
         });
-        document.addEventListener("click", function (e) { if (!e.target.closest(".nr-share-wrap")) closeShare(); });
-        document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeShare(); });
 
         showWriteButtons(slug);
         loadRelated(s);
-      })
-      .catch(function (err) {
+      }, function (err) {
         if (err && err.status === 404) notFound();
         else root.innerHTML = '<div class="nr-wrap nr-wrap--text nr-state"><h1>We couldn\'t load this story</h1><p>Please check your connection and try again.</p><a class="nr-btn" href="' + urls.list() + '">Back to the newsroom</a></div>';
       });
 
     function notFound() {
       document.title = "Story not found - ardena newsroom";
+      document.getElementById("nrRelated").hidden = true;
       root.innerHTML =
         '<div class="nr-wrap nr-wrap--text nr-state"><img src="/assets/404.svg" alt="" width="180">' +
         "<h1>This story got eaten</h1><p>It may have been moved or taken down. The rest of the newsroom is still here.</p>" +
@@ -665,8 +727,8 @@
   function loadRelated(s) {
     var section = document.getElementById("nrRelated");
     var grid = document.getElementById("nrRelatedGrid");
-    api.list({ category: s.category, exclude: s.slug, limit: 3 })
-      .then(function (data) {
+    swr("related:" + s.slug, function () {
+      return api.list({ category: s.category, exclude: s.slug, limit: 3 }).then(function (data) {
         var items = data.items || [];
         if (items.length < 3) {
           return api.list({ exclude: s.slug, limit: 6 }).then(function (d2) {
@@ -676,13 +738,11 @@
           });
         }
         return items;
-      })
-      .then(function (items) {
-        if (!items.length) return;
-        grid.innerHTML = items.map(function (i) { return card(i); }).join("");
-        section.hidden = false;
-      })
-      .catch(function () {});
+      });
+    }, function (items) {
+      section.hidden = !items.length;
+      grid.innerHTML = items.map(function (i) { return card(i); }).join("");
+    });
   }
 
   // ------------------------------------------------------------ boot
