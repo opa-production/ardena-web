@@ -44,6 +44,8 @@
     { "source": "/newsroom/", "destination": "/newsroom.html" },
     { "source": "/newsroom/write", "destination": "/newsroom-write.html" },
     { "source": "/newsroom/write/", "destination": "/newsroom-write.html" },
+    { "source": "/newsroom/account", "destination": "/newsroom-account.html" },
+    { "source": "/newsroom/account/", "destination": "/newsroom-account.html" },
     { "source": "/newsroom/:slug", "destination": "/newsroom-article.html" },
     { "source": "/newsroom/:slug/", "destination": "/newsroom-article.html" }
   ],

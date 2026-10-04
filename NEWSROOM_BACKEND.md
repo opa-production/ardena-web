@@ -13,6 +13,8 @@ Frontend files, for reference:
 | `newsroom-editor.js` | Editor, Unsplash picker, publish |
 | `newsroom-mock.js` | Preview data, used only in mock mode |
 
+Writer account settings (name, password, profile photo) are specified separately in `NEWSROOM_ACCOUNT_BACKEND.md`.
+
 **Mock mode** is on for any host that isn't `ardena.co.ke` (localhost, Vercel previews), or when the URL has `?mock=1`. `?mock=0` forces the real API. Production always calls the API.
 
 ---

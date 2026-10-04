@@ -730,6 +730,105 @@
   color: var(--nr-text);
 }
 
+/* Password fields: show/hide eye inside the field. */
+.nr-pw { position: relative; display: block; margin-top: 0.35rem; }
+.nr-gate-card .nr-pw input { margin-top: 0; padding-right: 2.75rem; }
+.nr-pw-toggle {
+  position: absolute;
+  top: 50%;
+  right: 0.35rem;
+  transform: translateY(-50%);
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--nr-muted);
+  cursor: pointer;
+}
+.nr-pw-toggle:hover,
+.nr-pw-toggle[aria-pressed="true"] { color: var(--nr-ink); }
+.nr-pw-toggle:focus-visible { outline: 2px solid var(--nr-ink); outline-offset: -4px; }
+.nr-pw input::-ms-reveal { display: none; }
+
+/* Profile photo in the top bar, opening Account and Sign out. */
+.nr-profile { position: relative; margin-left: 0.25rem; }
+.nr-profile-btn {
+  display: block;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: none;
+  cursor: pointer;
+}
+.nr-profile-btn:focus-visible { outline: 2px solid var(--nr-ink); outline-offset: 2px; }
+.nr-avatar--sm { width: 36px; height: 36px; font-size: 0.8rem; }
+.nr-profile-btn:hover .nr-avatar,
+.nr-profile-btn[aria-expanded="true"] .nr-avatar { box-shadow: 0 0 0 2px #fff, 0 0 0 3px var(--nr-ink); }
+.nr-profile-menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  z-index: 40;
+  min-width: 220px;
+  padding: 0.35rem;
+  border: 1px solid var(--nr-line);
+  background: #fff;
+  box-shadow: 0 16px 40px rgba(15, 20, 30, 0.12);
+  animation: nr-pop 0.14s ease-out;
+}
+.nr-profile-who { padding: 0.6rem 0.75rem 0.7rem; margin-bottom: 0.35rem; border-bottom: 1px solid var(--nr-line); }
+.nr-profile-who strong { display: block; font-size: 0.9rem; color: var(--nr-ink); }
+.nr-profile-who span { display: block; margin-top: 0.1rem; font-size: 0.8rem; color: var(--nr-muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.nr-profile-who span:empty { display: none; }
+.nr-profile-menu [role="menuitem"] {
+  display: block;
+  width: 100%;
+  padding: 0.55rem 0.75rem;
+  border: 0;
+  background: none;
+  font: inherit;
+  font-size: 0.9rem;
+  text-align: left;
+  color: var(--nr-text);
+  text-decoration: none;
+  cursor: pointer;
+}
+.nr-profile-menu [role="menuitem"]:hover,
+.nr-profile-menu [role="menuitem"]:focus { outline: 0; background: var(--nr-soft); color: var(--nr-ink); }
+
+/* Account page: one centred card with photo, name and password. */
+.nr-account-card { max-width: 460px; margin: 2rem 0; }
+.nr-account-card[aria-busy="true"] { visibility: hidden; }
+.nr-account-email { margin: 0 0 1.5rem; font-size: 0.9rem; color: var(--nr-muted); }
+.nr-account-photo { display: flex; align-items: center; gap: 1.1rem; padding-bottom: 1.5rem; }
+.nr-avatar--lg { width: 76px; height: 76px; font-size: 1.5rem; }
+.nr-account-photo-actions { display: flex; flex-direction: column; gap: 0.45rem; min-width: 0; }
+.nr-account-photo-actions > div { display: flex; align-items: center; gap: 0.75rem; }
+.nr-account-btn {
+  padding: 0.55rem 1rem;
+  border: 1px solid var(--nr-ink);
+  border-radius: 0;
+  background: #fff;
+  font: inherit;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--nr-ink);
+  cursor: pointer;
+}
+.nr-account-btn:hover { background: var(--nr-ink); color: #fff; }
+.nr-account-btn:disabled { opacity: 0.55; cursor: default; }
+.nr-account-btn:focus-visible { outline: 2px solid var(--nr-ink); outline-offset: 2px; }
+.nr-account-hint { font-size: 0.8rem; color: var(--nr-muted); }
+.nr-account-hint.is-error { color: #b42318; }
+.nr-account-section { padding: 1.5rem 0 0; border-top: 1px solid var(--nr-line); }
+.nr-account-section + .nr-account-section { margin-top: 1.75rem; }
+.nr-account-section h2 { margin: 0 0 1rem; font-size: 1rem; color: var(--nr-ink); }
+.nr-gate-card form > .nr-gate-msg { font-size: 0.85rem; color: var(--nr-text); }
+.nr-gate-msg.is-error { border-left-color: #b42318; color: #7a1a12; background: #fdf3f2; }
+
 /* Unsplash picker */
 .nr-modal {
   position: fixed;
@@ -846,7 +945,8 @@ body.nr-modal-open { overflow: hidden; }
   .nr-photo-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .nr-save-status, .nr-who { display: none; }
   .nr-words { display: none; }
-  .nr-topbar-right .nr-btn--ghost { display: none; }
+  .nr-topbar-right .nr-btn--ghost:not(.nr-btn--keep) { display: none; }
+  .nr-account-card { margin: 0.5rem 0; padding: 1.25rem; }
   .nr-modal-panel { padding: 1rem; }
 }
 @media (prefers-reduced-motion: reduce) {

@@ -9,6 +9,7 @@
 
   var TOKEN_KEY = "ardena_newsroom_token";
   var LOCAL_KEY = "ardena_newsroom_local_stories";
+  var PROFILE_KEY = "ardena_newsroom_mock_profile";
   var CATEGORIES = ["Company", "Product", "Hosts", "Safety", "Travel", "Community"];
   var PAGE_SIZE = 9;
 
@@ -44,6 +45,7 @@
       var base = isLocal ? "/newsroom-write.html" : "/newsroom/write";
       return slug ? base + "?slug=" + encodeURIComponent(slug) : base;
     },
+    account: function () { return isLocal ? "/newsroom-account.html" : "/newsroom/account"; },
   };
 
   // ------------------------------------------------------------ helpers
@@ -137,15 +139,18 @@
   // ------------------------------------------------------------ data layer
   function token() { return sGet("localStorage", TOKEN_KEY); }
 
+  // body is JSON, or FormData for file uploads (the browser sets that
+  // Content-Type itself, boundary included).
   function request(method, path, body) {
     var headers = { Accept: "application/json" };
     var t = token();
+    var multipart = typeof FormData !== "undefined" && body instanceof FormData;
     if (t) headers.Authorization = "Bearer " + t;
-    if (body) headers["Content-Type"] = "application/json";
+    if (body && !multipart) headers["Content-Type"] = "application/json";
     return fetch(apiBase() + "/api/v1/newsroom" + path, {
       method: method,
       headers: headers,
-      body: body ? JSON.stringify(body) : undefined,
+      body: body ? (multipart ? body : JSON.stringify(body)) : undefined,
     }).then(function (res) {
       if (res.status === 401) sDel("localStorage", TOKEN_KEY);
       return res.text().then(function (text) {
@@ -175,6 +180,33 @@
       .concat(base.filter(function (s) { return localSlugs.indexOf(s.slug) === -1; }))
       .filter(function (s) { return s.status !== "draft"; })
       .sort(function (a, b) { return b.published_at < a.published_at ? -1 : 1; });
+  }
+  function formWith(file) {
+    var form = new FormData();
+    form.append("file", file, file.name || "image.jpg");
+    return form;
+  }
+  function dataUrl(file) {
+    return new Promise(function (ok, fail) {
+      var reader = new FileReader();
+      reader.onload = function () { ok(reader.result); };
+      reader.onerror = fail;
+      reader.readAsDataURL(file);
+    });
+  }
+  // Preview mode keeps the account on this device so the Account page works.
+  function mockProfile() {
+    var saved = null;
+    try { saved = JSON.parse(sGet("localStorage", PROFILE_KEY) || "null"); } catch (e) {}
+    var me = { id: "mock", name: "Preview publisher", email: "writer@example.com", avatar_url: null, can_publish: true };
+    if (saved) Object.keys(saved).forEach(function (k) { me[k] = saved[k]; });
+    return me;
+  }
+  function saveMockProfile(changes) {
+    var me = mockProfile();
+    Object.keys(changes).forEach(function (k) { me[k] = changes[k]; });
+    sSet("localStorage", PROFILE_KEY, JSON.stringify({ name: me.name, avatar_url: me.avatar_url }));
+    return me;
   }
   function resolve(v) { return new Promise(function (r) { setTimeout(function () { r(v); }, 120); }); }
 
@@ -242,7 +274,7 @@
       return request("GET", "/articles/" + encodeURIComponent(slug));
     },
     me: function () {
-      if (MOCK) return resolve({ id: "mock", name: "Preview publisher", can_publish: true });
+      if (MOCK) return resolve(mockProfile());
       if (!token()) return Promise.resolve(null);
       return request("GET", "/me").catch(function () { return null; });
     },
@@ -298,36 +330,29 @@
         ? request("PATCH", "/articles/" + encodeURIComponent(article.id), article)
         : request("POST", "/articles", article);
     },
-    // An image from the writer's computer. Multipart, so it can't go through
-    // request(), which sends JSON.
+    // An image from the writer's computer, for a cover or inside a story.
     uploadImage: function (file) {
       if (MOCK) {
-        return new Promise(function (ok, fail) {
-          var reader = new FileReader();
-          reader.onload = function () { ok({ id: "local", url: reader.result, thumb: reader.result, alt: "", source: "upload" }); };
-          reader.onerror = fail;
-          reader.readAsDataURL(file);
-        });
+        return dataUrl(file).then(function (url) { return { id: "local", url: url, thumb: url, alt: "", source: "upload" }; });
       }
-      var form = new FormData();
-      form.append("file", file);
-      var headers = { Accept: "application/json" };
-      var t = token();
-      if (t) headers.Authorization = "Bearer " + t;
-      return fetch(apiBase() + "/api/v1/newsroom/uploads", { method: "POST", headers: headers, body: form })
-        .then(function (res) {
-          if (res.status === 401) sDel("localStorage", TOKEN_KEY);
-          return res.json().catch(function () { return null; }).then(function (data) {
-            if (!res.ok) {
-              var detail = data && (data.detail || data.message);
-              if (Array.isArray(detail)) detail = detail[0] && detail[0].msg;
-              var err = new Error(detail || "HTTP " + res.status);
-              err.status = res.status;
-              throw err;
-            }
-            return data;
-          });
-        });
+      return request("POST", "/uploads", formWith(file));
+    },
+    // The signed in writer's own account (the Account page).
+    updateProfile: function (body) {
+      if (MOCK) return resolve(saveMockProfile({ name: body.name }));
+      return request("PATCH", "/me", body);
+    },
+    changePassword: function (current, next) {
+      if (MOCK) return resolve({ detail: "Preview: the password was not changed." });
+      return request("POST", "/me/password", { current_password: current, new_password: next });
+    },
+    uploadAvatar: function (file) {
+      if (MOCK) return dataUrl(file).then(function (url) { return saveMockProfile({ avatar_url: url }); });
+      return request("POST", "/me/avatar", formWith(file));
+    },
+    removeAvatar: function () {
+      if (MOCK) return resolve(saveMockProfile({ avatar_url: null }));
+      return request("DELETE", "/me/avatar");
     },
     searchPhotos: function (query, page) {
       page = page || 1;
@@ -356,6 +381,103 @@
 
   function initials(name) {
     return String(name || "A").trim().split(/\s+/).slice(0, 2).map(function (w) { return w.charAt(0).toUpperCase(); }).join("");
+  }
+
+  // A writer's photo, or their initials when they haven't added one.
+  function avatar(me, cls) {
+    var url = me && me.avatar_url ? String(me.avatar_url) : "";
+    var ok = /^https:\/\//.test(url) || (MOCK && /^data:image\/(jpeg|png|webp);base64,/.test(url));
+    cls = "nr-avatar" + (cls ? " " + cls : "");
+    return ok
+      ? '<img class="' + cls + '" src="' + esc(url) + '" alt="">'
+      : '<span class="' + cls + ' nr-avatar--initials" aria-hidden="true">' + esc(initials(me && me.name)) + "</span>";
+  }
+
+  // Show/hide buttons for every password field under root.
+  var EYE = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>';
+  var EYE_OFF = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.6 5.1A10.4 10.4 0 0 1 12 5c6.4 0 10 7 10 7a17.6 17.6 0 0 1-3.2 4.1M6.6 6.6A17.4 17.4 0 0 0 2 12s3.6 7 10 7a9.7 9.7 0 0 0 5.4-1.6"/><path d="M9.9 9.9a3 3 0 0 0 4.2 4.2"/><path d="m3 3 18 18"/></svg>';
+  function passwordToggles(root) {
+    Array.prototype.forEach.call(root.querySelectorAll('input[type="password"]'), function (input) {
+      if (input.parentNode.classList.contains("nr-pw")) return;
+      var wrap = document.createElement("span");
+      wrap.className = "nr-pw";
+      input.parentNode.insertBefore(wrap, input);
+      wrap.appendChild(input);
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "nr-pw-toggle";
+      wrap.appendChild(btn);
+      function set(show) {
+        input.type = show ? "text" : "password";
+        btn.innerHTML = show ? EYE_OFF : EYE;
+        btn.setAttribute("aria-label", show ? "Hide password" : "Show password");
+        btn.setAttribute("aria-pressed", show ? "true" : "false");
+      }
+      set(false);
+      // Keep the caret where it was in the field.
+      btn.addEventListener("mousedown", function (e) { e.preventDefault(); });
+      btn.addEventListener("click", function () { set(input.type === "password"); });
+      // Never leave a password readable after the form is sent or reset.
+      if (input.form) {
+        input.form.addEventListener("submit", function () { set(false); });
+        input.form.addEventListener("reset", function () { set(false); });
+      }
+    });
+  }
+
+  // The signed in writer's photo in the top bar, opening Account and Sign out.
+  // profileMenu(el, me) fills el; call .update(me) after the account changes.
+  function profileMenu(el, me) {
+    el.classList.add("nr-profile");
+    el.innerHTML =
+      '<button type="button" class="nr-profile-btn" aria-haspopup="menu" aria-expanded="false"></button>' +
+      '<div class="nr-profile-menu" role="menu" hidden>' +
+      '<div class="nr-profile-who"><strong></strong><span></span></div>' +
+      '<a role="menuitem" href="' + urls.account() + '">Account</a>' +
+      '<button type="button" role="menuitem" data-signout>Sign out</button>' +
+      "</div>";
+    var btn = el.querySelector(".nr-profile-btn");
+    var menu = el.querySelector(".nr-profile-menu");
+    var items = Array.prototype.slice.call(menu.querySelectorAll('[role="menuitem"]'));
+
+    function update(next) {
+      me = next || me;
+      btn.innerHTML = avatar(me, "nr-avatar--sm");
+      btn.setAttribute("aria-label", "Account menu for " + (me.name || "you"));
+      menu.querySelector(".nr-profile-who strong").textContent = me.name || "";
+      menu.querySelector(".nr-profile-who span").textContent = me.email || "";
+    }
+    function open() {
+      menu.hidden = false;
+      btn.setAttribute("aria-expanded", "true");
+      items[0].focus();
+    }
+    function close(focusBtn) {
+      if (menu.hidden) return;
+      menu.hidden = true;
+      btn.setAttribute("aria-expanded", "false");
+      if (focusBtn) btn.focus();
+    }
+    btn.addEventListener("click", function () { if (menu.hidden) open(); else close(); });
+    btn.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowDown") { e.preventDefault(); open(); }
+    });
+    menu.addEventListener("keydown", function (e) {
+      var i = items.indexOf(document.activeElement);
+      if (e.key === "ArrowDown") { e.preventDefault(); items[(i + 1) % items.length].focus(); }
+      else if (e.key === "ArrowUp") { e.preventDefault(); items[(i - 1 + items.length) % items.length].focus(); }
+      else if (e.key === "Escape") { e.preventDefault(); close(true); }
+      else if (e.key === "Tab") close();
+    });
+    document.addEventListener("click", function (e) { if (!el.contains(e.target)) close(); });
+    menu.querySelector("[data-signout]").addEventListener("click", function () {
+      api.logout();
+      window.location.href = urls.list();
+    });
+
+    update(me);
+    el.hidden = false;
+    return { update: update };
   }
 
   function card(s, variant) {
@@ -756,6 +878,9 @@
     categories: CATEGORIES,
     mockBanner: mockBanner,
     dropdown: dropdown,
+    avatar: avatar,
+    passwordToggles: passwordToggles,
+    profileMenu: profileMenu,
   };
 
   Array.prototype.forEach.call(document.querySelectorAll("[data-nr-list]"), function (a) { a.href = urls.list(); });

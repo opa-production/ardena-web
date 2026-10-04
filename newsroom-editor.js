@@ -16,7 +16,7 @@
     status: $("nrSaveStatus"),
     publish: $("nrPublish"),
     saveDraft: $("nrSaveDraft"),
-    signOut: $("nrSignOut"),
+    profile: $("nrProfile"),
     category: $("nrCategory"),
     cover: $("nrCover"),
     title: $("nrTitle"),
@@ -48,11 +48,19 @@
     onChange: function () { markDirty(); },
   });
 
+  // Once someone is signed in, their photo in the top bar opens Account and Sign out.
+  var profile = null;
+  function signedIn(me) {
+    if (!me) return;
+    if (profile) profile.update(me);
+    else profile = NR.profileMenu(els.profile, me);
+  }
+
   function openEditor(me) {
     els.gate.hidden = true;
     els.editor.hidden = false;
     els.publish.hidden = els.saveDraft.hidden = false;
-    els.signOut.hidden = api.mock;
+    signedIn(me);
     if (me && me.name) $("nrWho").textContent = me.name;
     if (editingSlug) loadExisting();
     else restoreDraft();
@@ -66,6 +74,7 @@
   // with publishing rights; the server checks that on every save, so the gate
   // is a convenience, never the lock.
   var gateViews = Array.prototype.slice.call(els.gate.querySelectorAll("[data-view]"));
+  NR.passwordToggles(els.gate);
   var linkToken = params.get("invite") || params.get("reset") || "";
 
   function note(message) {
@@ -88,7 +97,7 @@
   // Signed in but not (yet) allowed to publish: say so, and let them switch account.
   function showPending(me) {
     showView("signin", "Your account is waiting for approval.");
-    els.signOut.hidden = false;
+    signedIn(me);
   }
 
   function withButton(form, work) {
@@ -196,11 +205,6 @@
           else note(err.status === 422 ? err.message : "Couldn't save that. Try again.");
         });
     });
-  });
-
-  els.signOut.addEventListener("click", function () {
-    api.logout();
-    window.location.href = NR.urls.list();
   });
 
   // ------------------------------------------------------------ load / autosave

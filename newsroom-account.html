@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Manage your Ardena newsroom account.">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Account - ardena newsroom</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css?v=38">
+    <link rel="stylesheet" href="/newsroom.css?v=8">
+    <link rel="icon" type="image/jpeg" href="/assets/logo.jpg">
+</head>
+<body data-nr-page="account">
+    <div class="nr-page nr-write">
+        <header class="nr-topbar">
+            <div class="nr-wrap nr-topbar-inner">
+                <div class="nr-topbar-left">
+                    <a href="/" aria-label="ardena home"><img src="/assets/ardena.png" alt="ardena"></a>
+                    <a class="nr-back" href="/newsroom" data-nr-list>Newsroom</a>
+                </div>
+                <div class="nr-topbar-right">
+                    <a class="nr-btn nr-btn--ghost nr-btn--keep" id="nrBackToWrite" href="/newsroom/write">Write</a>
+                    <div id="nrProfile" hidden></div>
+                </div>
+            </div>
+        </header>
+
+        <section class="nr-gate">
+            <div class="nr-gate-card nr-account-card" id="nrAccount" aria-busy="true">
+                <h1>Account</h1>
+                <p class="nr-account-email" id="nrAccountEmail">&nbsp;</p>
+
+                <!-- Photo -->
+                <div class="nr-account-photo">
+                    <div id="nrAvatar"></div>
+                    <div class="nr-account-photo-actions">
+                        <div>
+                            <button type="button" class="nr-account-btn" id="nrAvatarUpload">Upload photo</button>
+                            <button type="button" class="nr-link-btn" id="nrAvatarRemove" hidden>Remove</button>
+                        </div>
+                        <span class="nr-account-hint" id="nrAvatarNote">JPEG, PNG or WebP. Shown on your stories.</span>
+                    </div>
+                    <input type="file" id="nrAvatarInput" accept="image/jpeg,image/png,image/webp" hidden>
+                </div>
+
+                <!-- Name -->
+                <form class="nr-account-section" id="nrNameForm">
+                    <h2>Name</h2>
+                    <p class="nr-gate-msg" role="status" hidden></p>
+                    <label>Full name<input type="text" name="name" autocomplete="name" minlength="2" maxlength="120" required></label>
+                    <button type="submit" class="nr-gate-submit">Save name</button>
+                </form>
+
+                <!-- Password -->
+                <form class="nr-account-section" id="nrPasswordForm">
+                    <h2>Password</h2>
+                    <p class="nr-gate-msg" role="status" hidden></p>
+                    <input type="text" name="username" autocomplete="username" hidden>
+                    <label>Current password<input type="password" name="current" autocomplete="current-password" required></label>
+                    <label>New password<input type="password" name="password" autocomplete="new-password" minlength="10" maxlength="128" required></label>
+                    <label>Confirm new password<input type="password" name="confirm" autocomplete="new-password" minlength="10" maxlength="128" required></label>
+                    <button type="submit" class="nr-gate-submit">Update password</button>
+                </form>
+            </div>
+        </section>
+    </div>
+
+    <script src="/script.js?v=23"></script>
+    <script src="/newsroom-mock.js?v=5"></script>
+    <script src="/newsroom.js?v=9"></script>
+    <script src="/newsroom-account.js?v=1"></script>
+</body>
+</html>

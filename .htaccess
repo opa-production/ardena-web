@@ -9,9 +9,10 @@
   RewriteCond %{REQUEST_FILENAME}.html -f
   RewriteRule ^(.+)$ $1.html [L]
 
-  # Newsroom: /newsroom/write is the editor, any other /newsroom/<slug> is a story
+  # Newsroom: /newsroom/write is the editor, /newsroom/account the writer's account, any other /newsroom/<slug> is a story
   RewriteRule ^newsroom/?$ newsroom.html [L]
   RewriteRule ^newsroom/write/?$ newsroom-write.html [L]
+  RewriteRule ^newsroom/account/?$ newsroom-account.html [L]
   RewriteRule ^newsroom/([^/]+)/?$ newsroom-article.html [L]
 </IfModule>
 
