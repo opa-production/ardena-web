@@ -11449,6 +11449,13 @@ body {
    here.
    ========================================================================== */
 
+.drive-hero .partnerships-hero-image {
+  /* Soft blur keeps the city texture without competing with the copy;
+     the slight scale hides the blurred edge. */
+  filter: blur(4px);
+  transform: scale(1.05);
+}
+
 .drive-hero-overlay {
   /* The aerial photo is busy: a little darker than partnerships so the copy reads. */
   background: linear-gradient(to bottom, rgba(10, 10, 10, 0.45), rgba(10, 10, 10, 0.72));
