@@ -15,6 +15,11 @@
   status = 200
 
 [[redirects]]
+  from = "/drive"
+  to = "/drive.html"
+  status = 200
+
+[[redirects]]
   from = "/teams"
   to = "/teams.html"
   status = 200

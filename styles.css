@@ -11442,3 +11442,75 @@ body {
     padding: 4rem 0;
   }
 }
+
+/* ==========================================================================
+   Drive with Ardena (/drive). Built from the partnerships sections (full-height
+   bands, one idea per screen, the lavender "how" band); only what differs lives
+   here.
+   ========================================================================== */
+
+.drive-hero-overlay {
+  /* The aerial photo is busy: a little darker than partnerships so the copy reads. */
+  background: linear-gradient(to bottom, rgba(10, 10, 10, 0.45), rgba(10, 10, 10, 0.72));
+}
+
+.drive-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.25rem 1.75rem;
+}
+
+.drive-hero-link {
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  padding-bottom: 2px;
+  transition: border-color 0.2s ease;
+}
+
+.drive-hero-link:hover {
+  border-color: #ffffff;
+}
+
+.drive-hero-note {
+  margin: 1.25rem 0 0;
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.drive-faq-cta {
+  margin-top: 3.5rem;
+}
+
+.drive-cta-dark {
+  display: inline-block;
+  background: #0a0a0a;
+  color: #ffffff;
+  border: 1px solid #0a0a0a;
+  padding: 1rem 1.7rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: 2rem;
+  text-decoration: none;
+  letter-spacing: -0.005em;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+}
+
+.drive-cta-dark:hover {
+  background: #007FFA;
+  border-color: #007FFA;
+  transform: translateY(-1px);
+}
+
+html:has(body.drive-page) {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html:has(body.drive-page) {
+    scroll-behavior: auto;
+  }
+}
