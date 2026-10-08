@@ -4335,6 +4335,13 @@ body {
   margin: 0;
 }
 
+.host-step-content p a {
+  color: var(--text-primary);
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
 .host-content-section {
   padding: 4rem 0;
   background: #f5f5f7;
