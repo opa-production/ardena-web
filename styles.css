@@ -11816,7 +11816,7 @@ html:has(body.drive-page) {
   }
 }
 
-/* Partner logos on /partnerships: a quiet monochrome row that takes colour on hover. */
+/* Partner logos on /partnerships: a quiet row of full-colour logos. */
 .partners-row {
   padding: 4.5rem 0;
   background: #ffffff;
@@ -11860,9 +11860,7 @@ html:has(body.drive-page) {
   height: 40px;
   width: auto;
   max-width: 100%;
-  filter: grayscale(1);
-  opacity: 0.55;
-  transition: filter 0.3s ease, opacity 0.3s ease;
+  transition: transform 0.3s ease;
 }
 
 .partners-row-logo--wide {
@@ -11878,8 +11876,7 @@ html:has(body.drive-page) {
 
 .partners-row-item:hover .partners-row-logo,
 .partners-row-item:focus-visible .partners-row-logo {
-  filter: none;
-  opacity: 1;
+  transform: translateY(-2px);
 }
 
 .partners-row-item:hover .partners-row-role {
