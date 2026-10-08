@@ -11542,3 +11542,361 @@ html:has(body.drive-page) {
     scroll-behavior: auto;
   }
 }
+
+/* ==========================================================================
+   Car trackers (/car-tracker), with Cedoo Auto Solutions. Reuses the
+   partnerships and drive bands; only the light hero and packages live here.
+   ========================================================================== */
+
+.tracker-hero {
+  min-height: 88vh;
+  display: flex;
+  align-items: center;
+  padding: 8rem 0 5rem;
+  background: #ffffff;
+}
+
+.tracker-hero-inner {
+  max-width: 780px;
+}
+
+.tracker-hero-partner {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.9rem;
+  margin-bottom: 2.25rem;
+  padding: 0.5rem 1rem 0.5rem 1.1rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 2rem;
+  text-decoration: none;
+  transition: border-color 0.2s ease;
+}
+
+.tracker-hero-partner:hover {
+  border-color: #0a0a0a;
+}
+
+.tracker-hero-partner-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #6a6a70;
+}
+
+.tracker-hero-partner-logo {
+  display: block;
+  width: 170px;
+  height: auto;
+}
+
+.tracker-hero-title {
+  margin: 0 0 1.25rem;
+  color: #0a0a0a;
+  font-size: clamp(2.1rem, 4.6vw, 3.6rem);
+  line-height: 1.06;
+  letter-spacing: -0.035em;
+  font-weight: 600;
+}
+
+.tracker-hero-lead {
+  margin: 0;
+  max-width: 640px;
+  color: #4a4a4f;
+  font-size: clamp(1rem, 1.8vw, 1.15rem);
+  line-height: 1.65;
+}
+
+.tracker-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
+
+.tracker-cta-outline {
+  display: inline-block;
+  color: #0a0a0a;
+  border: 1px solid #d4d8df;
+  padding: 1rem 1.7rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: 2rem;
+  text-decoration: none;
+  letter-spacing: -0.005em;
+  transition: border-color 0.2s ease, transform 0.15s ease;
+}
+
+.tracker-cta-outline:hover {
+  border-color: #0a0a0a;
+  transform: translateY(-1px);
+}
+
+.tracker-packages {
+  padding: 7rem 0;
+  background: #ffffff;
+}
+
+@media (min-width: 900px) {
+  .tracker-packages {
+    padding: 9rem 0;
+  }
+}
+
+.tracker-packages-head {
+  max-width: 1100px;
+  margin: 0 auto 3rem;
+}
+
+.tracker-packages-lead {
+  margin: 1rem 0 0;
+  max-width: 620px;
+  color: #4a4a4f;
+  font-size: 0.9375rem;
+  line-height: 1.65;
+}
+
+.tracker-packages-grid {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+.tracker-package {
+  border: 1px solid #e5e7eb;
+  border-radius: 1.25rem;
+  padding: 2.5rem;
+  background: #ffffff;
+  color: #0a0a0a;
+}
+
+.tracker-package--dark {
+  background: #0a0a0a;
+  border-color: #0a0a0a;
+  color: #ffffff;
+}
+
+.tracker-package-name {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #007FFA;
+}
+
+.tracker-package--dark .tracker-package-name {
+  color: #ffffff;
+}
+
+.tracker-package-tag {
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  padding: 0.3rem 0.65rem;
+  border-radius: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.tracker-package-price {
+  margin: 1.5rem 0 0.35rem;
+  font-size: clamp(2.25rem, 4vw, 3rem);
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  line-height: 1;
+}
+
+.tracker-package-price span {
+  font-size: 0.4em;
+  font-weight: 500;
+  letter-spacing: 0;
+  vertical-align: 0.95em;
+  margin-right: 0.15rem;
+  opacity: 0.6;
+}
+
+.tracker-package-note {
+  margin: 0 0 1.75rem;
+  font-size: 0.875rem;
+  color: #6a6a70;
+}
+
+.tracker-package--dark .tracker-package-note {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.tracker-package-list {
+  list-style: none;
+  margin: 0;
+  padding: 1.5rem 0 0;
+  border-top: 1px solid #e5e7eb;
+}
+
+.tracker-package--dark .tracker-package-list {
+  border-top-color: rgba(255, 255, 255, 0.16);
+}
+
+.tracker-package-list li {
+  position: relative;
+  padding: 0.45rem 0 0.45rem 1.5rem;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: #4a4a4f;
+}
+
+.tracker-package--dark .tracker-package-list li {
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.tracker-package-list li::before {
+  content: "";
+  position: absolute;
+  left: 0.15rem;
+  top: 0.78rem;
+  width: 0.55rem;
+  height: 0.3rem;
+  border-left: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(-45deg);
+  opacity: 0.7;
+}
+
+.tracker-packages-fine {
+  max-width: 1100px;
+  margin: 1.75rem auto 0;
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  color: #6a6a70;
+}
+
+.tracker-packages-fine a,
+.partnerships-how-step-text a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+@media (max-width: 420px) {
+  .tracker-hero-partner {
+    gap: 0.6rem;
+    padding: 0.45rem 0.85rem;
+  }
+
+  .tracker-hero-partner-label {
+    font-size: 0.64rem;
+  }
+
+  .tracker-hero-partner-logo {
+    width: 130px;
+  }
+}
+
+@media (max-width: 760px) {
+  .tracker-hero {
+    min-height: 0;
+    padding: 7rem 0 3.5rem;
+  }
+
+  .tracker-packages {
+    padding: 3.5rem 0;
+  }
+
+  .tracker-packages-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .tracker-package {
+    padding: 2rem 1.5rem;
+  }
+}
+
+/* Partner logos on /partnerships: a quiet monochrome row that takes colour on hover. */
+.partners-row {
+  padding: 4.5rem 0;
+  background: #ffffff;
+  border-bottom: 1px solid #eef0f3;
+}
+
+.partners-row-label {
+  margin: 0 0 2.25rem;
+  text-align: center;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #6a6a70;
+}
+
+.partners-row-list {
+  list-style: none;
+  margin: 0 auto;
+  padding: 0;
+  max-width: 760px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.partners-row-list li + li {
+  border-left: 1px solid #eef0f3;
+}
+
+.partners-row-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.1rem;
+  padding: 0.5rem 1.5rem;
+  text-decoration: none;
+}
+
+.partners-row-logo {
+  display: block;
+  height: 40px;
+  width: auto;
+  max-width: 100%;
+  filter: grayscale(1);
+  opacity: 0.55;
+  transition: filter 0.3s ease, opacity 0.3s ease;
+}
+
+.partners-row-logo--wide {
+  width: 200px;
+  height: auto;
+}
+
+.partners-row-role {
+  font-size: 0.8125rem;
+  color: #6a6a70;
+  transition: color 0.3s ease;
+}
+
+.partners-row-item:hover .partners-row-logo,
+.partners-row-item:focus-visible .partners-row-logo {
+  filter: none;
+  opacity: 1;
+}
+
+.partners-row-item:hover .partners-row-role {
+  color: #0a0a0a;
+}
+
+@media (max-width: 520px) {
+  .partners-row {
+    padding: 3.5rem 0;
+  }
+
+  .partners-row-list {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .partners-row-list li + li {
+    border-left: 0;
+  }
+}

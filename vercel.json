@@ -16,6 +16,8 @@
     { "source": "/partnerships/", "destination": "/partnerships.html" },
     { "source": "/drive", "destination": "/drive.html" },
     { "source": "/drive/", "destination": "/drive.html" },
+    { "source": "/car-tracker", "destination": "/car-tracker.html" },
+    { "source": "/car-tracker/", "destination": "/car-tracker.html" },
     { "source": "/partner", "destination": "/partner.html" },
     { "source": "/partner/", "destination": "/partner.html" },
     { "source": "/apply", "destination": "/apply.html" },
