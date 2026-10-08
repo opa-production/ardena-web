@@ -11567,34 +11567,42 @@ html:has(body.drive-page) {
   max-width: 780px;
 }
 
-.tracker-hero-partner {
-  display: inline-flex;
+.tracker-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr);
+  gap: 4rem;
   align-items: center;
-  gap: 0.9rem;
-  margin-bottom: 2.25rem;
-  padding: 0.5rem 1rem 0.5rem 1.1rem;
-  border: 1px solid #e5e7eb;
-  border-radius: 2rem;
-  text-decoration: none;
-  transition: border-color 0.2s ease;
 }
 
-.tracker-hero-partner:hover {
-  border-color: #0a0a0a;
-}
-
-.tracker-hero-partner-label {
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: #6a6a70;
-}
-
-.tracker-hero-partner-logo {
+.tracker-hero-logo {
   display: block;
-  width: 170px;
+  border: 1px solid #e5e7eb;
+  background: #ffffff;
+  overflow: hidden;
+  box-shadow: 0 24px 48px -28px rgba(15, 23, 42, 0.25);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tracker-hero-logo:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 30px 56px -28px rgba(15, 23, 42, 0.32);
+}
+
+.tracker-hero-logo img {
+  display: block;
+  width: 100%;
   height: auto;
+}
+
+@media (max-width: 900px) {
+  .tracker-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .tracker-hero-logo {
+    max-width: 420px;
+  }
 }
 
 .tracker-hero-title {
@@ -11667,22 +11675,22 @@ html:has(body.drive-page) {
   max-width: 1100px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 400px));
   gap: 1.25rem;
 }
 
 .tracker-package {
   border: 1px solid #e5e7eb;
-  border-radius: 1.25rem;
+  border-radius: 0;
   padding: 2.5rem;
   background: #ffffff;
   color: #0a0a0a;
 }
 
-.tracker-package--dark {
-  background: #0a0a0a;
-  border-color: #0a0a0a;
-  color: #ffffff;
+.tracker-package--purple {
+  background: var(--brand-lavender);
+  border-color: var(--brand-lavender);
+  color: var(--brand-lavender-ink);
 }
 
 .tracker-package-name {
@@ -11690,6 +11698,7 @@ html:has(body.drive-page) {
   flex-wrap: wrap;
   align-items: center;
   gap: 0.6rem;
+  min-height: 1.75rem;
   margin: 0;
   font-size: 0.78rem;
   font-weight: 600;
@@ -11698,8 +11707,8 @@ html:has(body.drive-page) {
   color: #007FFA;
 }
 
-.tracker-package--dark .tracker-package-name {
-  color: #ffffff;
+.tracker-package--purple .tracker-package-name {
+  color: var(--brand-lavender-ink);
 }
 
 .tracker-package-tag {
@@ -11707,8 +11716,8 @@ html:has(body.drive-page) {
   letter-spacing: 0.08em;
   padding: 0.3rem 0.65rem;
   border-radius: 2rem;
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  color: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(47, 36, 85, 0.35);
+  color: var(--brand-lavender-ink);
 }
 
 .tracker-package-price {
@@ -11734,8 +11743,8 @@ html:has(body.drive-page) {
   color: #6a6a70;
 }
 
-.tracker-package--dark .tracker-package-note {
-  color: rgba(255, 255, 255, 0.6);
+.tracker-package--purple .tracker-package-note {
+  color: var(--brand-lavender-muted);
 }
 
 .tracker-package-list {
@@ -11745,8 +11754,8 @@ html:has(body.drive-page) {
   border-top: 1px solid #e5e7eb;
 }
 
-.tracker-package--dark .tracker-package-list {
-  border-top-color: rgba(255, 255, 255, 0.16);
+.tracker-package--purple .tracker-package-list {
+  border-top-color: rgba(47, 36, 85, 0.18);
 }
 
 .tracker-package-list li {
@@ -11757,8 +11766,8 @@ html:has(body.drive-page) {
   color: #4a4a4f;
 }
 
-.tracker-package--dark .tracker-package-list li {
-  color: rgba(255, 255, 255, 0.82);
+.tracker-package--purple .tracker-package-list li {
+  color: var(--brand-lavender-muted);
 }
 
 .tracker-package-list li::before {
@@ -11787,21 +11796,6 @@ html:has(body.drive-page) {
   color: inherit;
   text-decoration: underline;
   text-underline-offset: 2px;
-}
-
-@media (max-width: 420px) {
-  .tracker-hero-partner {
-    gap: 0.6rem;
-    padding: 0.45rem 0.85rem;
-  }
-
-  .tracker-hero-partner-label {
-    font-size: 0.64rem;
-  }
-
-  .tracker-hero-partner-logo {
-    width: 130px;
-  }
 }
 
 @media (max-width: 760px) {
