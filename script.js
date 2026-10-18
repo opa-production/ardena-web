@@ -18,26 +18,42 @@ const navToggle = document.getElementById("navToggle");
 const navMenu = document.getElementById("navMenu");
 
 if (navToggle && navMenu) {
+  // Bottom call to action shown only in the mobile drawer
+  const ctaItem = document.createElement("li");
+  ctaItem.className = "nav-menu-cta-item nav-menu-item--mobile-only";
+  ctaItem.innerHTML = '<a href="/help" class="nav-menu-cta">Contact us</a>';
+  navMenu.appendChild(ctaItem);
+
+  const setMenuOpen = (open) => {
+    navMenu.classList.toggle("active", open);
+    navToggle.classList.toggle("active", open);
+    document.body.classList.toggle("nav-open", open);
+    navToggle.setAttribute("aria-expanded", open ? "true" : "false");
+  };
+
   navToggle.addEventListener("click", () => {
-    navMenu.classList.toggle("active");
-    navToggle.classList.toggle("active");
+    setMenuOpen(!navMenu.classList.contains("active"));
   });
 
   // Close menu when clicking on a link
-  const navLinks = document.querySelectorAll(".nav-link");
-  navLinks.forEach((link) => {
-    link.addEventListener("click", () => {
-      navMenu.classList.remove("active");
-      navToggle.classList.remove("active");
-    });
+  navMenu.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => setMenuOpen(false));
   });
 
   // Close menu when clicking outside
   document.addEventListener("click", (e) => {
     if (!navToggle.contains(e.target) && !navMenu.contains(e.target)) {
-      navMenu.classList.remove("active");
-      navToggle.classList.remove("active");
+      setMenuOpen(false);
     }
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") setMenuOpen(false);
+  });
+
+  // Reset when resizing up to the desktop layout
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 768) setMenuOpen(false);
   });
 }
 
