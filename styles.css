@@ -12400,3 +12400,256 @@ html:has(body.tracker-page) {
     padding: 2.5rem 1.5rem;
   }
 }
+
+/* ==========================================================================
+   Affiliate page (affiliate.html)
+   Reuses the refer page's lavender and stacked sections; the application
+   form sits on the deeper brand blue (#0067d1, AA for white text).
+   ========================================================================== */
+
+.affiliate-hero {
+  min-height: 80vh;
+}
+
+.affiliate-eyebrow {
+  display: inline-block;
+  margin-bottom: 1.5rem;
+  padding: 0.4rem 0.9rem;
+  border-radius: 2rem;
+  background: var(--brand-lavender);
+  color: var(--brand-lavender-ink);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.host-steps-tagline a {
+  color: #0067d1;
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.affiliate-apply-section {
+  padding: 6rem 0;
+  background: #0067d1;
+  scroll-margin-top: 80px;
+}
+
+@media (min-width: 900px) {
+  .affiliate-apply-section {
+    padding: 8rem 0;
+  }
+}
+
+.affiliate-apply-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
+  gap: 4rem;
+  align-items: start;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.affiliate-apply-title {
+  margin: 0 0 0.75rem;
+  font-size: 2.25rem;
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  color: #ffffff;
+}
+
+.affiliate-apply-text {
+  margin: 0 0 2rem;
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  color: #ffffff;
+}
+
+.affiliate-apply-points {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.affiliate-apply-points li {
+  position: relative;
+  padding: 1rem 0 1rem 1.25rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  font-size: 1rem;
+  color: #ffffff;
+}
+
+.affiliate-apply-points li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 6px;
+  height: 6px;
+  margin-top: -3px;
+  background: var(--brand-lavender);
+}
+
+.affiliate-form.apply-form {
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.18);
+}
+
+.affiliate-form .form-group input:focus,
+.affiliate-form .form-group textarea:focus {
+  border-color: #007ffa;
+  box-shadow: 0 0 0 3px rgba(0, 127, 250, 0.18);
+}
+
+.affiliate-platforms {
+  border: 0;
+  padding: 0;
+  margin: 0 0 1.25rem;
+  min-width: 0;
+}
+
+.affiliate-platforms legend {
+  padding: 0;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.affiliate-platform-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.apply-form .form-group label.affiliate-platform {
+  position: relative;
+  display: inline-flex;
+  margin: 0;
+  cursor: pointer;
+}
+
+.apply-form .form-group .affiliate-platform input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+.affiliate-platform span {
+  display: inline-block;
+  padding: 0.6rem 1.25rem;
+  border: 1px solid var(--border-color);
+  border-radius: 2rem;
+  background: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.affiliate-platform:hover span {
+  border-color: #007ffa;
+}
+
+.affiliate-platform input:checked + span {
+  background: #007ffa;
+  border-color: #007ffa;
+  color: #ffffff;
+}
+
+.affiliate-platform input:focus-visible + span {
+  box-shadow: 0 0 0 3px rgba(0, 127, 250, 0.3);
+}
+
+.affiliate-form-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: 0 1rem;
+}
+
+.affiliate-form-error {
+  margin: 1rem 0 0;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  background: #fee2e2;
+  color: #b91c1c;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+}
+
+.apply-submit-btn.affiliate-submit-btn {
+  background: #007ffa;
+  border-radius: 2rem;
+  padding: 0.85rem 1.9rem;
+}
+
+.apply-submit-btn.affiliate-submit-btn:hover {
+  background: #0067d1;
+}
+
+.apply-submit-btn.affiliate-submit-btn:disabled {
+  opacity: 0.6;
+  cursor: default;
+  transform: none;
+}
+
+.affiliate-success {
+  padding: 2.5rem 2rem;
+  border-radius: 12px;
+  background: var(--brand-lavender);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.18);
+}
+
+.affiliate-success h3 {
+  margin: 0 0 0.75rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--brand-lavender-ink);
+}
+
+.affiliate-success p {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--brand-lavender-muted);
+}
+
+@media (max-width: 900px) {
+  .affiliate-apply-inner {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .affiliate-apply-title {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .affiliate-apply-section {
+    padding: 4rem 0;
+  }
+
+  .affiliate-hero {
+    min-height: auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .affiliate-form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .affiliate-form.apply-form {
+    padding: 1.5rem 1.25rem 2rem;
+  }
+}

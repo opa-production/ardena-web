@@ -44,6 +44,8 @@
     { "source": "/refer/", "destination": "/refer.html" },
     { "source": "/status", "destination": "/status.html" },
     { "source": "/status/", "destination": "/status.html" },
+    { "source": "/affiliate", "destination": "/affiliate.html" },
+    { "source": "/affiliate/", "destination": "/affiliate.html" },
     { "source": "/newsroom", "destination": "/newsroom.html" },
     { "source": "/newsroom/", "destination": "/newsroom.html" },
     { "source": "/newsroom/write", "destination": "/newsroom-write.html" },
