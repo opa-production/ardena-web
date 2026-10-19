@@ -12403,25 +12403,28 @@ html:has(body.tracker-page) {
 
 /* ==========================================================================
    Affiliate page (affiliate.html)
-   Reuses the refer page's lavender and stacked sections; the application
-   form sits on the deeper brand blue (#0067d1, AA for white text).
+   Hero is the host page's split hero. Every section title carries a lavender
+   tag; the application form sits square-cornered on the deeper brand blue
+   (#0067d1, AA for white text).
    ========================================================================== */
-
-.affiliate-hero {
-  min-height: 80vh;
-}
 
 .affiliate-eyebrow {
   display: inline-block;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.25rem;
   padding: 0.4rem 0.9rem;
   border-radius: 2rem;
   background: var(--brand-lavender);
   color: var(--brand-lavender-ink);
   font-size: 0.78rem;
   font-weight: 600;
+  line-height: 1.2;
   letter-spacing: 0.1em;
   text-transform: uppercase;
+}
+
+/* On the lavender section the default tag would vanish. */
+.affiliate-eyebrow--light {
+  background: #ffffff;
 }
 
 .host-steps-tagline a {
@@ -12494,10 +12497,17 @@ html:has(body.tracker-page) {
   background: var(--brand-lavender);
 }
 
+/* --- the form: square corners throughout ------------------------------- */
+
 .affiliate-form.apply-form {
   border: none;
-  border-radius: 12px;
+  border-radius: 0;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.18);
+}
+
+.affiliate-form .form-group input,
+.affiliate-form .form-group textarea {
+  border-radius: 0;
 }
 
 .affiliate-form .form-group input:focus,
@@ -12506,67 +12516,98 @@ html:has(body.tracker-page) {
   box-shadow: 0 0 0 3px rgba(0, 127, 250, 0.18);
 }
 
-.affiliate-platforms {
-  border: 0;
-  padding: 0;
-  margin: 0 0 1.25rem;
+.affiliate-select {
+  position: relative;
+}
+
+.affiliate-select-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 0;
+  background: #ffffff;
+  font: inherit;
+  font-size: 1rem;
+  color: var(--text-primary);
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.affiliate-select-trigger:hover,
+.affiliate-select.is-open .affiliate-select-trigger {
+  border-color: #007ffa;
+}
+
+.affiliate-select-trigger:focus-visible {
+  border-color: #007ffa;
+  box-shadow: 0 0 0 3px rgba(0, 127, 250, 0.18);
+}
+
+.affiliate-select-value {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
   min-width: 0;
 }
 
-.affiliate-platforms legend {
-  padding: 0;
-  margin-bottom: 0.5rem;
-  font-weight: 600;
-  color: var(--text-primary);
+.affiliate-select-value.is-placeholder {
+  color: var(--text-light);
 }
 
-.affiliate-platform-options {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
+.affiliate-select-chevron {
+  flex-shrink: 0;
+  color: var(--text-secondary);
+  transition: transform 0.2s ease;
 }
 
-.apply-form .form-group label.affiliate-platform {
-  position: relative;
-  display: inline-flex;
+.affiliate-select.is-open .affiliate-select-chevron {
+  transform: rotate(180deg);
+}
+
+.affiliate-select-list {
+  position: absolute;
+  z-index: 20;
+  top: calc(100% - 1px);
+  left: 0;
+  right: 0;
   margin: 0;
+  padding: 0.35rem 0;
+  list-style: none;
+  border: 1px solid #007ffa;
+  border-radius: 0;
+  background: #ffffff;
+  box-shadow: 0 12px 24px rgba(15, 23, 42, 0.12);
+}
+
+.affiliate-select-option {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.7rem 1rem;
+  font-size: 1rem;
+  color: var(--text-primary);
   cursor: pointer;
 }
 
-.apply-form .form-group .affiliate-platform input {
-  position: absolute;
-  opacity: 0;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: 0;
-  border: 0;
+.affiliate-select-option svg,
+.affiliate-select-value svg {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
 }
 
-.affiliate-platform span {
-  display: inline-block;
-  padding: 0.6rem 1.25rem;
-  border: 1px solid var(--border-color);
-  border-radius: 2rem;
-  background: #ffffff;
-  font-size: 0.95rem;
-  font-weight: 500;
-  color: var(--text-primary);
-  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+.affiliate-select-option.is-active {
+  background: rgba(0, 127, 250, 0.08);
 }
 
-.affiliate-platform:hover span {
-  border-color: #007ffa;
-}
-
-.affiliate-platform input:checked + span {
-  background: #007ffa;
-  border-color: #007ffa;
-  color: #ffffff;
-}
-
-.affiliate-platform input:focus-visible + span {
-  box-shadow: 0 0 0 3px rgba(0, 127, 250, 0.3);
+.affiliate-select-option[aria-selected="true"] {
+  color: #0067d1;
+  font-weight: 600;
 }
 
 .affiliate-form-row {
@@ -12578,7 +12619,7 @@ html:has(body.tracker-page) {
 .affiliate-form-error {
   margin: 1rem 0 0;
   padding: 0.75rem 1rem;
-  border-radius: 6px;
+  border-radius: 0;
   background: #fee2e2;
   color: #b91c1c;
   font-size: 0.9375rem;
@@ -12587,7 +12628,7 @@ html:has(body.tracker-page) {
 
 .apply-submit-btn.affiliate-submit-btn {
   background: #007ffa;
-  border-radius: 2rem;
+  border-radius: 0;
   padding: 0.85rem 1.9rem;
 }
 
@@ -12603,7 +12644,7 @@ html:has(body.tracker-page) {
 
 .affiliate-success {
   padding: 2.5rem 2rem;
-  border-radius: 12px;
+  border-radius: 0;
   background: var(--brand-lavender);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.18);
 }
@@ -12637,10 +12678,6 @@ html:has(body.tracker-page) {
 @media (max-width: 768px) {
   .affiliate-apply-section {
     padding: 4rem 0;
-  }
-
-  .affiliate-hero {
-    min-height: auto;
   }
 }
 
