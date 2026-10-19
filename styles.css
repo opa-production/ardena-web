@@ -12403,29 +12403,10 @@ html:has(body.tracker-page) {
 
 /* ==========================================================================
    Affiliate page (affiliate.html)
-   Hero is the host page's split hero. Every section title carries a lavender
-   tag; the application form sits square-cornered on the deeper brand blue
-   (#0067d1, AA for white text).
+   Hero is the host page's split hero. No tags above titles: the site doesn't
+   use them. The application form sits square-cornered on the deeper brand
+   blue (#0067d1, AA for white text).
    ========================================================================== */
-
-.affiliate-eyebrow {
-  display: inline-block;
-  margin-bottom: 1.25rem;
-  padding: 0.4rem 0.9rem;
-  border-radius: 2rem;
-  background: var(--brand-lavender);
-  color: var(--brand-lavender-ink);
-  font-size: 0.78rem;
-  font-weight: 600;
-  line-height: 1.2;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-/* On the lavender section the default tag would vanish. */
-.affiliate-eyebrow--light {
-  background: #ffffff;
-}
 
 .host-steps-tagline a {
   color: #0067d1;
