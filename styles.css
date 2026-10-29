@@ -12671,3 +12671,84 @@ html:has(body.tracker-page) {
     padding: 1.5rem 1.25rem 2rem;
   }
 }
+
+/* ==========================================================================
+   Mobile polish
+   Hero illustrations are decorative and push the call to action below the
+   fold on phones, so they only show once the hero splits into two columns.
+   ========================================================================== */
+
+@media (max-width: 899.98px) {
+  .host-page-hero-art,
+  .careers-hero-art,
+  .tracker-hero-logo {
+    display: none;
+  }
+
+  /* Without the art, a full viewport hero is mostly empty space. */
+  .host-page-hero {
+    min-height: auto;
+    padding-top: 8rem;
+    padding-bottom: 4rem;
+  }
+
+  .careers-hero {
+    padding-bottom: 3.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  /* The 112px desktop wordmark fills the whole width of a phone. */
+  .footer-logo {
+    height: 56px;
+  }
+
+  /* Homepage "why ardena" list: a fixed number column keeps every title on
+     the same left edge whatever the digits are. */
+  .features .feature-card {
+    grid-template-columns: 3.25rem minmax(0, 1fr);
+    gap: 1rem;
+    padding: 0;
+  }
+
+  .features .feature-number {
+    font-size: 2.25rem;
+  }
+
+  .team-hero {
+    min-height: 62vh;
+    min-height: 62svh;
+    background:
+      linear-gradient(rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.32)),
+      url("assets/team/teeam.jpg") center 30% / cover no-repeat;
+  }
+}
+
+@media (max-width: 600px) {
+  /* Icon only, so the floating button covers less of the text beneath it.
+     Every instance carries an aria-label, so the name is still announced. */
+  .linktree-float {
+    padding: 0.55rem;
+  }
+
+  .linktree-float-text {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Two half-width pills squeeze longer labels such as "Get your referral
+     code" onto two lines; full-width stacked pills read cleaner. */
+  .host-page-cta {
+    flex: 1 1 100%;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 768px) {
+  .apps-hero.insurance-hero {
+    min-height: auto;
+    padding-top: 8rem;
+    padding-bottom: 4rem;
+  }
+}
