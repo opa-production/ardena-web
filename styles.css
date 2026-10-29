@@ -12685,15 +12685,30 @@ html:has(body.tracker-page) {
     display: none;
   }
 
-  /* Without the art, a full viewport hero is mostly empty space. */
-  .host-page-hero {
-    min-height: auto;
-    padding-top: 8rem;
-    padding-bottom: 4rem;
+  /* Every page opens on a hero that fills the phone screen, as the about
+     page does, so the next section only appears once you scroll. */
+  .host-page-hero,
+  .careers-hero,
+  .tracker-hero,
+  .dojah-hero,
+  .team-hero,
+  .apps-hero.insurance-hero {
+    min-height: 100vh;
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    padding-top: 6rem;
+    padding-bottom: 3rem;
   }
 
-  .careers-hero {
-    padding-bottom: 3.5rem;
+  .host-page-hero > .container,
+  .careers-hero > .container,
+  .tracker-hero > .container,
+  .dojah-hero > .container,
+  .team-hero > .container,
+  .apps-hero.insurance-hero > .container {
+    width: 100%;
   }
 }
 
@@ -12716,8 +12731,6 @@ html:has(body.tracker-page) {
   }
 
   .team-hero {
-    min-height: 62vh;
-    min-height: 62svh;
     background:
       linear-gradient(rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.32)),
       url("assets/team/teeam.jpg") center 30% / cover no-repeat;
@@ -12742,13 +12755,5 @@ html:has(body.tracker-page) {
   .host-page-cta {
     flex: 1 1 100%;
     white-space: nowrap;
-  }
-}
-
-@media (max-width: 768px) {
-  .apps-hero.insurance-hero {
-    min-height: auto;
-    padding-top: 8rem;
-    padding-bottom: 4rem;
   }
 }
