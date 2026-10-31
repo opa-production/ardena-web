@@ -111,7 +111,7 @@
                 <div class="privacy-hero-inner">
                     <h1 id="privacy-hero-title" class="privacy-hero-title">Privacy policy</h1>
                     <p class="privacy-hero-lead">How ardena collects, uses, and protects your personal information under the Data Protection Act, No. 24 of 2019 (Kenya).</p>
-                    <p class="privacy-hero-meta">Last updated: 8 October 2026</p>
+                    <p class="privacy-hero-meta">Last updated: 31 October 2026</p>
                 </div>
             </div>
         </section>
@@ -125,7 +125,7 @@
                 </div>
                 <div class="policy-info-body">
                     <ul class="policy-info-list">
-                        <li><strong>Ardena Platforms Africa Ltd is the data controller</strong> for personal data you provide while using ardena. Our partner Dojah Africa Ltd acts as a data processor for identity verification only.</li>
+                        <li><strong>Ardena Platforms Africa Ltd is the data controller</strong> for personal data you provide while using ardena. Our partner Dojah Africa Ltd acts as a data processor for identity verification, and our partner Peleza acts as a data processor for driving licence, mobile number and vehicle checks.</li>
                         <li><strong>We use your data to run the platform</strong>: to create your account, verify you, match you with a host or renter, take payment, support you, comply with the law, and keep the platform safe.</li>
                         <li><strong>Verification data goes through Dojah, encrypted, and we do not keep the raw inputs.</strong> Your government ID number, ID document photo, selfie, and liveness data are transmitted directly to Dojah over TLS. Ardena receives a verification result (pass / fail, reference, timestamp) and stores that result, not the underlying ID image or biometric template.</li>
                         <li><strong>Account data we do hold</strong> includes your name, email, phone number, profile photo, location at booking, communications with hosts or renters, and booking and payment history.</li>
@@ -150,6 +150,10 @@
                             <p class="policy-info-feature-text">Government-issued ID number, ID document photograph, selfie/liveness capture, and location at the time of verification. Submitted in the app, routed to Dojah over TLS, and not retained by Ardena in raw form, see section 03.</p>
                         </li>
                         <li>
+                            <span class="policy-info-feature-key">Licence data</span>
+                            <p class="policy-info-feature-text">For renters and drivers: your driving licence number and a photograph of the licence. Sent to Peleza over TLS to verify the licence, see section 03.</p>
+                        </li>
+                        <li>
                             <span class="policy-info-feature-key">Booking &amp; transaction data</span>
                             <p class="policy-info-feature-text">Bookings made, vehicles browsed, pickup and drop-off locations, payment method (processed via PCI-compliant providers; we do not store full card numbers), invoices and refunds, and any incident reports.</p>
                         </li>
@@ -171,7 +175,7 @@
                         </li>
                         <li>
                             <span class="policy-info-feature-key">For hosts, additionally</span>
-                            <p class="policy-info-feature-text">KRA PIN (tax compliance), payout details (M-Pesa or bank account), vehicle logbook, insurance certificate, and vehicle photographs.</p>
+                            <p class="policy-info-feature-text">KRA PIN (tax compliance), payout details (M-Pesa or bank account), vehicle registration number, vehicle logbook, insurance certificate, and vehicle photographs. Your mobile number and vehicle registration details are sent to Peleza for verification, see section 03.</p>
                         </li>
                     </ul>
                 </div>
@@ -187,8 +191,8 @@
             <div class="container policy-info-container">
                 <div class="policy-info-head">
                     <p class="policy-info-eyebrow">03 / Identity verification</p>
-                    <h2 id="policy-dojah-title" class="policy-info-title">How verification works with Dojah.</h2>
-                    <p class="policy-info-tagline">Identity verification is the most sensitive thing we do. To reduce the risk to you, the raw data is handled by a specialist processor, Dojah, and Ardena does not retain the inputs.</p>
+                    <h2 id="policy-dojah-title" class="policy-info-title">How verification works with Dojah and Peleza.</h2>
+                    <p class="policy-info-tagline">Identity verification is the most sensitive thing we do. To reduce the risk to you, identity checks are handled by a specialist processor, Dojah, and licence, mobile number and vehicle checks by a second specialist processor, Peleza.</p>
                 </div>
                 <div class="policy-info-body">
                     <div class="policy-info-example">
@@ -198,6 +202,8 @@
                         <p><strong>Step 4: Ardena receives a result, not the raw data.</strong> Ardena receives a structured verification result: pass or fail, a Dojah reference ID, a timestamp, and a small set of fields needed to operate your account (such as your verified legal name and date of birth). Ardena does not receive or store the ID document image, the selfie image, or the biometric template.</p>
                         <p><strong>Step 5: we store the result.</strong> Your verification status is attached to your account and used to authorise bookings, surface verification badges to counterparties, and meet our legal obligations. If verification fails or is flagged, Ardena may suspend or refuse the account at its discretion.</p>
                         <p><strong>If you want details from Dojah</strong> about how they store, retain, or delete the raw data, refer to <a href="https://dojah.io/privacy-policy" target="_blank" rel="noopener noreferrer">dojah.io/privacy-policy</a>. You may also exercise rights against Dojah directly under the Data Protection Act.</p>
+                        <p><strong>Licence, mobile number and vehicle checks with Peleza.</strong> Renters, and drivers who apply to drive with Ardena, submit their driving licence number and a photograph of the licence. Hosts have their mobile number checked to confirm it is registered to them, and each listed vehicle checked against its registration details. These details are sent over TLS 1.2 or higher to Peleza, our verification processor, which checks them against official records on Ardena's instructions and processes the data under Kenyan law.</p>
+                        <p><strong>What Ardena keeps from Peleza.</strong> Ardena receives the result of each check (pass or fail, a reference, and a timestamp) and stores it with your account, to authorise bookings, trips and listings. If a check fails or is flagged, Ardena may refuse the booking, trip or listing, or suspend the account. You may exercise your rights against Peleza directly under the Data Protection Act.</p>
                     </div>
                 </div>
             </div>
@@ -260,6 +266,7 @@
                     <ul class="policy-info-list">
                         <li><strong>The other side of your booking.</strong> After a booking is confirmed, the renter and host see each other's first name, profile photograph, verification badge, and the communication channel in the app. Full surname, ID number, and contact details are not shared by default.</li>
                         <li><strong>Dojah Africa Ltd</strong> (identity verification processor), receives the verification inputs described in section 03. Acts on our instructions; processes personal data under its own privacy policy and Kenyan law.</li>
+                        <li><strong>Peleza</strong> (driving licence, mobile number and vehicle verification processor), receives the licence details of renters and drivers, and the mobile number and vehicle registration details of hosts, as described in section 03. Acts on our instructions and processes personal data under Kenyan law.</li>
                         <li><strong>Cedoo Auto Solutions</strong> (vehicle tracker supplier and installer), receives the tracker request details described in section 02, only when you submit a tracker request and tick the consent box. Cedoo uses them to contact you, confirm your car and package, and arrange installation. Once you deal with Cedoo, it handles your data as an independent controller under its own privacy terms and Kenyan law, including for the device, warranty, SIM and tracking app it provides. Ardena does not receive your vehicle's location or tracking data.</li>
                         <li><strong>Form handling</strong>: website forms, including the tracker request form, are delivered to us through Formspree, which acts as our processor.</li>
                         <li><strong>Payment and payout providers</strong>: M-Pesa (Safaricom PLC) and licensed card processors. They handle payment instructions and tokenisation; we do not store full card numbers.</li>
@@ -277,7 +284,7 @@
             <div class="container policy-info-container">
                 <div class="policy-info-body">
                     <ul class="policy-info-list">
-                        <li><strong>Encryption in transit.</strong> All traffic between the app, our servers, and our processors uses TLS 1.2 or higher. Sensitive verification submissions are encrypted from the app directly to Dojah.</li>
+                        <li><strong>Encryption in transit.</strong> All traffic between the app, our servers, and our processors uses TLS 1.2 or higher. Sensitive verification submissions are encrypted in transit to Dojah and Peleza.</li>
                         <li><strong>Encryption at rest.</strong> Account data is stored in databases that encrypt data at rest using industry-standard algorithms (e.g. AES-256).</li>
                         <li><strong>Access controls.</strong> Access to personal data is limited to authorised personnel on a need-to-know basis, logged, and protected by multi-factor authentication.</li>
                         <li><strong>Data minimisation.</strong> We collect only what we need. The most sensitive class, raw ID and biometric data, is not retained by Ardena (see section 03).</li>
@@ -308,7 +315,7 @@
                         </li>
                         <li>
                             <span class="policy-info-feature-key">Verification result</span>
-                            <p class="policy-info-feature-text">Status, reference, and timestamp retained for 5 years after the last booking, for fraud-prevention and regulatory compliance. Raw inputs are not stored by Ardena.</p>
+                            <p class="policy-info-feature-text">Status, reference, and timestamp of each Dojah and Peleza check retained for 5 years after the last booking, for fraud-prevention and regulatory compliance. Raw identity inputs are not stored by Ardena.</p>
                         </li>
                         <li>
                             <span class="policy-info-feature-key">Transaction records</span>
@@ -405,7 +412,7 @@
                     <ul class="policy-info-list">
                         <li><strong>Children.</strong> ardena is for adults aged 18 and over. We do not knowingly collect data from minors. If we learn we have, we will delete it.</li>
                         <li><strong>Changes to this policy.</strong> We may update this policy from time to time. We will update the "last updated" date and, for material changes, notify active users by email or in-app message at least 14 days in advance.</li>
-                        <li><strong>Liability for processors and counterparties.</strong> Ardena is responsible for its own processing. We are not responsible for how Dojah, Cedoo Auto Solutions, M-Pesa, banks, KRA, courts, or other independent controllers handle data within their own remit, beyond ensuring they are bound by appropriate contracts where they act as our processors.</li>
+                        <li><strong>Liability for processors and counterparties.</strong> Ardena is responsible for its own processing. We are not responsible for how Dojah, Peleza, Cedoo Auto Solutions, M-Pesa, banks, KRA, courts, or other independent controllers handle data within their own remit, beyond ensuring they are bound by appropriate contracts where they act as our processors.</li>
                         <li><strong>Force majeure and third-party events.</strong> Ardena is not liable for losses arising from events outside our reasonable control, including outages or breaches at third-party processors, government action, or events beyond our control (e.g. natural disaster, war, cyber-attack of state-level sophistication), beyond what the law requires.</li>
                         <li><strong>Suspension and refusal of service.</strong> Ardena may suspend, restrict, or close an account where verification fails, where there is reasonable suspicion of fraud, or where the user breaches our <a href="/terms">Terms &amp; conditions</a>.</li>
                         <li><strong>Governing law.</strong> This policy is governed by the laws of Kenya. Disputes are subject to the exclusive jurisdiction of the courts of Kenya.</li>
