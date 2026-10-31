@@ -12757,3 +12757,14 @@ html:has(body.tracker-page) {
     white-space: nowrap;
   }
 }
+
+/* Applications page: retirement notice on the ardena Host card */
+.app-card-notice {
+  margin: 0 0 1.75rem;
+  padding: 1rem 1.25rem;
+  border: 1px solid rgba(255,255,255,0.35);
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
