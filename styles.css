@@ -11621,6 +11621,21 @@ body {
   color: #6b7280;
 }
 
+/* Alternate the band colours so no two sections in a row match:
+   grey hero, white why, lavender how, grey "what you need", white FAQ,
+   then the grey footer. */
+.drive-page .partnerships-why-minimal {
+  background: #ffffff;
+}
+
+.drive-page .partnerships-next {
+  background: #f5f5f7;
+}
+
+.drive-page .partnerships-faq {
+  background: #ffffff;
+}
+
 @media (max-width: 899.98px) {
   .drive-hero-container {
     grid-template-columns: 1fr;
