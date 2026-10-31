@@ -11564,16 +11564,41 @@ body {
    here.
    ========================================================================== */
 
-.drive-hero .partnerships-hero-image {
-  /* Soft blur keeps the city texture without competing with the copy;
-     the slight scale hides the blurred edge. */
-  filter: blur(4px);
-  transform: scale(1.05);
+.drive-hero {
+  background: #007FFA;
 }
 
-.drive-hero-overlay {
-  /* The aerial photo is busy: a little darker than partnerships so the copy reads. */
-  background: linear-gradient(to bottom, rgba(10, 10, 10, 0.45), rgba(10, 10, 10, 0.72));
+/* Copy on the left, the steering wheel on the right. */
+.drive-hero-container {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  align-items: center;
+  gap: 3.5rem;
+}
+
+.drive-hero-art img {
+  display: block;
+  width: 100%;
+  max-width: min(560px, 42vw);
+  height: auto;
+  margin-left: auto;
+  filter: drop-shadow(0 24px 40px rgba(0, 0, 0, 0.25));
+}
+
+/* The white button's default hover turns it brand blue, which vanishes here. */
+.drive-hero .partnerships-hero-cta:hover {
+  background: #0a0a0a;
+  border-color: #0a0a0a;
+}
+
+@media (max-width: 899.98px) {
+  .drive-hero-container {
+    grid-template-columns: 1fr;
+  }
+
+  .drive-hero-art {
+    display: none;
+  }
 }
 
 .drive-hero-actions {
@@ -11621,7 +11646,7 @@ body {
 .drive-hero-note {
   margin: 1.25rem 0 0;
   font-size: 0.875rem;
-  color: rgba(255, 255, 255, 0.78);
+  color: rgba(255, 255, 255, 0.88);
 }
 
 .drive-faq-cta {
