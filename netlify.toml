@@ -125,6 +125,16 @@
   status = 200
 
 [[redirects]]
+  from = "/drives"
+  to = "/drives.html"
+  status = 200
+
+[[redirects]]
+  from = "/drives/"
+  to = "/drives.html"
+  status = 200
+
+[[redirects]]
   from = "/status"
   to = "/status.html"
   status = 200
