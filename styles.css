@@ -13354,22 +13354,22 @@ html:has(body.tracker-page) {
 /* --- route map ----------------------------------------------------------- */
 
 .drives-roadmap {
-  padding: 5.5rem 0;
+  padding: 4.5rem 0;
   background: #f5f5f7;
   scroll-margin-top: 70px;
 }
 
 .drives-road-inner {
   display: grid;
-  grid-template-columns: minmax(0, 420px) minmax(0, 1fr);
-  gap: 5rem;
+  grid-template-columns: minmax(0, 380px) minmax(0, 1fr);
+  gap: 4rem;
   align-items: center;
 }
 
 .drives-map {
   display: block;
   width: 100%;
-  max-width: 400px;
+  max-width: 360px;
   height: auto;
   overflow: visible;
 }
@@ -13477,8 +13477,8 @@ html:has(body.tracker-page) {
 }
 
 .drives-road-lead {
-  margin: 0.75rem 0 2rem;
-  font-size: 1.0625rem;
+  margin: 0.5rem 0 1.5rem;
+  font-size: 0.95rem;
   color: #4a4a4f;
 }
 
@@ -13486,7 +13486,7 @@ html:has(body.tracker-page) {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1rem;
-  margin: 0 0 2rem;
+  margin: 0 0 1.5rem;
 }
 
 .drives-road-stats dt {
@@ -13500,7 +13500,7 @@ html:has(body.tracker-page) {
 
 .drives-road-stats dd {
   margin: 0;
-  font-size: clamp(1.6rem, 2.6vw, 2.2rem);
+  font-size: clamp(1.2rem, 1.7vw, 1.45rem);
   font-weight: 600;
   letter-spacing: -0.03em;
   color: #0a0a0a;
@@ -13517,9 +13517,9 @@ html:has(body.tracker-page) {
   display: flex;
   justify-content: space-between;
   gap: 1rem;
-  padding: 0.7rem 0;
+  padding: 0.55rem 0;
   border-bottom: 1px solid #dcdce2;
-  font-size: 0.95rem;
+  font-size: 0.875rem;
   color: #0a0a0a;
 }
 
@@ -13538,10 +13538,45 @@ html:has(body.tracker-page) {
   color: var(--drv-muted);
 }
 
+/* Smaller headings and controls in the map and calculator sections. */
+.drives-roadmap .drives-section-title,
+.drives-calc .drives-section-title {
+  font-size: clamp(1.5rem, 2.2vw, 1.9rem);
+}
+
+.drives-calc .drives-section-head {
+  margin-bottom: 2rem;
+}
+
+.drives-calc .drives-section-intro {
+  font-size: 0.95rem;
+}
+
+.drives-calc .drives-field,
+.drives-calc .drives-choice {
+  margin-bottom: 1.05rem;
+}
+
+.drives-calc .drives-field label,
+.drives-calc .drives-choice legend {
+  margin-bottom: 0.4rem;
+  font-size: 0.82rem;
+}
+
+.drives-calc .drives-field input:not(.drives-range) {
+  padding: 0.6rem 0.8rem;
+  font-size: 0.92rem;
+}
+
+.drives-calc .drives-option span {
+  min-height: 2.45rem;
+  font-size: 0.85rem;
+}
+
 /* --- budget calculator --------------------------------------------------- */
 
 .drives-calc {
-  padding: 5.5rem 0;
+  padding: 4.5rem 0;
   background: #ffffff;
   scroll-margin-top: 70px;
 }
@@ -13553,7 +13588,7 @@ html:has(body.tracker-page) {
 .drives-calc-inner {
   display: grid;
   grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
-  gap: 4rem;
+  gap: 3rem;
   align-items: start;
 }
 
@@ -13625,13 +13660,13 @@ html:has(body.tracker-page) {
 .drives-calc-result {
   position: sticky;
   top: 96px;
-  padding: 2rem;
+  padding: 1.5rem;
   border: 1px solid var(--drv-line);
 }
 
 .drives-calc-total {
   margin: 0;
-  font-size: clamp(2.4rem, 4vw, 3.2rem);
+  font-size: clamp(1.8rem, 2.8vw, 2.3rem);
   font-weight: 600;
   letter-spacing: -0.04em;
   line-height: 1;
@@ -13646,7 +13681,7 @@ html:has(body.tracker-page) {
 }
 
 .drives-calc-rows {
-  margin: 1.75rem 0 1.25rem;
+  margin: 1.25rem 0 1rem;
   border-top: 1px solid var(--drv-line);
 }
 
@@ -13654,9 +13689,9 @@ html:has(body.tracker-page) {
   display: flex;
   justify-content: space-between;
   gap: 1rem;
-  padding: 0.65rem 0;
+  padding: 0.5rem 0;
   border-bottom: 1px solid var(--drv-line);
-  font-size: 0.925rem;
+  font-size: 0.85rem;
 }
 
 .drives-calc-rows dt {
@@ -13677,9 +13712,9 @@ html:has(body.tracker-page) {
 }
 
 .drives-calc-foot {
-  margin: 0 0 1.5rem;
-  font-size: 0.8125rem;
-  line-height: 1.6;
+  margin: 0 0 1.25rem;
+  font-size: 0.78rem;
+  line-height: 1.55;
   color: #8a8a94;
 }
 
