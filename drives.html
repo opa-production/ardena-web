@@ -26,7 +26,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/styles.css?v=51">
+    <link rel="stylesheet" href="/styles.css?v=52">
     <link rel="canonical" href="https://ardena.co.ke/drives">
     <link rel="icon" type="image/jpeg" href="/assets/logo.jpg">
     <script type="application/ld+json">
@@ -146,37 +146,20 @@
         <section class="host-page-hero drives-hero" aria-labelledby="drives-hero-title">
             <div class="container drives-hero-container">
                 <div class="drives-hero-copy">
-                    <a href="#featured" class="drives-hero-chip">
-                        <span class="drives-hero-chip-dot" aria-hidden="true"></span>
-                        Next drive: Samburu, 27 to 29 Nov
-                    </a>
-                    <h1 id="drives-hero-title" class="host-page-title drives-hero-title">Good roads.<br><span>Better company.</span></h1>
+                    <h1 id="drives-hero-title" class="host-page-title drives-hero-title">Good roads.<br>Better company.</h1>
                     <p class="host-page-subtitle">Road trips and drive days across Kenya, organised by ardena. Bring your own car, team up with friends, or rent one from us and roll out in convoy.</p>
                     <div class="host-page-hero-actions">
                         <a href="#join" class="host-page-cta drives-cta">Join the Samburu drive</a>
                         <a href="#drives" class="host-page-cta host-page-cta--ghost drives-cta">See all drives</a>
                     </div>
-                    <ul class="drives-hero-perks" aria-label="Every drive includes">
-                        <li>Free to join</li>
-                        <li>A t-shirt for everyone</li>
-                        <li>Snacks for the road</li>
-                    </ul>
                 </div>
 
                 <div class="drives-hero-art">
-                    <svg class="drives-scene" id="drivesScene" viewBox="0 0 600 520" role="img" aria-labelledby="drivesSceneTitle">
+                    <svg class="drives-scene" id="drivesScene" viewBox="0 50 600 440" role="img" aria-labelledby="drivesSceneTitle">
                         <title id="drivesSceneTitle">A convoy of little cars winding along a road towards a pin marked Samburu, past acacia trees, a giraffe and a flat topped mountain at sunset.</title>
                         <defs>
-                            <linearGradient id="drivesSky" x1="0" y1="0" x2="0" y2="1">
-                                <stop offset="0" stop-color="#cfc6f4"/>
-                                <stop offset="0.55" stop-color="#ead9f0"/>
-                                <stop offset="1" stop-color="#ffe0c2"/>
-                            </linearGradient>
-                            <radialGradient id="drivesSunGlow" cx="0.5" cy="0.5" r="0.5">
-                                <stop offset="0" stop-color="#ffd08a" stop-opacity="0.9"/>
-                                <stop offset="1" stop-color="#ffd08a" stop-opacity="0"/>
-                            </radialGradient>
-                            <clipPath id="drivesFrame"><rect x="0" y="0" width="600" height="520"/></clipPath>
+                            <!-- The landscape sits in a soft oval so it floats on the page with no box around it. -->
+                            <clipPath id="drivesLand"><ellipse cx="300" cy="300" rx="300" ry="185"/></clipPath>
                             <symbol id="drivesCar" viewBox="-20 -14 40 22" overflow="visible">
                                 <path d="M-17 3 L-17 -2 Q-17 -5 -14 -5 L-8 -5 L-4 -11 Q-3.2 -12 -2 -12 L7 -12 Q8.4 -12 9.2 -11 L13 -5 L15.5 -4.4 Q18 -3.6 18 -1 L18 3 Z" fill="currentColor"/>
                                 <path d="M-2.4 -10 L2.2 -10 L2.2 -5.4 L-6 -5.4 Z M3.8 -10 L7.6 -10 L10.6 -5.4 L3.8 -5.4 Z" fill="#e9f3ff"/>
@@ -189,31 +172,27 @@
                             </symbol>
                         </defs>
 
-                        <g clip-path="url(#drivesFrame)">
-                            <rect width="600" height="520" fill="url(#drivesSky)"/>
+                        <!-- clouds and birds float free of the landscape -->
+                        <g class="drives-cloud drives-cloud--a" fill="#e6e2f6">
+                            <ellipse cx="110" cy="112" rx="44" ry="15"/>
+                            <ellipse cx="92" cy="102" rx="22" ry="17"/>
+                            <ellipse cx="124" cy="98" rx="26" ry="21"/>
+                        </g>
+                        <g class="drives-cloud drives-cloud--b" fill="#ece9f8">
+                            <ellipse cx="470" cy="132" rx="34" ry="11"/>
+                            <ellipse cx="458" cy="123" rx="17" ry="13"/>
+                            <ellipse cx="482" cy="120" rx="19" ry="15"/>
+                        </g>
+                        <g class="drives-birds" fill="none" stroke="#2f2455" stroke-width="2" stroke-linecap="round">
+                            <path class="drives-bird" d="M250 150 q6 -6 12 0 q6 -6 12 0"/>
+                            <path class="drives-bird drives-bird--late" d="M284 132 q5 -5 10 0 q5 -5 10 0"/>
+                            <path class="drives-bird" d="M226 124 q4 -4 8 0 q4 -4 8 0"/>
+                        </g>
 
+                        <g clip-path="url(#drivesLand)">
                             <!-- sun -->
-                            <circle class="drives-sun-glow" cx="410" cy="246" r="110" fill="url(#drivesSunGlow)"/>
+                            <circle class="drives-sun-glow" cx="410" cy="246" r="78" fill="#ffd9a3" opacity="0.45"/>
                             <circle class="drives-sun" cx="410" cy="246" r="52" fill="#ffb547"/>
-
-                            <!-- clouds -->
-                            <g class="drives-cloud drives-cloud--a" fill="#ffffff" opacity="0.92">
-                                <ellipse cx="110" cy="92" rx="44" ry="15"/>
-                                <ellipse cx="92" cy="82" rx="22" ry="17"/>
-                                <ellipse cx="124" cy="78" rx="26" ry="21"/>
-                            </g>
-                            <g class="drives-cloud drives-cloud--b" fill="#ffffff" opacity="0.8">
-                                <ellipse cx="420" cy="122" rx="34" ry="11"/>
-                                <ellipse cx="408" cy="113" rx="17" ry="13"/>
-                                <ellipse cx="432" cy="110" rx="19" ry="15"/>
-                            </g>
-
-                            <!-- birds -->
-                            <g class="drives-birds" fill="none" stroke="#2f2455" stroke-width="2" stroke-linecap="round">
-                                <path class="drives-bird" d="M250 150 q6 -6 12 0 q6 -6 12 0"/>
-                                <path class="drives-bird drives-bird--late" d="M284 132 q5 -5 10 0 q5 -5 10 0"/>
-                                <path class="drives-bird" d="M226 124 q4 -4 8 0 q4 -4 8 0"/>
-                            </g>
 
                             <!-- flat topped mountain -->
                             <path d="M140 304 L232 182 Q240 172 254 171 L330 168 Q346 168 354 180 L452 304 Z" fill="#9a8ade"/>
@@ -232,8 +211,8 @@
                                 <ellipse cx="88" cy="267" rx="30" ry="7"/>
                                 <path d="M196 300 l1.4 -16 l-6 -5 l2 -1 l5 4 l1 -4 l2 0 l-1 6 l5 -5 l2 1 l-6 6 l-1 14 Z"/>
                                 <ellipse cx="198" cy="278" rx="19" ry="4.5"/>
-                                <path d="M548 470 l4 -60 l-18 -16 l5 -2 l14 11 l2 -14 l6 0 l-2 20 l14 -17 l6 2 l-18 22 l-3 54 Z"/>
-                                <ellipse cx="554" cy="390" rx="62" ry="14"/>
+                                <path d="M108 384 l2 -34 l-11 -10 l3 -1 l9 8 l1 -9 l4 0 l-1 12 l9 -10 l3 1 l-11 13 l-2 30 Z"/>
+                                <ellipse cx="111" cy="341" rx="38" ry="8.5"/>
                             </g>
 
                             <!-- giraffe -->
@@ -295,21 +274,11 @@
                                     <circle cx="552" cy="268" r="6.5" fill="#ffffff"/>
                                 </g>
                             </g>
-                            <g class="drives-tag">
-                                <rect x="446" y="214" width="84" height="26" fill="#2f2455"/>
-                                <text x="488" y="231.5" text-anchor="middle" fill="#ffffff" font-family="Space Grotesk, sans-serif" font-size="12.5" font-weight="600" letter-spacing="0.08em">SAMBURU</text>
-                            </g>
+                        </g>
 
-                            <!-- stamp -->
-                            <g class="drives-stamp" transform="translate(478 26) rotate(7)">
-                                <rect width="96" height="112" fill="#ffffff"/>
-                                <rect x="2" y="2" width="92" height="108" fill="none" stroke="#cfc6f4" stroke-width="4" stroke-dasharray="4 4"/>
-                                <rect x="10" y="10" width="76" height="66" fill="#007ffa"/>
-                                <circle cx="62" cy="34" r="11" fill="#ffd36b"/>
-                                <path d="M10 76 L10 62 Q30 50 48 60 T86 56 L86 76 Z" fill="#0067d1"/>
-                                <text x="48" y="92" text-anchor="middle" fill="#2f2455" font-family="Space Grotesk, sans-serif" font-size="10" font-weight="700" letter-spacing="0.12em">ARDENA</text>
-                                <text x="48" y="104" text-anchor="middle" fill="#6d5bd0" font-family="Space Grotesk, sans-serif" font-size="8.5" font-weight="600" letter-spacing="0.1em">DRIVES 01</text>
-                            </g>
+                        <g class="drives-tag">
+                            <rect x="446" y="214" width="84" height="26" fill="#2f2455"/>
+                            <text x="488" y="231.5" text-anchor="middle" fill="#ffffff" font-family="Space Grotesk, sans-serif" font-size="12.5" font-weight="600" letter-spacing="0.08em">SAMBURU</text>
                         </g>
                     </svg>
                 </div>
@@ -319,7 +288,6 @@
         <section class="drives-featured" id="featured" aria-labelledby="drives-featured-title">
             <div class="container">
                 <div class="drives-section-head">
-                    <p class="drives-eyebrow">Featured drive</p>
                     <h2 id="drives-featured-title" class="drives-section-title">Samburu is calling. Will you answer?</h2>
                 </div>
 
@@ -330,7 +298,6 @@
                     </figure>
 
                     <div class="drives-feature-body">
-                        <p class="drives-feature-kicker">Road trip <span aria-hidden="true">·</span> 3 days <span aria-hidden="true">·</span> Open</p>
                         <h3 class="drives-feature-title">Nairobi to Samburu</h3>
                         <p class="drives-feature-lead">Three days on the road through Embu, Meru and Isiolo to Samburu, then home on the A2. One road, a convoy of good people and plenty of sunsets.</p>
 
@@ -343,21 +310,26 @@
                                 <dt>Departing</dt>
                                 <dd>Nairobi</dd>
                             </div>
-                            <div class="drives-fact drives-fact--accent">
+                            <div class="drives-fact">
                                 <dt>Cost</dt>
                                 <dd>Free to join</dd>
                             </div>
                         </dl>
 
-                        <div class="drives-route" aria-label="Route">
-                            <p class="drives-label">Route</p>
-                            <ol class="drives-route-list">
-                                <li>Nairobi</li>
-                                <li>Embu</li>
-                                <li>Meru</li>
-                                <li>Isiolo</li>
-                                <li class="is-destination">Samburu</li>
-                                <li class="is-return">Home via A2</li>
+                        <div class="drives-route">
+                            <p class="drives-label" id="drivesRouteLabel">Route</p>
+                            <ol class="drives-route-list" aria-labelledby="drivesRouteLabel">
+                                <li class="drives-stop">Nairobi</li>
+                                <li class="drives-hop" aria-hidden="true"><svg viewBox="0 0 40 18"><path class="drives-hop-line" d="M2 13 Q21 -3 38 11"/><path d="M36.4 5.3 L38 11 L32 10.5"/></svg></li>
+                                <li class="drives-stop">Embu</li>
+                                <li class="drives-hop drives-hop--down" aria-hidden="true"><svg viewBox="0 0 40 18"><path class="drives-hop-line" d="M2 13 Q21 -3 38 11"/><path d="M36.4 5.3 L38 11 L32 10.5"/></svg></li>
+                                <li class="drives-stop">Meru</li>
+                                <li class="drives-hop" aria-hidden="true"><svg viewBox="0 0 40 18"><path class="drives-hop-line" d="M2 13 Q21 -3 38 11"/><path d="M36.4 5.3 L38 11 L32 10.5"/></svg></li>
+                                <li class="drives-stop">Isiolo</li>
+                                <li class="drives-hop drives-hop--down" aria-hidden="true"><svg viewBox="0 0 40 18"><path class="drives-hop-line" d="M2 13 Q21 -3 38 11"/><path d="M36.4 5.3 L38 11 L32 10.5"/></svg></li>
+                                <li class="drives-stop is-destination">Samburu</li>
+                                <li class="drives-hop drives-hop--return" aria-hidden="true"><svg viewBox="0 0 40 18"><path class="drives-hop-line" d="M2 13 Q21 -3 38 11"/><path d="M36.4 5.3 L38 11 L32 10.5"/></svg></li>
+                                <li class="drives-stop is-return">Home via A2</li>
                             </ol>
                         </div>
 
@@ -365,15 +337,15 @@
                             <p class="drives-label">Everyone on the drive gets</p>
                             <ul class="drives-kit-list">
                                 <li>
-                                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="miter" aria-hidden="true"><path d="M8 3 L3 6 L5 10 L7 9 V21 H17 V9 L19 10 L21 6 L16 3 Q12 6 8 3 Z"/></svg>
+                                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="miter" aria-hidden="true"><path d="M8 3 L3 6 L5 10 L7 9 V21 H17 V9 L19 10 L21 6 L16 3 Q12 6 8 3 Z"/></svg>
                                     <span>An ardena t-shirt</span>
                                 </li>
                                 <li>
-                                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M6 4 H18 L17 20 H7 Z"/><path d="M6 8 H18"/><path d="M10 12 L14 16 M14 12 L10 16"/></svg>
+                                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M6 4 H18 L17 20 H7 Z"/><path d="M6 8 H18"/><path d="M10 12 L14 16 M14 12 L10 16"/></svg>
                                     <span>Snacks for the road</span>
                                 </li>
                                 <li>
-                                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 15 V12 L6 11 L8.5 7 H15.5 L18 11 L21 12 V15 Z"/><circle cx="7.5" cy="16" r="1.8"/><circle cx="16.5" cy="16" r="1.8"/></svg>
+                                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 15 V12 L6 11 L8.5 7 H15.5 L18 11 L21 12 V15 Z"/><circle cx="7.5" cy="16" r="1.8"/><circle cx="16.5" cy="16" r="1.8"/></svg>
                                     <span>ardena merch for the car</span>
                                 </li>
                             </ul>
@@ -393,52 +365,32 @@
         <section class="drives-all" id="drives" aria-labelledby="drives-all-title">
             <div class="container">
                 <div class="drives-section-head drives-section-head--row">
-                    <div>
-                        <p class="drives-eyebrow">The calendar</p>
-                        <h2 id="drives-all-title" class="drives-section-title">All drives</h2>
-                    </div>
+                    <h2 id="drives-all-title" class="drives-section-title">All drives</h2>
                     <p class="drives-section-intro">Every drive we run lands here. Pick one, share a few details and we'll take it from there.</p>
                 </div>
 
                 <!-- One <article class="drives-card"> per drive. The grid lines them up whatever the count. -->
                 <div class="drives-grid">
                     <article class="drives-card">
-                        <a href="#featured" class="drives-card-media" tabindex="-1" aria-hidden="true">
-                            <img src="/assets/events/samburu.jpeg" alt="" width="1279" height="1600" loading="lazy" decoding="async">
-                            <span class="drives-card-status">Open</span>
-                        </a>
+                        <img class="drives-card-img" src="/assets/events/samburu.jpeg" alt="" width="1279" height="1600" loading="lazy" decoding="async">
                         <div class="drives-card-body">
-                            <div class="drives-card-date" aria-hidden="true">
-                                <span class="drives-card-day">27</span>
-                                <span class="drives-card-month">Nov</span>
-                            </div>
-                            <div class="drives-card-info">
-                                <h3 class="drives-card-title"><a href="#featured">Nairobi to Samburu</a></h3>
-                                <p class="drives-card-meta">27 to 29 Nov 2026 <span aria-hidden="true">·</span> 3 days</p>
-                                <p class="drives-card-meta">Via Embu, Meru and Isiolo</p>
-                            </div>
+                            <h3 class="drives-card-title">Nairobi to Samburu</h3>
+                            <p class="drives-card-meta">27 to 29 Nov 2026, via Embu, Meru and Isiolo</p>
                         </div>
                         <div class="drives-card-foot">
                             <span>Free to join</span>
-                            <a href="#join" class="drives-card-cta">Join<span aria-hidden="true"> &rarr;</span><span class="visually-hidden"> the Samburu drive</span></a>
+                            <a href="#join" class="drives-card-cta">Join<span class="visually-hidden"> the Samburu drive</span></a>
                         </div>
                     </article>
 
-                    <article class="drives-card drives-card--next">
-                        <div class="drives-card-next-art" aria-hidden="true">
-                            <svg viewBox="0 0 120 60" width="120" height="60" fill="none" stroke="currentColor" stroke-width="2.2">
-                                <path d="M4 52 C 30 52 34 20 60 22 S 92 40 112 10" stroke-dasharray="5 6"/>
-                                <circle cx="112" cy="10" r="5" fill="currentColor" stroke="none"/>
-                            </svg>
-                        </div>
-                        <div class="drives-card-body drives-card-body--stack">
-                            <p class="drives-eyebrow">Coming up</p>
+                    <article class="drives-card">
+                        <div class="drives-card-body">
                             <h3 class="drives-card-title">Where should we drive next?</h3>
                             <p class="drives-card-meta">New routes are in the works. Tell us where you'd love to go and we might plan it.</p>
                         </div>
                         <div class="drives-card-foot">
                             <span>Suggest a route</span>
-                            <a href="https://wa.me/254707856829?text=Hi%20ardena%2C%20I%27d%20love%20a%20drive%20to%20" class="drives-card-cta" target="_blank" rel="noopener noreferrer">WhatsApp us<span aria-hidden="true"> &rarr;</span></a>
+                            <a href="https://wa.me/254707856829?text=Hi%20ardena%2C%20I%27d%20love%20a%20drive%20to%20" class="drives-card-cta" target="_blank" rel="noopener noreferrer">WhatsApp us</a>
                         </div>
                     </article>
                 </div>
@@ -448,7 +400,6 @@
         <section class="drives-how" aria-labelledby="drives-how-title">
             <div class="container">
                 <div class="drives-section-head">
-                    <p class="drives-eyebrow">The house rules</p>
                     <h2 id="drives-how-title" class="drives-section-title">How an ardena drive works</h2>
                 </div>
                 <ol class="drives-how-list">
@@ -480,7 +431,6 @@
             <div class="container">
                 <div class="drives-join-inner">
                     <div class="drives-join-intro">
-                        <p class="drives-eyebrow drives-eyebrow--light">Samburu, 27 to 29 Nov</p>
                         <h2 id="drives-join-title" class="drives-join-title">Join the drive</h2>
                         <p class="drives-join-text">Share a few details and we'll add you to the WhatsApp group for the trip.</p>
                         <ul class="drives-join-points">
