@@ -13047,315 +13047,11 @@ html:has(body.tracker-page) {
 @keyframes drives-shadow { 50% { transform: scale(0.6); opacity: 0.12; } }
 @keyframes drives-pop { from { opacity: 0; transform: translateY(8px) scale(0.8); } to { opacity: 1; transform: none; } }
 
-/* --- featured ------------------------------------------------------------ */
-/* Sized to sit in one screen on a laptop: poster, details, and a vertical
-   route column on the right. */
-
-.drives-featured {
-  padding: 4.5rem 0;
-  background: #ffffff;
-  scroll-margin-top: 70px;
-}
-
-.drives-featured-heading {
-  margin-bottom: 2.25rem;
-}
-
-.drives-feature {
-  display: grid;
-  grid-template-columns: minmax(0, 340px) minmax(0, 1fr) minmax(0, 200px);
-  grid-template-areas: "poster body route";
-  gap: 3.5rem;
-  align-items: start;
-}
-
-.drives-feature-media {
-  grid-area: poster;
-  position: relative;
-  margin: 0;
-}
-
-.drives-feature-media img {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
-.drives-countdown {
-  margin-top: 0.85rem;
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: #0a0a0a;
-}
-
-.drives-feature-body {
-  grid-area: body;
-  min-width: 0;
-}
-
-.drives-feature-title {
-  margin: 0 0 0.75rem;
-  font-size: clamp(1.6rem, 2.3vw, 2rem);
-  font-weight: 600;
-  letter-spacing: -0.03em;
-  line-height: 1.1;
-  color: #0a0a0a;
-}
-
-.drives-feature-lead {
-  margin: 0 0 1.5rem;
-  max-width: 540px;
-  font-size: 1rem;
-  line-height: 1.7;
-  color: #4a4a4f;
-}
-
-.drives-facts {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1.25rem;
-  margin: 0 0 1.5rem;
-  padding: 1rem 0;
-  border-top: 1px solid var(--drv-line);
-  border-bottom: 1px solid var(--drv-line);
-}
-
-.drives-fact dt {
-  margin: 0 0 0.3rem;
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--drv-muted);
-}
-
-.drives-fact dd {
-  margin: 0;
-  font-size: 1rem;
-  font-weight: 600;
-  color: #0a0a0a;
-}
-
-/* What everyone gets: a quiet vertical list with outlined icons. */
-.drives-kit-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
-  margin: 0 0 1.5rem;
-  padding: 0;
-  list-style: none;
-}
-
-.drives-kit-item {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.drives-kit-icon {
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 42px;
-  height: 42px;
-  border: 1px solid var(--drv-line);
-  color: #0a0a0a;
-}
-
-.drives-kit-icon svg {
-  width: 20px;
-  height: 20px;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.6;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-.drives-kit-text {
-  display: flex;
-  flex-direction: column;
-  gap: 0.15rem;
-}
-
-.drives-kit-text strong {
-  font-size: 0.975rem;
-  font-weight: 600;
-  color: #0a0a0a;
-}
-
-.drives-kit-text span {
-  font-size: 0.85rem;
-  color: var(--drv-muted);
-}
-
-.drives-feature-note {
-  margin: 0 0 1.5rem;
-  font-size: 0.925rem;
-  line-height: 1.6;
-  color: var(--drv-muted);
-}
-
-.drives-feature-actions {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 1rem 1.75rem;
-}
-
-.drives-link {
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: #0a0a0a;
-  text-decoration: underline;
-  text-underline-offset: 4px;
-}
-
-.drives-link:hover {
-  color: var(--drv-blue-deep);
-}
-
-/* Route: a vertical run of stops joined by curved arrows that swing left
-   and right, like a road winding north. Neutral ink only. */
-.drives-route {
-  grid-area: route;
-  padding-left: 1.75rem;
-  border-left: 1px solid var(--drv-line);
-}
-
-.drives-route-list {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.drives-stop {
-  position: relative;
-  display: flex;
-  align-items: baseline;
-  gap: 0.6rem;
-  padding-left: 1.6rem;
-  font-size: 0.975rem;
-  font-weight: 500;
-  line-height: 1.4;
-  color: #0a0a0a;
-}
-
-.drives-stop::before {
-  content: "";
-  position: absolute;
-  left: 4px;
-  top: 0.5em;
-  width: 8px;
-  height: 8px;
-  box-sizing: border-box;
-  border: 1.5px solid #0a0a0a;
-  border-radius: 50%;
-}
-
-.drives-stop-note {
-  font-size: 0.75rem;
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  color: var(--drv-muted);
-}
-
-.drives-stop.is-destination {
-  font-weight: 700;
-}
-
-.drives-stop.is-destination::before {
-  background: #0a0a0a;
-}
-
-.drives-stop.is-return {
-  color: var(--drv-muted);
-}
-
-.drives-stop.is-return::before {
-  border-color: #a8a8b0;
-}
-
-.drives-hop {
-  display: block;
-  width: 20px;
-  height: 30px;
-  margin: 4px 0 4px -2px;
-  color: #0a0a0a;
-}
-
-.drives-hop svg {
-  display: block;
-  width: 20px;
-  height: 30px;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.6;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  overflow: visible;
-}
-
-.drives-hop--flip svg {
-  transform: scaleX(-1);
-}
-
-.drives-hop--return {
-  color: #a8a8b0;
-}
-
-.drives-hop-line {
-  stroke-dasharray: 4 3;
-  animation: drives-march 1.6s linear infinite;
-}
-
-@keyframes drives-march { to { stroke-dashoffset: -14; } }
-
-@media (max-width: 1100px) {
-  .drives-feature {
-    grid-template-columns: minmax(0, 320px) minmax(0, 1fr);
-    grid-template-areas:
-      "poster body"
-      "route body";
-    gap: 2.5rem 3rem;
-  }
-
-  .drives-route {
-    padding-left: 0;
-    border-left: none;
-  }
-}
-
-@media (max-width: 760px) {
-  .drives-featured {
-    padding: 4rem 0;
-  }
-
-  .drives-feature {
-    grid-template-columns: minmax(0, 1fr);
-    grid-template-areas:
-      "poster"
-      "body"
-      "route";
-    gap: 2.5rem;
-  }
-
-  .drives-feature-media {
-    max-width: 420px;
-  }
-
-  .drives-facts {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 0.9rem;
-  }
-}
-
 /* --- route map ----------------------------------------------------------- */
 
 .drives-roadmap {
   padding: 4.5rem 0;
-  background: #f5f5f7;
+  background: #ffffff;
   scroll-margin-top: 70px;
 }
 
@@ -13436,7 +13132,7 @@ html:has(body.tracker-page) {
 
 .drives-map-town--end circle {
   fill: #0a0a0a;
-  stroke: #f5f5f7;
+  stroke: #ffffff;
   stroke-width: 3;
 }
 
@@ -13577,7 +13273,7 @@ html:has(body.tracker-page) {
 
 .drives-calc {
   padding: 4.5rem 0;
-  background: #ffffff;
+  background: #f5f5f7;
   scroll-margin-top: 70px;
 }
 
@@ -13752,6 +13448,145 @@ html:has(body.tracker-page) {
 
   .drives-calc-result {
     padding: 1.5rem 1.25rem;
+  }
+}
+
+/* --- FAQ ---------------------------------------------------------------- */
+
+.drives-faq {
+  padding: 4.5rem 0;
+  background: #ffffff;
+  scroll-margin-top: 70px;
+}
+
+.drives-faq-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: 4rem;
+  align-items: start;
+}
+
+.drives-faq .drives-section-title {
+  font-size: clamp(1.5rem, 2.2vw, 1.9rem);
+}
+
+.drives-faq .drives-section-intro {
+  margin-top: 0.75rem;
+  font-size: 0.95rem;
+}
+
+.drives-faq .drives-section-intro a,
+.drives-faq-body a {
+  color: #0a0a0a;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.drives-faq-list {
+  border-top: 1px solid var(--drv-line);
+}
+
+.drives-faq-item {
+  border-bottom: 1px solid var(--drv-line);
+}
+
+.drives-faq-item summary {
+  position: relative;
+  padding: 1.1rem 2.5rem 1.1rem 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #0a0a0a;
+  list-style: none;
+  cursor: pointer;
+}
+
+.drives-faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.drives-faq-item summary::before,
+.drives-faq-item summary::after {
+  content: "";
+  position: absolute;
+  right: 0.25rem;
+  top: 50%;
+  width: 14px;
+  height: 1.5px;
+  background: #0a0a0a;
+  transition: transform 0.2s ease;
+}
+
+.drives-faq-item summary::after {
+  transform: rotate(90deg);
+}
+
+.drives-faq-item[open] summary::after {
+  transform: rotate(0deg);
+}
+
+.drives-faq-item summary:focus-visible {
+  outline: 2px solid var(--drv-blue);
+  outline-offset: 2px;
+}
+
+.drives-faq-body {
+  padding: 0 2.5rem 1.25rem 0;
+}
+
+.drives-faq-body p {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: #4a4a4f;
+}
+
+.drives-faq-goodies {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.drives-faq-goodies li {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  font-size: 0.95rem;
+  color: #4a4a4f;
+}
+
+.drives-faq-goodies strong {
+  color: #0a0a0a;
+  font-weight: 600;
+}
+
+.drives-kit-icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid var(--drv-line);
+  color: #0a0a0a;
+}
+
+.drives-kit-icon svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+@media (max-width: 900px) {
+  .drives-faq-inner {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2rem;
   }
 }
 
