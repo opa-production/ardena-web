@@ -12937,7 +12937,7 @@ html:has(body.tracker-page) {
   }
 
   .drives-hero-container .host-page-title {
-    font-size: clamp(2.5rem, 4.4vw, 4rem);
+    font-size: clamp(2.25rem, 3.4vw, 3.2rem);
   }
 
   .drives-hero-art {
