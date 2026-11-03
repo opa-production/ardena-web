@@ -26,7 +26,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/styles.css?v=54">
+    <link rel="stylesheet" href="/styles.css?v=55">
     <link rel="canonical" href="https://ardena.co.ke/drives">
     <link rel="icon" type="image/jpeg" href="/assets/logo.jpg">
     <script type="application/ld+json">
@@ -150,7 +150,7 @@
                     <p class="host-page-subtitle">Road trips and drive days across Kenya, organised by ardena. Bring your own car, team up with friends, or rent one from us and roll out in convoy.</p>
                     <div class="host-page-hero-actions">
                         <a href="#join" class="host-page-cta drives-cta">Join the Samburu drive</a>
-                        <a href="#drives" class="host-page-cta host-page-cta--ghost drives-cta">See all drives</a>
+                        <a href="#calculator" class="host-page-cta host-page-cta--ghost drives-cta">Plan your budget</a>
                     </div>
                 </div>
 
@@ -285,10 +285,8 @@
             </div>
         </section>
 
-        <section class="drives-featured" id="featured" aria-labelledby="drives-featured-title">
+        <section class="drives-featured" id="featured" aria-labelledby="drives-feature-title">
             <div class="container">
-                <h2 id="drives-featured-title" class="drives-section-title drives-featured-heading">Samburu is calling. Will you answer?</h2>
-
                 <article class="drives-feature">
                     <figure class="drives-feature-media">
                         <img src="/assets/events/samburu.jpeg" alt="Samburu road trip poster: 27 to 29 November 2026, departing Nairobi, route through Embu, Meru and Isiolo." width="1279" height="1600" loading="lazy" decoding="async">
@@ -296,8 +294,8 @@
                     </figure>
 
                     <div class="drives-feature-body">
-                        <h3 class="drives-feature-title">Nairobi to Samburu</h3>
-                        <p class="drives-feature-lead">Three days on the road through Embu, Meru and Isiolo to Samburu, then home on the A2. One road, a convoy of good people and plenty of sunsets.</p>
+                        <h2 id="drives-feature-title" class="drives-feature-title">Nairobi to Samburu</h2>
+                        <p class="drives-feature-lead">Three days in convoy through Embu, Meru and Isiolo, home on the A2.</p>
 
                         <dl class="drives-facts">
                             <div class="drives-fact">
@@ -319,19 +317,17 @@
                         <ul class="drives-kit-list">
                             <li class="drives-kit-item">
                                 <span class="drives-kit-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"/></svg></span>
-                                <span class="drives-kit-text"><strong>An ardena t-shirt</strong><span>One for every person, in your size</span></span>
+                                <span class="drives-kit-text"><strong>An ardena t-shirt</strong></span>
                             </li>
                             <li class="drives-kit-item">
                                 <span class="drives-kit-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M11 17h.01"/><path d="M11.496 2c.324-.016.558.292.529.615a4 4 0 004.235 4.368.713.713 0 01.758.757 4 4 0 004.366 4.237c.323-.03.63.204.614.527a10 10 0 01-2.915 6.566A1 1 0 114.93 4.918 10 10 0 0111.496 2"/><path d="M12 12h.01"/><path d="M16 16h.01"/><path d="M16 3h.01"/><path d="M21 4h.01"/><path d="M21 8h.01"/><path d="M7 14h.01"/><path d="M9 8h.01"/></svg></span>
-                                <span class="drives-kit-text"><strong>Snacks for the road</strong><span>For everyone in the convoy</span></span>
+                                <span class="drives-kit-text"><strong>Snacks for the road</strong></span>
                             </li>
                             <li class="drives-kit-item">
                                 <span class="drives-kit-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><path d="M9 17h6"/><circle cx="17" cy="17" r="2"/></svg></span>
-                                <span class="drives-kit-text"><strong>ardena merch for the car</strong><span>Handed out on the day</span></span>
+                                <span class="drives-kit-text"><strong>ardena merch for the car</strong></span>
                             </li>
                         </ul>
-
-                        <p class="drives-feature-note">No car? Rent one from ardena from KSh 3,500. Drivers are available at a small fee.</p>
 
                         <div class="drives-feature-actions">
                             <a href="#join" class="host-page-cta">Count me in</a>
@@ -359,37 +355,160 @@
             </div>
         </section>
 
-        <section class="drives-all" id="drives" aria-labelledby="drives-all-title">
+        <section class="drives-roadmap" id="road" aria-labelledby="drives-road-title">
             <div class="container">
-                <div class="drives-section-head drives-section-head--row">
-                    <h2 id="drives-all-title" class="drives-section-title">All drives</h2>
-                    <p class="drives-section-intro">Every drive we run lands here. Pick one, share a few details and we'll take it from there.</p>
+                <div class="drives-road-inner">
+                    <div class="drives-map-wrap">
+                        <svg class="drives-map" viewBox="0 20 360 490" role="img" aria-labelledby="drivesMapTitle">
+                            <title id="drivesMapTitle">Route map: out from Nairobi through Embu, Meru and Isiolo to Samburu, back on the A2 through Nanyuki and Karatina, looping around Mount Kenya.</title>
+
+                            <!-- equator -->
+                            <line x1="16" y1="195" x2="344" y2="195" class="drives-map-equator"/>
+                            <text x="16" y="210" class="drives-map-note">Equator</text>
+
+                            <!-- Mount Kenya -->
+                            <path d="M180 240 L192 220 L204 240 Z" class="drives-map-peak"/>
+                            <text x="192" y="256" text-anchor="middle" class="drives-map-note">Mt Kenya</text>
+
+                            <!-- back on the A2 -->
+                            <path d="M260 118 L132 193 L147 301 L182 356" class="drives-map-back"/>
+                            <!-- out via Embu and Meru -->
+                            <path d="M70 479 L132 422 L182 356 L227 312 L277 268 L277 184 L260 118 L282 52" class="drives-map-out"/>
+
+                            <!-- moving dot around the loop -->
+                            <circle r="5" class="drives-map-car">
+                                <animateMotion dur="14s" repeatCount="indefinite" path="M70 479 L132 422 L182 356 L227 312 L277 268 L277 184 L260 118 L282 52 L260 118 L132 193 L147 301 L182 356 L132 422 L70 479"/>
+                            </circle>
+
+                            <!-- towns -->
+                            <g class="drives-map-town"><circle cx="227" cy="312" r="4"/><text x="237" y="316">Embu</text></g>
+                            <g class="drives-map-town"><circle cx="277" cy="184" r="4"/><text x="287" y="188">Meru</text></g>
+                            <g class="drives-map-town"><circle cx="260" cy="118" r="4"/><text x="270" y="122">Isiolo</text></g>
+                            <g class="drives-map-town drives-map-town--back"><circle cx="132" cy="193" r="4"/><text x="122" y="185" text-anchor="end">Nanyuki</text></g>
+                            <g class="drives-map-town drives-map-town--back"><circle cx="147" cy="301" r="4"/><text x="137" y="305" text-anchor="end">Karatina</text></g>
+                            <g class="drives-map-town drives-map-town--end"><circle cx="70" cy="479" r="7"/><text x="84" y="484">Nairobi</text></g>
+                            <g class="drives-map-town drives-map-town--end"><circle cx="282" cy="52" r="7"/><text x="296" y="57">Samburu</text></g>
+                        </svg>
+                        <ul class="drives-map-legend">
+                            <li><span class="drives-map-key"></span>Out via Embu and Meru</li>
+                            <li><span class="drives-map-key drives-map-key--back"></span>Back on the A2</li>
+                        </ul>
+                    </div>
+
+                    <div class="drives-road-info">
+                        <h2 id="drives-road-title" class="drives-section-title">About 700 km of road</h2>
+                        <p class="drives-road-lead">A loop around Mount Kenya, crossing the equator twice.</p>
+
+                        <dl class="drives-road-stats">
+                            <div><dt>Out</dt><dd>365 km</dd></div>
+                            <div><dt>Back</dt><dd>330 km</dd></div>
+                            <div><dt>Days</dt><dd>3</dd></div>
+                        </dl>
+
+                        <ol class="drives-legs">
+                            <li><span>Nairobi to Embu</span><span>130 km</span></li>
+                            <li><span>Embu to Meru</span><span>125 km</span></li>
+                            <li><span>Meru to Isiolo</span><span>60 km</span></li>
+                            <li><span>Isiolo to Samburu</span><span>50 km</span></li>
+                            <li class="is-back"><span>Samburu to Nanyuki</span><span>130 km</span></li>
+                            <li class="is-back"><span>Nanyuki to Nairobi</span><span>200 km</span></li>
+                        </ol>
+                        <p class="drives-road-foot">Distances are approximate. We share the exact route in the WhatsApp group.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="drives-calc" id="calculator" aria-labelledby="drives-calc-title">
+            <div class="container">
+                <div class="drives-section-head">
+                    <h2 id="drives-calc-title" class="drives-section-title">Plan your trip budget</h2>
+                    <p class="drives-section-intro drives-calc-intro">Set your car and see roughly what fuel and hire will cost.</p>
                 </div>
 
-                <!-- One <article class="drives-card"> per drive. The grid lines them up whatever the count. -->
-                <div class="drives-grid">
-                    <article class="drives-card">
-                        <img class="drives-card-img" src="/assets/events/samburu.jpeg" alt="" width="1279" height="1600" loading="lazy" decoding="async">
-                        <div class="drives-card-body">
-                            <h3 class="drives-card-title">Nairobi to Samburu</h3>
-                            <p class="drives-card-meta">27 to 29 Nov 2026, via Embu, Meru and Isiolo</p>
+                <div class="drives-calc-inner">
+                    <form class="drives-calc-form" id="drivesCalc" onsubmit="return false">
+                        <div class="drives-field">
+                            <label for="calcCc">Engine size <output class="drives-calc-out" id="calcCcOut" for="calcCc">1,500 cc</output></label>
+                            <input type="range" id="calcCc" min="800" max="5000" step="100" value="1500" class="drives-range">
+                            <div class="drives-range-scale" aria-hidden="true"><span>800 cc</span><span>5,000 cc</span></div>
                         </div>
-                        <div class="drives-card-foot">
-                            <span>Free to join</span>
-                            <a href="#join" class="drives-card-cta">Join<span class="visually-hidden"> the Samburu drive</span></a>
-                        </div>
-                    </article>
 
-                    <article class="drives-card">
-                        <div class="drives-card-body">
-                            <h3 class="drives-card-title">Where should we drive next?</h3>
-                            <p class="drives-card-meta">New routes are in the works. Tell us where you'd love to go and we might plan it.</p>
+                        <fieldset class="drives-choice">
+                            <legend>Fuel</legend>
+                            <div class="drives-options drives-options--2">
+                                <label class="drives-option"><input type="radio" name="calc_fuel" value="petrol" checked><span>Petrol</span></label>
+                                <label class="drives-option"><input type="radio" name="calc_fuel" value="diesel"><span>Diesel</span></label>
+                            </div>
+                        </fieldset>
+
+                        <div class="drives-form-row">
+                            <div class="drives-field">
+                                <label for="calcPrice">Pump price per litre (KSh)</label>
+                                <input type="number" id="calcPrice" min="50" max="500" step="1" value="185" inputmode="decimal">
+                            </div>
+                            <div class="drives-field">
+                                <label for="calcLocal">Driving around Samburu (km)</label>
+                                <input type="number" id="calcLocal" min="0" max="500" step="10" value="50" inputmode="numeric">
+                            </div>
                         </div>
-                        <div class="drives-card-foot">
-                            <span>Suggest a route</span>
-                            <a href="https://wa.me/254707856829?text=Hi%20ardena%2C%20I%27d%20love%20a%20drive%20to%20" class="drives-card-cta" target="_blank" rel="noopener noreferrer">WhatsApp us</a>
+
+                        <fieldset class="drives-choice">
+                            <legend>Fuel reserve</legend>
+                            <div class="drives-options drives-options--3 drives-options--keep">
+                                <label class="drives-option"><input type="radio" name="calc_reserve" value="0.1" checked><span>10%</span></label>
+                                <label class="drives-option"><input type="radio" name="calc_reserve" value="0.15"><span>15%</span></label>
+                                <label class="drives-option"><input type="radio" name="calc_reserve" value="0.2"><span>20%</span></label>
+                            </div>
+                        </fieldset>
+
+                        <fieldset class="drives-choice">
+                            <legend>Your car</legend>
+                            <div class="drives-options drives-options--2">
+                                <label class="drives-option"><input type="radio" name="calc_car" value="own" checked><span>I'm bringing mine</span></label>
+                                <label class="drives-option"><input type="radio" name="calc_car" value="rent"><span>Renting from ardena</span></label>
+                            </div>
+                        </fieldset>
+
+                        <div class="drives-form-row drives-form-row--3" id="calcRentFields" hidden>
+                            <div class="drives-field">
+                                <label for="calcRate">Hire per day (KSh)</label>
+                                <input type="number" id="calcRate" min="0" step="100" value="3500" inputmode="numeric">
+                            </div>
+                            <div class="drives-field">
+                                <label for="calcDays">Days</label>
+                                <input type="number" id="calcDays" min="1" max="14" step="1" value="3" inputmode="numeric">
+                            </div>
+                            <div class="drives-field">
+                                <label for="calcDriver">Driver per day (KSh)</label>
+                                <input type="number" id="calcDriver" min="0" step="100" value="0" inputmode="numeric">
+                            </div>
                         </div>
-                    </article>
+
+                        <div class="drives-field drives-field--narrow">
+                            <label for="calcPeople">People sharing the cost</label>
+                            <input type="number" id="calcPeople" min="1" max="8" step="1" value="1" inputmode="numeric">
+                        </div>
+                    </form>
+
+                    <div class="drives-calc-result" aria-live="polite">
+                        <p class="drives-label">Your estimate</p>
+                        <p class="drives-calc-total" id="calcTotal">KSh 0</p>
+                        <p class="drives-calc-per" id="calcPer" hidden></p>
+
+                        <dl class="drives-calc-rows">
+                            <div><dt>Fuel use</dt><dd id="calcEconomy">0 km per litre</dd></div>
+                            <div><dt>To Samburu, 365 km</dt><dd id="calcOut">0 L</dd></div>
+                            <div><dt>Around Samburu</dt><dd id="calcAround">0 L</dd></div>
+                            <div><dt>Back to Nairobi, 330 km</dt><dd id="calcBack">0 L</dd></div>
+                            <div><dt>Reserve</dt><dd id="calcReserve">0 L</dd></div>
+                            <div class="is-strong"><dt>Fuel</dt><dd id="calcFuel">0 L, KSh 0</dd></div>
+                            <div class="is-strong" id="calcHireRow" hidden><dt>Car hire</dt><dd id="calcHire">KSh 0</dd></div>
+                            <div class="is-strong" id="calcDriverRow" hidden><dt>Driver</dt><dd id="calcDriverCost">KSh 0</dd></div>
+                        </dl>
+                        <p class="drives-calc-foot">Estimates only. Real fuel use depends on the car, load, speed and roads, and pump prices change every month. We confirm hire and driver rates in the group.</p>
+                        <a href="#join" class="host-page-cta drives-calc-cta">Count me in</a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -683,6 +802,74 @@
             }
             apply();
             if (mq.addEventListener) mq.addEventListener('change', apply);
+        })();
+
+        // Trip budget calculator. Fuel use is a rough curve from engine size:
+        // petrol about 3.2 + 2.6 L/100 km per litre of engine, diesel 15% less.
+        (function () {
+            var form = document.getElementById('drivesCalc');
+            if (!form) return;
+            var OUT_KM = 365, BACK_KM = 330;
+            var PRICE = { petrol: 185, diesel: 172 };
+            var priceEdited = false;
+            var $ = function (id) { return document.getElementById(id); };
+            var ksh = function (n) { return 'KSh ' + (Math.round(n / 10) * 10).toLocaleString('en-KE'); };
+            var litres = function (n) { return (Math.round(n * 10) / 10).toLocaleString('en-KE') + ' L'; };
+            var num = function (id, min, fallback) {
+                var v = parseFloat($(id).value);
+                return isNaN(v) || v < min ? fallback : v;
+            };
+            var picked = function (name) { return form.querySelector('input[name="' + name + '"]:checked').value; };
+
+            $('calcPrice').addEventListener('input', function () { priceEdited = true; });
+
+            function update(e) {
+                var fuel = picked('calc_fuel');
+                if (e && e.target.name === 'calc_fuel' && !priceEdited) $('calcPrice').value = PRICE[fuel];
+
+                var cc = num('calcCc', 800, 1500);
+                $('calcCcOut').textContent = cc.toLocaleString('en-KE') + ' cc';
+
+                var per100 = 3.2 + 2.6 * (cc / 1000);
+                if (fuel === 'diesel') per100 *= 0.85;
+                var price = num('calcPrice', 0, PRICE[fuel]);
+                var local = num('calcLocal', 0, 0);
+                var reserve = parseFloat(picked('calc_reserve'));
+                var renting = picked('calc_car') === 'rent';
+                var people = Math.max(1, Math.round(num('calcPeople', 1, 1)));
+
+                var out = OUT_KM * per100 / 100;
+                var back = BACK_KM * per100 / 100;
+                var around = local * per100 / 100;
+                var spare = (out + back + around) * reserve;
+                var fuelL = out + back + around + spare;
+                var fuelCost = fuelL * price;
+
+                var days = Math.max(1, Math.round(num('calcDays', 1, 3)));
+                var hire = renting ? num('calcRate', 0, 0) * days : 0;
+                var driver = renting ? num('calcDriver', 0, 0) * days : 0;
+                var total = fuelCost + hire + driver;
+
+                $('calcRentFields').hidden = !renting;
+                $('calcHireRow').hidden = !renting;
+                $('calcDriverRow').hidden = !renting || driver === 0;
+
+                $('calcEconomy').textContent = 'About ' + Math.round(100 / per100) + ' km per litre';
+                $('calcOut').textContent = litres(out);
+                $('calcAround').textContent = litres(around);
+                $('calcBack').textContent = litres(back);
+                $('calcReserve').textContent = litres(spare);
+                $('calcFuel').textContent = litres(fuelL) + ', ' + ksh(fuelCost);
+                $('calcHire').textContent = ksh(hire) + ' for ' + days + (days === 1 ? ' day' : ' days');
+                $('calcDriverCost').textContent = ksh(driver);
+                $('calcTotal').textContent = ksh(total);
+                $('calcPer').hidden = people < 2;
+                $('calcPer').textContent = ksh(total / people) + ' each, split ' + people + ' ways';
+            }
+
+            form.addEventListener('input', update);
+            form.addEventListener('change', update);
+            update();
         })();
 
         // Countdown badge on the featured poster (dates in Nairobi time).

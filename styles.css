@@ -13351,75 +13351,373 @@ html:has(body.tracker-page) {
   }
 }
 
-/* --- all drives ---------------------------------------------------------- */
+/* --- route map ----------------------------------------------------------- */
 
-.drives-all {
-  padding: 6rem 0;
+.drives-roadmap {
+  padding: 5.5rem 0;
   background: #f5f5f7;
   scroll-margin-top: 70px;
 }
 
-.drives-grid {
+.drives-road-inner {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
-  gap: 1.5rem;
+  grid-template-columns: minmax(0, 420px) minmax(0, 1fr);
+  gap: 5rem;
+  align-items: center;
 }
 
-.drives-card {
-  display: flex;
-  flex-direction: column;
-  background: #ffffff;
-}
-
-.drives-card-img {
+.drives-map {
   display: block;
   width: 100%;
-  aspect-ratio: 16 / 10;
+  max-width: 400px;
   height: auto;
-  object-fit: cover;
-  object-position: 50% 70%;
+  overflow: visible;
 }
 
-.drives-card-body {
-  padding: 1.5rem 1.5rem 1.25rem;
+.drives-map-out,
+.drives-map-back {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
-.drives-card-title {
-  margin: 0 0 0.4rem;
-  font-size: 1.2rem;
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  color: #0a0a0a;
+.drives-map-out {
+  stroke: #0a0a0a;
+  stroke-width: 3;
 }
 
-.drives-card-meta {
-  margin: 0;
-  font-size: 0.925rem;
-  line-height: 1.55;
+.drives-map-back {
+  stroke: #9a9aa4;
+  stroke-width: 2.5;
+  stroke-dasharray: 6 6;
+}
+
+.drives-map-equator {
+  stroke: #c9c9d1;
+  stroke-width: 1;
+  stroke-dasharray: 2 5;
+}
+
+.drives-map-peak {
+  fill: none;
+  stroke: #9a9aa4;
+  stroke-width: 1.5;
+  stroke-linejoin: round;
+}
+
+.drives-map-note {
+  font-family: inherit;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  fill: #8a8a94;
+}
+
+.drives-map-town circle {
+  fill: #ffffff;
+  stroke: #0a0a0a;
+  stroke-width: 2;
+}
+
+.drives-map-town text {
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  fill: #0a0a0a;
+}
+
+.drives-map-town--back circle {
+  stroke: #9a9aa4;
+}
+
+.drives-map-town--back text {
+  fill: #6a6a72;
+}
+
+.drives-map-town--end circle {
+  fill: #0a0a0a;
+  stroke: #f5f5f7;
+  stroke-width: 3;
+}
+
+.drives-map-town--end text {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.drives-map-car {
+  fill: var(--drv-blue);
+}
+
+.drives-map-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.75rem;
+  margin: 1.5rem 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.85rem;
   color: var(--drv-muted);
 }
 
-.drives-card-foot {
+.drives-map-legend li {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 0.6rem;
+}
+
+.drives-map-key {
+  width: 26px;
+  height: 0;
+  border-top: 3px solid #0a0a0a;
+}
+
+.drives-map-key--back {
+  border-top: 2.5px dashed #9a9aa4;
+}
+
+.drives-road-lead {
+  margin: 0.75rem 0 2rem;
+  font-size: 1.0625rem;
+  color: #4a4a4f;
+}
+
+.drives-road-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1rem;
-  margin-top: auto;
-  padding: 1rem 1.5rem;
-  border-top: 1px solid var(--drv-line);
-  font-size: 0.875rem;
+  margin: 0 0 2rem;
+}
+
+.drives-road-stats dt {
+  margin: 0 0 0.25rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
   color: var(--drv-muted);
 }
 
-.drives-card-cta {
+.drives-road-stats dd {
+  margin: 0;
+  font-size: clamp(1.6rem, 2.6vw, 2.2rem);
   font-weight: 600;
+  letter-spacing: -0.03em;
   color: #0a0a0a;
-  text-decoration: underline;
-  text-underline-offset: 3px;
 }
 
-.drives-card-cta:hover {
-  color: var(--drv-blue-deep);
+.drives-legs {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid #dcdce2;
+}
+
+.drives-legs li {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.7rem 0;
+  border-bottom: 1px solid #dcdce2;
+  font-size: 0.95rem;
+  color: #0a0a0a;
+}
+
+.drives-legs li span:last-child {
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.drives-legs li.is-back {
+  color: #6a6a72;
+}
+
+.drives-road-foot {
+  margin: 1rem 0 0;
+  font-size: 0.85rem;
+  color: var(--drv-muted);
+}
+
+/* --- budget calculator --------------------------------------------------- */
+
+.drives-calc {
+  padding: 5.5rem 0;
+  background: #ffffff;
+  scroll-margin-top: 70px;
+}
+
+.drives-calc-intro {
+  margin-top: 0.75rem;
+}
+
+.drives-calc-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  gap: 4rem;
+  align-items: start;
+}
+
+.drives-calc-out {
+  float: right;
+  font-weight: 700;
+  color: #0a0a0a;
+}
+
+/* Hidden calculator rows must stay hidden even where display is set. */
+.drives-page [hidden] {
+  display: none !important;
+}
+
+.drives-field input.drives-range {
+  height: 2px;
+  background: #0a0a0a;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.drives-range {
+  width: 100%;
+  height: 2px;
+  margin: 1rem 0 0.5rem;
+  background: #0a0a0a;
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+}
+
+.drives-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #0a0a0a;
+  border: 3px solid #ffffff;
+  box-shadow: 0 0 0 1px #0a0a0a;
+}
+
+.drives-range::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #0a0a0a;
+  border: 3px solid #ffffff;
+  box-shadow: 0 0 0 1px #0a0a0a;
+}
+
+.drives-range:focus-visible {
+  outline: 2px solid var(--drv-blue);
+  outline-offset: 6px;
+}
+
+.drives-range-scale {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: #8a8a94;
+}
+
+.drives-form-row.drives-form-row--3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.drives-calc-result {
+  position: sticky;
+  top: 96px;
+  padding: 2rem;
+  border: 1px solid var(--drv-line);
+}
+
+.drives-calc-total {
+  margin: 0;
+  font-size: clamp(2.4rem, 4vw, 3.2rem);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: #0a0a0a;
+  font-variant-numeric: tabular-nums;
+}
+
+.drives-calc-per {
+  margin: 0.6rem 0 0;
+  font-size: 0.95rem;
+  color: var(--drv-muted);
+}
+
+.drives-calc-rows {
+  margin: 1.75rem 0 1.25rem;
+  border-top: 1px solid var(--drv-line);
+}
+
+.drives-calc-rows > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.65rem 0;
+  border-bottom: 1px solid var(--drv-line);
+  font-size: 0.925rem;
+}
+
+.drives-calc-rows dt {
+  color: var(--drv-muted);
+}
+
+.drives-calc-rows dd {
+  margin: 0;
+  text-align: right;
+  color: #0a0a0a;
+  font-variant-numeric: tabular-nums;
+}
+
+.drives-calc-rows .is-strong dt,
+.drives-calc-rows .is-strong dd {
+  font-weight: 600;
+  color: #0a0a0a;
+}
+
+.drives-calc-foot {
+  margin: 0 0 1.5rem;
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  color: #8a8a94;
+}
+
+@media (max-width: 900px) {
+  .drives-road-inner,
+  .drives-calc-inner {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 3rem;
+  }
+
+  .drives-map {
+    max-width: 340px;
+  }
+
+  .drives-calc-result {
+    position: static;
+  }
+}
+
+@media (max-width: 768px) {
+  .drives-roadmap,
+  .drives-calc {
+    padding: 4rem 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .drives-form-row.drives-form-row--3 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .drives-options--3.drives-options--keep {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .drives-calc-result {
+    padding: 1.5rem 1.25rem;
+  }
 }
 
 /* --- how it works -------------------------------------------------------- */
@@ -13735,7 +14033,6 @@ html:has(body.tracker-page) {
 }
 
 @media (max-width: 768px) {
-  .drives-all,
   .drives-how,
   .drives-join {
     padding: 4rem 0;
