@@ -12945,44 +12945,67 @@ html:has(body.tracker-page) {
   }
 }
 
-/* Hero countdown: plain numbers, no boxes. */
+/* Hero countdown: plain numbers, centred at the foot of the hero. */
+.drives-hero {
+  position: relative;
+}
+
 .drives-countdown {
-  margin-top: 2.5rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid #dcdce2;
-  width: 100%;
-  max-width: 420px;
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  bottom: 2.5rem;
+  transform: translateX(-50%);
+  text-align: center;
 }
 
 .drives-countdown-label {
   margin: 0 0 0.75rem;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   font-weight: 600;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
+  white-space: nowrap;
   color: var(--drv-muted);
 }
 
 .drives-countdown-units {
   display: flex;
+  justify-content: center;
   gap: 2rem;
 }
 
 .drives-countdown-units span {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 0.2rem;
+  min-width: 2.6rem;
   font-size: 0.75rem;
   color: var(--drv-muted);
 }
 
 .drives-countdown-units b {
-  font-size: clamp(1.6rem, 2.4vw, 2rem);
+  font-size: clamp(1.5rem, 2.2vw, 1.85rem);
   font-weight: 600;
   letter-spacing: -0.03em;
   line-height: 1;
   color: #0a0a0a;
   font-variant-numeric: tabular-nums;
+}
+
+/* On phones the hero stacks, so the countdown joins the flow underneath. */
+@media (max-width: 899.98px) {
+  .drives-hero {
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .drives-countdown {
+    position: static;
+    transform: none;
+    margin-top: 2.5rem;
+  }
 }
 
 @media (max-width: 480px) {
