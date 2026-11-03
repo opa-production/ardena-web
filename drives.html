@@ -26,7 +26,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/styles.css?v=57">
+    <link rel="stylesheet" href="/styles.css?v=58">
     <link rel="canonical" href="https://ardena.co.ke/drives">
     <link rel="icon" type="image/jpeg" href="/assets/logo.jpg">
     <script type="application/ld+json">
@@ -161,6 +161,16 @@
                     <div class="host-page-hero-actions">
                         <a href="#join" class="host-page-cta drives-cta">Join the Samburu drive</a>
                         <a href="#calculator" class="host-page-cta host-page-cta--ghost drives-cta">Plan your budget</a>
+                    </div>
+                    <div class="drives-countdown" id="drivesCountdown" hidden>
+                        <p class="drives-countdown-label" id="drivesCountdownLabel">We leave for Samburu in</p>
+                        <div class="drives-countdown-units" aria-hidden="true">
+                            <span><b data-unit="d">00</b>days</span>
+                            <span><b data-unit="h">00</b>hrs</span>
+                            <span><b data-unit="m">00</b>min</span>
+                            <span><b data-unit="s">00</b>sec</span>
+                        </div>
+                        <p class="visually-hidden" id="drivesCountdownText"></p>
                     </div>
                 </div>
 
@@ -844,6 +854,44 @@
             form.addEventListener('input', update);
             form.addEventListener('change', update);
             update();
+        })();
+
+        // Hero countdown to departure, Friday 27 Nov 2026 in Nairobi time.
+        (function () {
+            var box = document.getElementById('drivesCountdown');
+            if (!box) return;
+            var start = new Date('2026-11-27T06:00:00+03:00').getTime();
+            var end = new Date('2026-11-30T00:00:00+03:00').getTime();
+            var units = {};
+            Array.prototype.forEach.call(box.querySelectorAll('[data-unit]'), function (el) { units[el.getAttribute('data-unit')] = el; });
+            var label = document.getElementById('drivesCountdownLabel');
+            var text = document.getElementById('drivesCountdownText');
+            var pad = function (n) { return n < 10 ? '0' + n : String(n); };
+            var timer;
+
+            function tick() {
+                var now = Date.now();
+                if (now >= start) {
+                    clearInterval(timer);
+                    box.querySelector('.drives-countdown-units').hidden = true;
+                    label.textContent = now < end ? 'We are on the road to Samburu now.' : 'That was Samburu. Next drive coming soon.';
+                    text.textContent = '';
+                    return;
+                }
+                var s = Math.floor((start - now) / 1000);
+                var d = Math.floor(s / 86400), h = Math.floor(s % 86400 / 3600), m = Math.floor(s % 3600 / 60), sec = s % 60;
+                units.d.textContent = pad(d);
+                units.h.textContent = pad(h);
+                units.m.textContent = pad(m);
+                units.s.textContent = pad(sec);
+                // Screen readers get a calm, whole-day summary instead of a ticking clock.
+                var summary = d + (d === 1 ? ' day' : ' days') + ' to go';
+                if (text.textContent !== summary) text.textContent = summary;
+            }
+
+            tick();
+            box.hidden = false;
+            timer = setInterval(tick, 1000);
         })();
 
         // Sign up form: show follow up questions only when they apply, then send to Formspree.
